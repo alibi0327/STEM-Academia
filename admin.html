@@ -1,654 +1,1552 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STEM Trainer — Администратор</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<title>STEM Trainer — Администратор</title>
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fb;
-            color: #172033;
-        }
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-        .layout {
-            display: flex;
-            min-height: 100vh;
-        }
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
 
-        .sidebar {
-            width: 250px;
-            background: #111827;
-            color: white;
-            padding: 24px 18px;
-        }
+.layout{
+    display:flex;
+    min-height:100vh;
+}
 
-        .brand {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 36px;
-        }
+.sidebar{
+    width:250px;
+    background:#111827;
+    color:white;
+    padding:24px 18px;
+}
 
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+.brand{
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:35px;
+}
 
-        .menu button {
-            width: 100%;
-            border: none;
-            background: transparent;
-            color: #d1d5db;
-            text-align: left;
-            padding: 13px 14px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 15px;
-        }
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
 
-        .menu button:hover,
-        .menu button.active {
-            background: #1f2937;
-            color: white;
-        }
+.menu button{
+    border:0;
+    background:transparent;
+    color:#d1d5db;
+    text-align:left;
+    padding:13px 14px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:15px;
+}
 
-        .main {
-            flex: 1;
-            padding: 30px;
-        }
+.menu button:hover,
+.menu button.active{
+    background:#1f2937;
+    color:white;
+}
 
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
+.main{
+    flex:1;
+    padding:30px;
+}
 
-        .topbar h1 {
-            font-size: 30px;
-        }
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:28px;
+}
 
-        .logout-btn {
-            border: none;
-            background: #ef4444;
-            color: white;
-            padding: 10px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
+.topbar h1{
+    font-size:30px;
+}
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 30px;
-        }
+.subtitle{
+    color:#667085;
+    margin-top:6px;
+}
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid #e5e7eb;
-        }
+.logout{
+    background:#ef4444;
+    color:white;
+    border:0;
+    border-radius:9px;
+    padding:10px 16px;
+    cursor:pointer;
+}
 
-        .card-title {
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:28px;
+}
 
-        .card-value {
-            font-size: 30px;
-            font-weight: 700;
-        }
+.card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    padding:20px;
+}
 
-        .section {
-            background: white;
-            border-radius: 16px;
-            padding: 22px;
-            border: 1px solid #e5e7eb;
-            margin-bottom: 24px;
-        }
+.card-title{
+    color:#667085;
+    font-size:14px;
+    margin-bottom:8px;
+}
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-        }
+.card-value{
+    font-size:30px;
+    font-weight:700;
+}
 
-        .section-header h2 {
-            font-size: 21px;
-        }
+.section{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:24px;
+}
 
-        .primary-btn {
-            border: none;
-            background: #2563eb;
-            color: white;
-            padding: 11px 16px;
-            border-radius: 9px;
-            cursor: pointer;
-            font-weight: 600;
-        }
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+.section-header h2{
+    font-size:21px;
+}
 
-        th,
-        td {
-            padding: 13px 10px;
-            text-align: left;
-            border-bottom: 1px solid #eef0f3;
-            font-size: 14px;
-        }
+.primary-btn{
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:11px 16px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:600;
+}
 
-        th {
-            color: #667085;
-        }
+table{
+    width:100%;
+    border-collapse:collapse;
+}
 
-        .badge {
-            display: inline-block;
-            padding: 5px 9px;
-            border-radius: 20px;
-            background: #e8f0ff;
-            color: #2563eb;
-            font-size: 12px;
-            margin: 2px;
-        }
+th,td{
+    padding:13px 10px;
+    text-align:left;
+    border-bottom:1px solid #eef0f3;
+    font-size:14px;
+    vertical-align:middle;
+}
 
-        .progress {
-            width: 140px;
-            height: 8px;
-            border-radius: 20px;
-            background: #e5e7eb;
-            overflow: hidden;
-        }
+th{
+    color:#667085;
+}
 
-        .progress span {
-            display: block;
-            height: 100%;
-            background: #22c55e;
-        }
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#e8f0ff;
+    color:#2563eb;
+    font-size:12px;
+    margin:2px;
+}
 
-        .empty {
-            color: #98a2b3;
-            padding: 14px 0;
-        }
+.status-pass{
+    display:inline-block;
+    background:#dcfce7;
+    color:#166534;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
 
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(17, 24, 39, 0.55);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+.status-fail{
+    display:inline-block;
+    background:#fee2e2;
+    color:#991b1b;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
 
-        .modal.open {
-            display: flex;
-        }
+.status-empty{
+    color:#98a2b3;
+}
 
-        .modal-box {
-            background: white;
-            width: 100%;
-            max-width: 520px;
-            border-radius: 18px;
-            padding: 24px;
-        }
+.progress{
+    width:130px;
+    height:8px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+}
 
-        .modal-box h2 {
-            margin-bottom: 20px;
-        }
+.progress span{
+    display:block;
+    height:100%;
+    background:#22c55e;
+}
 
-        .form-group {
-            margin-bottom: 16px;
-        }
+.view{
+    display:none;
+}
 
-        label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 7px;
-        }
+.view.active{
+    display:block;
+}
 
-        input {
-            width: 100%;
-            height: 46px;
-            border: 1px solid #d0d5dd;
-            border-radius: 9px;
-            padding: 0 12px;
-            font-size: 14px;
-        }
+.empty{
+    color:#98a2b3;
+    padding:15px 0;
+}
 
-        .course-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 8px;
-        }
+/* MODAL */
 
-        .course-item {
-            border: 1px solid #e5e7eb;
-            border-radius: 9px;
-            padding: 10px;
-            font-size: 14px;
-        }
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(17,24,39,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:100;
+}
 
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;
-        }
+.modal.open{
+    display:flex;
+}
 
-        .secondary-btn {
-            border: 1px solid #d0d5dd;
-            background: white;
-            padding: 10px 15px;
-            border-radius: 9px;
-            cursor: pointer;
-        }
+.modal-box{
+    width:100%;
+    max-width:520px;
+    background:white;
+    border-radius:18px;
+    padding:24px;
+}
 
-        @media (max-width: 1000px) {
-            .cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
+.modal-box h2{
+    margin-bottom:20px;
+}
 
-            .sidebar {
-                width: 210px;
-            }
-        }
+.form-group{
+    margin-bottom:16px;
+}
 
-        @media (max-width: 760px) {
-            .layout {
-                display: block;
-            }
+label{
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:7px;
+}
 
-            .sidebar {
-                width: 100%;
-            }
+input{
+    width:100%;
+    height:46px;
+    border:1px solid #d0d5dd;
+    border-radius:9px;
+    padding:0 12px;
+}
 
-            .cards {
-                grid-template-columns: 1fr;
-            }
+.course-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
 
-            .main {
-                padding: 18px;
-            }
+.course-item{
+    border:1px solid #e5e7eb;
+    border-radius:9px;
+    padding:10px;
+    font-size:14px;
+}
 
-            table {
-                min-width: 700px;
-            }
+.course-item input{
+    width:auto;
+    height:auto;
+    margin-right:6px;
+}
 
-            .section {
-                overflow-x: auto;
-            }
-        }
-    </style>
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:20px;
+}
+
+.secondary-btn{
+    border:1px solid #d0d5dd;
+    background:white;
+    padding:10px 15px;
+    border-radius:9px;
+    cursor:pointer;
+}
+
+.delete-btn{
+    border:0;
+    background:#fee2e2;
+    color:#b91c1c;
+    padding:7px 10px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+@media(max-width:1000px){
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:760px){
+    .layout{
+        display:block;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .main{
+        padding:18px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        overflow-x:auto;
+    }
+
+    table{
+        min-width:850px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <div class="layout">
 
-    <aside class="sidebar">
-        <div class="brand">STEM Trainer</div>
+<aside class="sidebar">
 
-        <div class="menu">
-            <button class="active">Главная</button>
-            <button>Учителя</button>
-            <button>Курсы</button>
-            <button>Результаты</button>
-        </div>
-    </aside>
+<div class="brand">
+STEM Trainer
+</div>
 
-    <main class="main">
+<div class="menu">
 
-        <div class="topbar">
-            <div>
-                <h1>Панель администратора</h1>
-                <div style="color:#667085; margin-top:6px;">
-                    Управление обучением преподавателей
-                </div>
-            </div>
+<button
+class="active"
+id="menuDashboard"
+onclick="showView('dashboard')">
+Главная
+</button>
 
-            <button class="logout-btn" onclick="logout()">
-                Выйти
-            </button>
-        </div>
+<button
+id="menuTeachers"
+onclick="showView('teachers')">
+Учителя
+</button>
 
-        <section class="cards">
-
-            <div class="card">
-                <div class="card-title">Учителей</div>
-                <div class="card-value" id="teachersCount">0</div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Курсов</div>
-                <div class="card-value">5</div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Проходят обучение</div>
-                <div class="card-value" id="activeCount">0</div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Завершили обучение</div>
-                <div class="card-value" id="completedCount">0</div>
-            </div>
-
-        </section>
-
-        <section class="section">
-
-            <div class="section-header">
-                <h2>Учителя</h2>
-
-                <button class="primary-btn" onclick="openModal()">
-                    + Добавить учителя
-                </button>
-            </div>
-
-            <div id="teachersTable"></div>
-
-        </section>
-
-    </main>
+<button
+id="menuResults"
+onclick="showView('results')">
+Результаты
+</button>
 
 </div>
 
-<div class="modal" id="teacherModal">
+</aside>
 
-    <div class="modal-box">
 
-        <h2>Новый учитель</h2>
+<main class="main">
 
-        <div class="form-group">
-            <label>ФИО</label>
-            <input id="fullName" type="text" placeholder="Например: Айжан Сериковна">
-        </div>
+<div class="topbar">
 
-        <div class="form-group">
-            <label>Логин</label>
-            <input id="teacherLogin" type="text" placeholder="Например: a.serikova">
-        </div>
+<div>
+<h1 id="pageTitle">
+Панель администратора
+</h1>
 
-        <div class="form-group">
-            <label>Пароль</label>
-            <input id="teacherPassword" type="text" placeholder="Введите пароль">
-        </div>
+<div class="subtitle">
+Управление обучением преподавателей
+</div>
+</div>
 
-        <div class="form-group">
-            <label>Назначить курсы</label>
-
-            <div class="course-list">
-
-                <label class="course-item">
-                    <input type="checkbox" value="Arduino" class="courseCheck">
-                    Arduino
-                </label>
-
-                <label class="course-item">
-                    <input type="checkbox" value="Roket" class="courseCheck">
-                    Roket
-                </label>
-
-                <label class="course-item">
-                    <input type="checkbox" value="Labdisc" class="courseCheck">
-                    Labdisc
-                </label>
-
-                <label class="course-item">
-                    <input type="checkbox" value="3D-принтер" class="courseCheck">
-                    3D-принтер
-                </label>
-
-                <label class="course-item">
-                    <input type="checkbox" value="Лазерный принтер" class="courseCheck">
-                    Лазерный принтер
-                </label>
-
-            </div>
-        </div>
-
-        <div class="modal-actions">
-            <button class="secondary-btn" onclick="closeModal()">
-                Отмена
-            </button>
-
-            <button class="primary-btn" onclick="createTeacher()">
-                Создать учителя
-            </button>
-        </div>
-
-    </div>
+<button
+class="logout"
+onclick="logout()">
+Выйти
+</button>
 
 </div>
+
+
+<!-- ГЛАВНАЯ -->
+
+<div
+class="view active"
+id="dashboardView">
+
+<div class="cards">
+
+<div class="card">
+<div class="card-title">
+Учителей
+</div>
+<div
+class="card-value"
+id="teachersCount">
+0
+</div>
+</div>
+
+<div class="card">
+<div class="card-title">
+Курсов
+</div>
+<div class="card-value">
+5
+</div>
+</div>
+
+<div class="card">
+<div class="card-title">
+Обучаются
+</div>
+<div
+class="card-value"
+id="activeCount">
+0
+</div>
+</div>
+
+<div class="card">
+<div class="card-title">
+Сдали Labdisc
+</div>
+<div
+class="card-value"
+id="passedCount">
+0
+</div>
+</div>
+
+</div>
+
+
+<section class="section">
+
+<div class="section-header">
+
+<h2>
+Последние результаты Labdisc
+</h2>
+
+</div>
+
+<div id="dashboardResults"></div>
+
+</section>
+
+</div>
+
+
+<!-- УЧИТЕЛЯ -->
+
+<div
+class="view"
+id="teachersView">
+
+<section class="section">
+
+<div class="section-header">
+
+<h2>
+Учителя
+</h2>
+
+<button
+class="primary-btn"
+onclick="openModal()">
++ Добавить учителя
+</button>
+
+</div>
+
+<div id="teachersTable"></div>
+
+</section>
+
+</div>
+
+
+<!-- РЕЗУЛЬТАТЫ -->
+
+<div
+class="view"
+id="resultsView">
+
+<section class="section">
+
+<div class="section-header">
+
+<div>
+<h2>
+Результаты обучения
+</h2>
+
+<div
+style="
+color:#667085;
+font-size:14px;
+margin-top:5px;
+">
+Labdisc
+</div>
+
+</div>
+
+</div>
+
+<div id="resultsTable"></div>
+
+</section>
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div
+class="modal"
+id="teacherModal">
+
+<div class="modal-box">
+
+<h2>
+Новый учитель
+</h2>
+
+<div class="form-group">
+
+<label>
+ФИО
+</label>
+
+<input
+id="fullName"
+type="text"
+placeholder="Айжан Сериковна">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Логин
+</label>
+
+<input
+id="teacherLogin"
+type="text"
+placeholder="a.serikova">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Пароль
+</label>
+
+<input
+id="teacherPassword"
+type="text"
+placeholder="Введите пароль">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Назначить курсы
+</label>
+
+<div class="course-list">
+
+<label class="course-item">
+<input
+type="checkbox"
+value="Arduino"
+class="courseCheck">
+Arduino
+</label>
+
+<label class="course-item">
+<input
+type="checkbox"
+value="Roket"
+class="courseCheck">
+Roket
+</label>
+
+<label class="course-item">
+<input
+type="checkbox"
+value="Labdisc"
+class="courseCheck">
+Labdisc
+</label>
+
+<label class="course-item">
+<input
+type="checkbox"
+value="3D-принтер"
+class="courseCheck">
+3D-принтер
+</label>
+
+<label class="course-item">
+<input
+type="checkbox"
+value="Лазерный принтер"
+class="courseCheck">
+Лазерный принтер
+</label>
+
+</div>
+
+</div>
+
+
+<div class="modal-actions">
+
+<button
+class="secondary-btn"
+onclick="closeModal()">
+Отмена
+</button>
+
+<button
+class="primary-btn"
+onclick="createTeacher()">
+Создать учителя
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 
 <script>
 
-    const currentUser = JSON.parse(
-        localStorage.getItem("stemCurrentUser")
-    );
+/* ============================
+   AUTH
+============================ */
 
-    if (!currentUser || currentUser.role !== "admin") {
-        window.location.href = "index.html";
-    }
+const currentUser =
+JSON.parse(
+localStorage.getItem("stemCurrentUser")
+);
 
-    const defaultTeachers = [];
+if(
+!currentUser ||
+currentUser.role !== "admin"
+){
+window.location.href = "index.html";
+}
 
-    let teachers = JSON.parse(
-        localStorage.getItem("stemTeachers")
-    ) || defaultTeachers;
 
-    function saveTeachers() {
-        localStorage.setItem(
-            "stemTeachers",
-            JSON.stringify(teachers)
-        );
-    }
+/* ============================
+   TEACHERS
+============================ */
 
-    function renderTeachers() {
+let teachers =
+JSON.parse(
+localStorage.getItem("stemTeachers")
+) || [];
 
-        const tableContainer =
-            document.getElementById("teachersTable");
 
-        document.getElementById("teachersCount").textContent =
-            teachers.length;
+function saveTeachers(){
 
-        const active = teachers.filter(
-            teacher => teacher.progress < 100
-        ).length;
+localStorage.setItem(
+"stemTeachers",
+JSON.stringify(teachers)
+);
 
-        const completed = teachers.filter(
-            teacher => teacher.progress === 100
-        ).length;
+}
 
-        document.getElementById("activeCount").textContent =
-            active;
 
-        document.getElementById("completedCount").textContent =
-            completed;
+/* ============================
+   VIEWS
+============================ */
 
-        if (teachers.length === 0) {
+function showView(view){
 
-            tableContainer.innerHTML =
-                '<div class="empty">Учителя пока не добавлены.</div>';
+document
+.querySelectorAll(".view")
+.forEach(item =>
+item.classList.remove("active")
+);
 
-            return;
-        }
+document
+.querySelectorAll(".menu button")
+.forEach(item =>
+item.classList.remove("active")
+);
 
-        let html = `
-            <table>
-                <thead>
-                    <tr>
-                        <th>ФИО</th>
-                        <th>Логин</th>
-                        <th>Курсы</th>
-                        <th>Прогресс</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
 
-        teachers.forEach((teacher, index) => {
+if(view === "dashboard"){
 
-            const courses = teacher.courses
-                .map(course =>
-                    `<span class="badge">${course}</span>`
-                )
-                .join("");
+document
+.getElementById("dashboardView")
+.classList.add("active");
 
-            html += `
-                <tr>
-                    <td>${teacher.fullName}</td>
-                    <td>${teacher.login}</td>
-                    <td>${courses || "Не назначены"}</td>
-                    <td>
-                        <div style="display:flex;align-items:center;gap:10px;">
-                            <div class="progress">
-                                <span style="width:${teacher.progress}%"></span>
-                            </div>
-                            ${teacher.progress}%
-                        </div>
-                    </td>
-                    <td>
-                        <button
-                            onclick="deleteTeacher(${index})"
-                            style="
-                                border:none;
-                                background:#fee2e2;
-                                color:#b91c1c;
-                                padding:7px 10px;
-                                border-radius:7px;
-                                cursor:pointer;
-                            "
-                        >
-                            Удалить
-                        </button>
-                    </td>
-                </tr>
-            `;
-        });
+document
+.getElementById("menuDashboard")
+.classList.add("active");
 
-        html += `
-                </tbody>
-            </table>
-        `;
+document
+.getElementById("pageTitle")
+.textContent =
+"Панель администратора";
 
-        tableContainer.innerHTML = html;
-    }
+}
 
-    function openModal() {
-        document
-            .getElementById("teacherModal")
-            .classList.add("open");
-    }
 
-    function closeModal() {
+if(view === "teachers"){
 
-        document
-            .getElementById("teacherModal")
-            .classList.remove("open");
+document
+.getElementById("teachersView")
+.classList.add("active");
 
-        clearForm();
-    }
+document
+.getElementById("menuTeachers")
+.classList.add("active");
 
-    function clearForm() {
+document
+.getElementById("pageTitle")
+.textContent =
+"Учителя";
 
-        document.getElementById("fullName").value = "";
-        document.getElementById("teacherLogin").value = "";
-        document.getElementById("teacherPassword").value = "";
+}
 
-        document
-            .querySelectorAll(".courseCheck")
-            .forEach(item => item.checked = false);
-    }
 
-    function createTeacher() {
+if(view === "results"){
 
-        const fullName =
-            document.getElementById("fullName").value.trim();
+document
+.getElementById("resultsView")
+.classList.add("active");
 
-        const login =
-            document.getElementById("teacherLogin").value.trim();
+document
+.getElementById("menuResults")
+.classList.add("active");
 
-        const password =
-            document.getElementById("teacherPassword").value.trim();
+document
+.getElementById("pageTitle")
+.textContent =
+"Результаты обучения";
 
-        const courses = Array.from(
-            document.querySelectorAll(".courseCheck:checked")
-        ).map(item => item.value);
+}
 
-        if (!fullName || !login || !password) {
-            alert("Заполните ФИО, логин и пароль.");
-            return;
-        }
+}
 
-        const loginExists = teachers.some(
-            teacher => teacher.login === login
-        );
 
-        if (loginExists) {
-            alert("Такой логин уже существует.");
-            return;
-        }
+/* ============================
+   DASHBOARD
+============================ */
 
-        teachers.push({
-            id: Date.now(),
-            fullName: fullName,
-            login: login,
-            password: password,
-            courses: courses,
-            progress: 0,
-            testResults: {}
-        });
+function renderDashboard(){
 
-        saveTeachers();
-        renderTeachers();
-        closeModal();
-    }
+document
+.getElementById("teachersCount")
+.textContent =
+teachers.length;
 
-    function deleteTeacher(index) {
 
-        const teacher = teachers[index];
+const active =
+teachers.filter(
+teacher =>
+getLabdiscProgress(teacher) > 0 &&
+getLabdiscProgress(teacher) < 100
+).length;
 
-        const answer = confirm(
-            "Удалить учителя " + teacher.fullName + "?"
-        );
 
-        if (!answer) {
-            return;
-        }
+document
+.getElementById("activeCount")
+.textContent =
+active;
 
-        teachers.splice(index, 1);
 
-        saveTeachers();
-        renderTeachers();
-    }
+const passed =
+teachers.filter(
+teacher =>
+teacher.testResults &&
+teacher.testResults.Labdisc &&
+teacher.testResults.Labdisc.passed
+).length;
 
-    function logout() {
 
-        localStorage.removeItem("stemCurrentUser");
+document
+.getElementById("passedCount")
+.textContent =
+passed;
 
-        window.location.href = "index.html";
-    }
 
-    renderTeachers();
+renderDashboardResults();
+
+}
+
+
+/* ============================
+   LABDISC PROGRESS
+============================ */
+
+function getLabdiscProgress(teacher){
+
+if(
+teacher.courseProgress &&
+typeof teacher.courseProgress.Labdisc === "number"
+){
+
+return teacher.courseProgress.Labdisc;
+
+}
+
+return 0;
+
+}
+
+
+/* ============================
+   DASHBOARD RESULTS
+============================ */
+
+function renderDashboardResults(){
+
+const container =
+document.getElementById(
+"dashboardResults"
+);
+
+
+const withResults =
+teachers.filter(
+teacher =>
+teacher.testResults &&
+teacher.testResults.Labdisc
+);
+
+
+if(withResults.length === 0){
+
+container.innerHTML =
+'<div class="empty">Результатов тестирования пока нет.</div>';
+
+return;
+
+}
+
+
+let html = `
+
+<table>
+
+<thead>
+
+<tr>
+<th>Учитель</th>
+<th>Результат</th>
+<th>Статус</th>
+<th>Дата</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+`;
+
+
+withResults
+.slice()
+.reverse()
+.slice(0,5)
+.forEach(teacher => {
+
+const result =
+teacher.testResults.Labdisc;
+
+
+html += `
+
+<tr>
+
+<td>
+${teacher.fullName}
+</td>
+
+<td>
+<strong>
+${result.percent}%
+</strong>
+</td>
+
+<td>
+${result.passed
+?
+'<span class="status-pass">Сдан</span>'
+:
+'<span class="status-fail">Не сдан</span>'
+}
+</td>
+
+<td>
+${result.date || "—"}
+</td>
+
+</tr>
+
+`;
+
+});
+
+
+html += `
+
+</tbody>
+
+</table>
+
+`;
+
+
+container.innerHTML = html;
+
+}
+
+
+/* ============================
+   TEACHERS TABLE
+============================ */
+
+function renderTeachers(){
+
+const container =
+document.getElementById(
+"teachersTable"
+);
+
+
+if(teachers.length === 0){
+
+container.innerHTML =
+'<div class="empty">Учителя пока не добавлены.</div>';
+
+return;
+
+}
+
+
+let html = `
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+ФИО
+</th>
+
+<th>
+Логин
+</th>
+
+<th>
+Курсы
+</th>
+
+<th>
+Labdisc
+</th>
+
+<th>
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+`;
+
+
+teachers.forEach(
+(teacher,index)=>{
+
+
+const courses =
+(teacher.courses || [])
+.map(course =>
+`<span class="badge">${course}</span>`
+)
+.join("");
+
+
+const progress =
+getLabdiscProgress(
+teacher
+);
+
+
+html += `
+
+<tr>
+
+<td>
+${teacher.fullName}
+</td>
+
+<td>
+${teacher.login}
+</td>
+
+<td>
+${courses || "Не назначены"}
+</td>
+
+<td>
+
+<div
+style="
+display:flex;
+align-items:center;
+gap:10px;
+">
+
+<div class="progress">
+
+<span
+style="
+width:${progress}%
+">
+</span>
+
+</div>
+
+${progress}%
+
+</div>
+
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="
+deleteTeacher(${index})
+">
+Удалить
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+
+html += `
+
+</tbody>
+
+</table>
+
+`;
+
+
+container.innerHTML = html;
+
+}
+
+
+/* ============================
+   RESULTS TABLE
+============================ */
+
+function renderResults(){
+
+const container =
+document.getElementById(
+"resultsTable"
+);
+
+
+if(teachers.length === 0){
+
+container.innerHTML =
+'<div class="empty">Учителя пока не добавлены.</div>';
+
+return;
+
+}
+
+
+let html = `
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+ФИО
+</th>
+
+<th>
+Прогресс
+</th>
+
+<th>
+Тест
+</th>
+
+<th>
+Правильных
+</th>
+
+<th>
+Попытки
+</th>
+
+<th>
+Статус
+</th>
+
+<th>
+Дата
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+`;
+
+
+teachers.forEach(teacher => {
+
+
+const progress =
+getLabdiscProgress(
+teacher
+);
+
+
+const result =
+teacher.testResults &&
+teacher.testResults.Labdisc
+?
+teacher.testResults.Labdisc
+:
+null;
+
+
+html += `
+
+<tr>
+
+<td>
+<strong>
+${teacher.fullName}
+</strong>
+</td>
+
+<td>
+
+<div
+style="
+display:flex;
+align-items:center;
+gap:10px;
+">
+
+<div class="progress">
+
+<span
+style="
+width:${progress}%
+">
+</span>
+
+</div>
+
+${progress}%
+
+</div>
+
+</td>
+
+
+<td>
+
+${result
+?
+`<strong>${result.percent}%</strong>`
+:
+'<span class="status-empty">—</span>'
+}
+
+</td>
+
+
+<td>
+
+${result
+?
+`${result.correct} / ${result.total}`
+:
+'<span class="status-empty">—</span>'
+}
+
+</td>
+
+
+<td>
+
+${result
+?
+result.attempts
+:
+'<span class="status-empty">—</span>'
+}
+
+</td>
+
+
+<td>
+
+${result
+?
+(
+result.passed
+?
+'<span class="status-pass">Сдан</span>'
+:
+'<span class="status-fail">Не сдан</span>'
+)
+:
+'<span class="status-empty">Не проходил</span>'
+}
+
+</td>
+
+
+<td>
+
+${result
+?
+result.date
+:
+'<span class="status-empty">—</span>'
+}
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+
+html += `
+
+</tbody>
+
+</table>
+
+`;
+
+
+container.innerHTML = html;
+
+}
+
+
+/* ============================
+   MODAL
+============================ */
+
+function openModal(){
+
+document
+.getElementById(
+"teacherModal"
+)
+.classList.add("open");
+
+}
+
+
+function closeModal(){
+
+document
+.getElementById(
+"teacherModal"
+)
+.classList.remove("open");
+
+clearForm();
+
+}
+
+
+function clearForm(){
+
+document
+.getElementById("fullName")
+.value = "";
+
+document
+.getElementById("teacherLogin")
+.value = "";
+
+document
+.getElementById("teacherPassword")
+.value = "";
+
+
+document
+.querySelectorAll(
+".courseCheck"
+)
+.forEach(
+item =>
+item.checked = false
+);
+
+}
+
+
+/* ============================
+   CREATE TEACHER
+============================ */
+
+function createTeacher(){
+
+const fullName =
+document
+.getElementById("fullName")
+.value
+.trim();
+
+
+const login =
+document
+.getElementById("teacherLogin")
+.value
+.trim();
+
+
+const password =
+document
+.getElementById("teacherPassword")
+.value
+.trim();
+
+
+const courses =
+Array.from(
+document.querySelectorAll(
+".courseCheck:checked"
+)
+)
+.map(item =>
+item.value
+);
+
+
+if(
+!fullName ||
+!login ||
+!password
+){
+
+alert(
+"Заполните ФИО, логин и пароль."
+);
+
+return;
+
+}
+
+
+const exists =
+teachers.some(
+teacher =>
+teacher.login === login
+);
+
+
+if(exists){
+
+alert(
+"Такой логин уже существует."
+);
+
+return;
+
+}
+
+
+teachers.push({
+
+id:
+Date.now(),
+
+fullName:
+fullName,
+
+login:
+login,
+
+password:
+password,
+
+courses:
+courses,
+
+progress:
+0,
+
+courseProgress:{},
+
+testResults:{}
+
+});
+
+
+saveTeachers();
+
+renderAll();
+
+closeModal();
+
+}
+
+
+/* ============================
+   DELETE
+============================ */
+
+function deleteTeacher(index){
+
+const teacher =
+teachers[index];
+
+
+if(
+!confirm(
+"Удалить учителя " +
+teacher.fullName +
+"?"
+)
+){
+
+return;
+
+}
+
+
+teachers.splice(
+index,
+1
+);
+
+
+saveTeachers();
+
+renderAll();
+
+}
+
+
+/* ============================
+   LOGOUT
+============================ */
+
+function logout(){
+
+localStorage.removeItem(
+"stemCurrentUser"
+);
+
+window.location.href =
+"index.html";
+
+}
+
+
+/* ============================
+   ALL
+============================ */
+
+function renderAll(){
+
+renderDashboard();
+
+renderTeachers();
+
+renderResults();
+
+}
+
+
+renderAll();
 
 </script>
 
