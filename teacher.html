@@ -19,6 +19,10 @@
             color: #172033;
         }
 
+        /* =========================
+           ШАПКА
+        ========================= */
+
         .header {
             height: 74px;
             background: #ffffff;
@@ -30,7 +34,22 @@
         }
 
         .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 22px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 700;
         }
 
@@ -41,7 +60,16 @@
             padding: 10px 16px;
             border-radius: 9px;
             cursor: pointer;
+            font-weight: 600;
         }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        /* =========================
+           ОСНОВНАЯ ОБЛАСТЬ
+        ========================= */
 
         .main {
             max-width: 1150px;
@@ -54,7 +82,15 @@
             padding: 28px;
             border-radius: 18px;
             border: 1px solid #e5e7eb;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
+        }
+
+        .welcome-small {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
         }
 
         .welcome h1 {
@@ -64,12 +100,28 @@
 
         .welcome p {
             color: #667085;
+            line-height: 1.6;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
         }
 
         .section-title {
             font-size: 24px;
-            margin-bottom: 18px;
         }
+
+        .course-count {
+            color: #667085;
+            font-size: 14px;
+        }
+
+        /* =========================
+           КУРСЫ
+        ========================= */
 
         .courses {
             display: grid;
@@ -82,42 +134,56 @@
             border: 1px solid #e5e7eb;
             border-radius: 18px;
             overflow: hidden;
+            transition: 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
         }
 
         .course-top {
-            height: 140px;
+            height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: #eef4ff;
-            font-size: 48px;
+            font-size: 55px;
         }
 
         .course-body {
-            padding: 20px;
+            padding: 22px;
         }
 
         .course-body h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
+            font-size: 21px;
+            margin-bottom: 9px;
         }
 
         .course-body p {
             color: #667085;
             font-size: 14px;
-            line-height: 1.5;
-            min-height: 42px;
+            line-height: 1.55;
+            min-height: 66px;
         }
 
+        /* =========================
+           ПРОГРЕСС
+        ========================= */
+
         .progress-row {
-            margin-top: 18px;
+            margin-top: 20px;
         }
 
         .progress-info {
             display: flex;
             justify-content: space-between;
             font-size: 13px;
-            margin-bottom: 7px;
+            margin-bottom: 8px;
+        }
+
+        .progress-info span:last-child {
+            font-weight: 700;
         }
 
         .progress {
@@ -131,38 +197,73 @@
             height: 100%;
             background: #22c55e;
             width: 0%;
+            transition: width 0.3s;
         }
+
+        /* =========================
+           КНОПКА КУРСА
+        ========================= */
 
         .course-btn {
             width: 100%;
-            margin-top: 18px;
-            height: 45px;
+            margin-top: 20px;
+            height: 46px;
             border: none;
             background: #2563eb;
             color: white;
-            border-radius: 9px;
+            border-radius: 10px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
+            transition: 0.2s;
         }
+
+        .course-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .course-btn.completed {
+            background: #16a34a;
+        }
+
+        /* =========================
+           ПУСТО
+        ========================= */
 
         .empty {
+            grid-column: 1 / -1;
             background: white;
             border-radius: 16px;
-            padding: 30px;
+            padding: 35px;
             color: #667085;
             border: 1px solid #e5e7eb;
+            text-align: center;
         }
 
+        /* =========================
+           АДАПТИВНОСТЬ
+        ========================= */
+
         @media (max-width: 900px) {
+
             .courses {
                 grid-template-columns: repeat(2, 1fr);
             }
+
         }
 
         @media (max-width: 650px) {
+
             .header {
                 padding: 0 18px;
+            }
+
+            .brand-icon {
+                display: none;
+            }
+
+            .main {
+                padding: 24px 15px;
             }
 
             .courses {
@@ -172,28 +273,57 @@
             .welcome h1 {
                 font-size: 24px;
             }
+
+            .section-header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 5px;
+            }
+
         }
+
     </style>
 </head>
 
 <body>
 
+<!-- =========================
+     ШАПКА
+========================= -->
+
 <header class="header">
 
     <div class="brand">
+
+        <div class="brand-icon">
+            S
+        </div>
+
         STEM Trainer
+
     </div>
 
-    <button class="logout-btn" onclick="logout()">
+    <button
+        class="logout-btn"
+        onclick="logout()"
+    >
         Выйти
     </button>
 
 </header>
 
 
+<!-- =========================
+     ОСНОВНОЙ КОНТЕНТ
+========================= -->
+
 <main class="main">
 
     <section class="welcome">
+
+        <div class="welcome-small">
+            Личный кабинет
+        </div>
 
         <h1 id="teacherName">
             Добро пожаловать
@@ -201,229 +331,472 @@
 
         <p>
             Здесь находятся назначенные вам учебные курсы.
+            Изучайте материалы поэтапно и следите за своим прогрессом.
         </p>
 
     </section>
 
 
-    <h2 class="section-title">
-        Мои курсы
-    </h2>
+    <div class="section-header">
+
+        <h2 class="section-title">
+            Мои курсы
+        </h2>
+
+        <div
+            class="course-count"
+            id="courseCount"
+        ></div>
+
+    </div>
 
 
-    <div id="coursesContainer" class="courses"></div>
+    <div
+        id="coursesContainer"
+        class="courses"
+    ></div>
 
 </main>
 
 
 <script>
 
-    const currentUser = JSON.parse(
-        localStorage.getItem("stemCurrentUser")
-    );
+/* ==========================================
+   ПРОВЕРКА АВТОРИЗАЦИИ
+========================================== */
 
-    if (
-        !currentUser ||
-        currentUser.role !== "teacher"
-    ) {
-        window.location.href = "index.html";
-    }
+const currentUser = JSON.parse(
+    localStorage.getItem("stemCurrentUser")
+);
 
 
-    const teachers = JSON.parse(
-        localStorage.getItem("stemTeachers")
-    ) || [];
+if (
+    !currentUser ||
+    currentUser.role !== "teacher"
+) {
+
+    window.location.href = "index.html";
+
+}
 
 
-    const teacher = teachers.find(function(item) {
+/* ==========================================
+   ПОЛУЧАЕМ СПИСОК УЧИТЕЛЕЙ
+========================================== */
+
+const teachers = JSON.parse(
+    localStorage.getItem("stemTeachers")
+) || [];
+
+
+/* ==========================================
+   НАХОДИМ ТЕКУЩЕГО УЧИТЕЛЯ
+========================================== */
+
+const teacher = teachers.find(
+    function(item) {
 
         return item.id === currentUser.id;
 
-    });
+    }
+);
 
 
-    if (!teacher) {
+/* ==========================================
+   ЕСЛИ УЧИТЕЛЬ НЕ НАЙДЕН
+========================================== */
 
-        localStorage.removeItem("stemCurrentUser");
-        window.location.href = "index.html";
+if (!teacher) {
+
+    localStorage.removeItem(
+        "stemCurrentUser"
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* ==========================================
+   ИМЯ УЧИТЕЛЯ
+========================================== */
+
+document.getElementById(
+    "teacherName"
+).textContent =
+    "Здравствуйте, " + teacher.fullName;
+
+
+/* ==========================================
+   ИНФОРМАЦИЯ О КУРСАХ
+========================================== */
+
+const courseInfo = {
+
+    "Arduino": {
+
+        icon: "⚙️",
+
+        description:
+            "Основы работы с Arduino, подключение компонентов и создание первых проектов."
+
+    },
+
+
+    "Roket": {
+
+        icon: "🚀",
+
+        description:
+            "Обучение работе с оборудованием и образовательными решениями Roket."
+
+    },
+
+
+    "Labdisc": {
+
+        icon: "🔬",
+
+        description:
+            "Полный курс по цифровой лаборатории Labdisc: датчики, GlobiLab X, измерения и STEM-эксперименты."
+
+    },
+
+
+    "3D-принтер": {
+
+        icon: "🧊",
+
+        description:
+            "Основы 3D-печати, подготовка моделей и работа с 3D-принтером."
+
+    },
+
+
+    "Лазерный принтер": {
+
+        icon: "✨",
+
+        description:
+            "Работа с лазерным оборудованием, подготовка файлов и основы безопасности."
+
+    }
+
+};
+
+
+/* ==========================================
+   ПОЛУЧЕНИЕ ПРОГРЕССА
+========================================== */
+
+function getCourseProgress(courseName) {
+
+    /*
+       Для Labdisc используем отдельный
+       прогресс из labdisc.html
+    */
+
+    if (courseName === "Labdisc") {
+
+        const labdiscCompleted =
+            JSON.parse(
+                localStorage.getItem(
+                    "labdiscCompleted"
+                )
+            ) || [];
+
+
+        /*
+           В нашем полном курсе Labdisc
+           сейчас 10 уроков.
+        */
+
+        const totalLabdiscLessons = 10;
+
+
+        return Math.round(
+            labdiscCompleted.length /
+            totalLabdiscLessons *
+            100
+        );
 
     }
 
 
-    document.getElementById("teacherName").textContent =
-        "Здравствуйте, " + teacher.fullName;
+    /*
+       Для остальных курсов пока используется
+       старая система прогресса
+    */
 
+    if (
+        teacher.courseProgress &&
+        teacher.courseProgress[courseName]
+    ) {
 
-    const courseInfo = {
+        return teacher.courseProgress[
+            courseName
+        ];
 
-        "Arduino": {
-            icon: "⚙️",
-            description:
-                "Основы работы с Arduino, подключение компонентов и создание первых проектов."
-        },
-
-        "Roket": {
-            icon: "🚀",
-            description:
-                "Обучение работе с оборудованием и образовательными решениями Roket."
-        },
-
-        "Labdisc": {
-            icon: "🔬",
-            description:
-                "Работа с цифровой лабораторией Labdisc и проведение STEM-экспериментов."
-        },
-
-        "3D-принтер": {
-            icon: "🧊",
-            description:
-                "Основы 3D-печати, подготовка моделей и работа с 3D-принтером."
-        },
-
-        "Лазерный принтер": {
-            icon: "✨",
-            description:
-                "Работа с лазерным оборудованием, подготовка файлов и основы безопасности."
-        }
-
-    };
-
-
-    function getCourseProgress(courseName) {
-
-        if (
-            teacher.courseProgress &&
-            teacher.courseProgress[courseName]
-        ) {
-            return teacher.courseProgress[courseName];
-        }
-
-        return 0;
     }
 
 
-    function renderCourses() {
+    return 0;
 
-        const container =
-            document.getElementById("coursesContainer");
-
-
-        if (
-            !teacher.courses ||
-            teacher.courses.length === 0
-        ) {
-
-            container.innerHTML =
-                '<div class="empty">Администратор пока не назначил вам курсы.</div>';
-
-            return;
-        }
+}
 
 
-        let html = "";
+/* ==========================================
+   ОТРИСОВКА КУРСОВ
+========================================== */
+
+function renderCourses() {
+
+    const container =
+        document.getElementById(
+            "coursesContainer"
+        );
 
 
-        teacher.courses.forEach(function(courseName) {
+    const count =
+        teacher.courses
+            ? teacher.courses.length
+            : 0;
+
+
+    document.getElementById(
+        "courseCount"
+    ).textContent =
+        "Назначено курсов: " + count;
+
+
+    if (
+        !teacher.courses ||
+        teacher.courses.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                Администратор пока
+                не назначил вам курсы.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let html = "";
+
+
+    teacher.courses.forEach(
+        function(courseName) {
+
 
             const info =
                 courseInfo[courseName] || {
+
                     icon: "📘",
-                    description: "Учебный курс STEM Trainer."
+
+                    description:
+                        "Учебный курс STEM Trainer."
+
                 };
 
 
             const progress =
-                getCourseProgress(courseName);
+                getCourseProgress(
+                    courseName
+                );
 
 
-            let buttonText = "Начать курс";
+            let buttonText =
+                "Начать курс";
 
-            if (progress > 0 && progress < 100) {
-                buttonText = "Продолжить";
+
+            if (
+                progress > 0 &&
+                progress < 100
+            ) {
+
+                buttonText =
+                    "Продолжить обучение";
+
             }
 
-            if (progress === 100) {
-                buttonText = "Открыть курс";
+
+            if (progress >= 100) {
+
+                buttonText =
+                    "Открыть курс";
+
             }
+
+
+            const completedClass =
+                progress >= 100
+                    ? "completed"
+                    : "";
 
 
             html += `
+
                 <div class="course-card">
 
+
                     <div class="course-top">
+
                         ${info.icon}
+
                     </div>
+
 
                     <div class="course-body">
 
-                        <h3>${courseName}</h3>
+
+                        <h3>
+                            ${courseName}
+                        </h3>
+
 
                         <p>
                             ${info.description}
                         </p>
 
+
                         <div class="progress-row">
 
+
                             <div class="progress-info">
-                                <span>Прогресс</span>
-                                <span>${progress}%</span>
+
+                                <span>
+                                    Прогресс
+                                </span>
+
+                                <span>
+                                    ${progress}%
+                                </span>
+
                             </div>
 
+
                             <div class="progress">
+
                                 <div
                                     class="progress-bar"
-                                    style="width:${progress}%"
+                                    style="
+                                        width:${progress}%
+                                    "
                                 ></div>
+
                             </div>
+
 
                         </div>
 
+
                         <button
-                            class="course-btn"
-                            onclick="openCourse('${courseName}')"
+                            class="
+                                course-btn
+                                ${completedClass}
+                            "
+                            onclick="
+                                openCourse(
+                                    '${courseName}'
+                                )
+                            "
                         >
+
                             ${buttonText}
+
                         </button>
+
 
                     </div>
 
                 </div>
+
             `;
-        });
+
+        }
+    );
 
 
-        container.innerHTML = html;
-    }
+    container.innerHTML =
+        html;
+
+}
 
 
-    function openCourse(courseName) {
+/* ==========================================
+   ОТКРЫТИЕ КУРСА
+========================================== */
+
+function openCourse(courseName) {
+
+    /*
+       Сохраняем название выбранного курса
+    */
 
     localStorage.setItem(
         "stemSelectedCourse",
         courseName
     );
 
+
+    /*
+       LABDISC ИМЕЕТ СВОЮ
+       ОТДЕЛЬНУЮ СТРАНИЦУ
+    */
+
     if (courseName === "Labdisc") {
-        window.location.href = "labdisc.html";
+
+        window.location.href =
+            "./labdisc.html";
+
         return;
+
     }
 
-    window.location.href = "course.html";
+
+    /*
+       Остальные курсы пока открываются
+       через общий course.html
+    */
+
+    window.location.href =
+        "./course.html";
+
 }
 
 
-    function logout() {
+/* ==========================================
+   ВЫХОД
+========================================== */
 
-        localStorage.removeItem(
-            "stemCurrentUser"
-        );
+function logout() {
 
-        window.location.href =
-            "index.html";
-    }
+    localStorage.removeItem(
+        "stemCurrentUser"
+    );
 
 
-    renderCourses();
+    window.location.href =
+        "./index.html";
+
+}
+
+
+/* ==========================================
+   ЗАПУСК
+========================================== */
+
+renderCourses();
 
 </script>
 
