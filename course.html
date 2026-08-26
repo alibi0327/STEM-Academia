@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STEM Trainer — Курс</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .header {
+            height: 74px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .back-btn {
+            border: none;
+            background: #eef4ff;
+            color: #2563eb;
+            padding: 10px 16px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 35px 20px;
+        }
+
+        .course-header {
+            background: white;
+            padding: 28px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 25px;
+        }
+
+        .course-header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .course-header p {
+            color: #667085;
+        }
+
+        .progress-box {
+            margin-top: 22px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .progress {
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #22c55e;
+            width: 0%;
+            transition: 0.3s;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 330px 1fr;
+            gap: 24px;
+        }
+
+        .lessons {
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            padding: 18px;
+            height: fit-content;
+        }
+
+        .lessons h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .lesson-item {
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            border: 1px solid #edf0f3;
+        }
+
+        .lesson-item:hover {
+            background: #f8fafc;
+        }
+
+        .lesson-item.active {
+            background: #eef4ff;
+            border-color: #bfdbfe;
+        }
+
+        .lesson-item.completed {
+            border-left: 4px solid #22c55e;
+        }
+
+        .lesson-number {
+            color: #667085;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .lesson-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .lesson-status {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #16a34a;
+        }
+
+        .lesson-content {
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            padding: 30px;
+            min-height: 430px;
+        }
+
+        .lesson-content h2 {
+            font-size: 26px;
+            margin-bottom: 18px;
+        }
+
+        .lesson-content p {
+            color: #475467;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .material-box {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .complete-btn {
+            margin-top: 20px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 13px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .complete-btn.done {
+            background: #16a34a;
+        }
+
+        .test-box {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #ecfdf3;
+            border: 1px solid #bbf7d0;
+        }
+
+        .test-btn {
+            margin-top: 12px;
+            border: none;
+            background: #16a34a;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        @media(max-width:800px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 0 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="brand">
+        STEM Trainer
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="goBack()"
+    >
+        ← Мои курсы
+    </button>
+
+</header>
+
+
+<main class="main">
+
+    <section class="course-header">
+
+        <h1 id="courseName">
+            Курс
+        </h1>
+
+        <p>
+            Последовательно изучите все этапы курса.
+        </p>
+
+        <div class="progress-box">
+
+            <div class="progress-info">
+                <span>Прогресс курса</span>
+                <span id="progressText">0%</span>
+            </div>
+
+            <div class="progress">
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="content">
+
+        <aside class="lessons">
+
+            <h2>Этапы курса</h2>
+
+            <div id="lessonsList"></div>
+
+        </aside>
+
+
+        <section
+            class="lesson-content"
+            id="lessonContent"
+        ></section>
+
+    </div>
+
+</main>
+
+
+<script>
+
+const currentUser =
+    JSON.parse(
+        localStorage.getItem("stemCurrentUser")
+    );
+
+
+if (
+    !currentUser ||
+    currentUser.role !== "teacher"
+) {
+    window.location.href = "index.html";
+}
+
+
+const courseName =
+    localStorage.getItem(
+        "stemSelectedCourse"
+    );
+
+
+if (!courseName) {
+    window.location.href = "teacher.html";
+}
+
+
+const teachers =
+    JSON.parse(
+        localStorage.getItem("stemTeachers")
+    ) || [];
+
+
+const teacherIndex =
+    teachers.findIndex(
+        teacher =>
+            teacher.id === currentUser.id
+    );
+
+
+if (teacherIndex === -1) {
+    window.location.href = "index.html";
+}
+
+
+const teacher =
+    teachers[teacherIndex];
+
+
+if (!teacher.courses.includes(courseName)) {
+    window.location.href = "teacher.html";
+}
+
+
+document.getElementById(
+    "courseName"
+).textContent = courseName;
+
+
+
+/* =========================
+   СОДЕРЖАНИЕ КУРСОВ
+========================= */
+
+const courseLessons = {
+
+    "Arduino": [
+
+        {
+            title: "Знакомство с Arduino",
+            text:
+            "Что такое Arduino, где применяется платформа и какие проекты можно создавать."
+        },
+
+        {
+            title: "Плата Arduino Uno",
+            text:
+            "Основные элементы платы Arduino Uno: цифровые и аналоговые контакты, питание и интерфейс USB."
+        },
+
+        {
+            title: "Arduino IDE",
+            text:
+            "Знакомство со средой программирования Arduino IDE и основными элементами интерфейса."
+        },
+
+        {
+            title: "Подключение компонентов",
+            text:
+            "Основные правила подключения светодиодов, кнопок, датчиков и других электронных компонентов."
+        },
+
+        {
+            title: "Первый проект",
+            text:
+            "Создание простого учебного проекта и проверка правильности подключения оборудования."
+        }
+
+    ],
+
+
+    "Roket": [
+
+        {
+            title: "Знакомство с Roket",
+            text:
+            "Обзор оборудования и возможностей образовательного комплекса."
+        },
+
+        {
+            title: "Комплектация",
+            text:
+            "Изучение основных элементов и комплектующих."
+        },
+
+        {
+            title: "Подготовка к работе",
+            text:
+            "Правильная подготовка оборудования перед началом занятия."
+        },
+
+        {
+            title: "Практическая работа",
+            text:
+            "Выполнение базового практического задания."
+        },
+
+        {
+            title: "Работа на уроке",
+            text:
+            "Применение оборудования в образовательном процессе."
+        }
+
+    ],
+
+
+    "Labdisc": [
+
+        {
+            title: "Что такое Labdisc",
+            text:
+            "Назначение цифровой лаборатории Labdisc."
+        },
+
+        {
+            title: "Датчики",
+            text:
+            "Изучение встроенных и внешних датчиков."
+        },
+
+        {
+            title: "Подключение",
+            text:
+            "Подключение Labdisc и подготовка оборудования."
+        },
+
+        {
+            title: "Измерения",
+            text:
+            "Проведение измерений и получение экспериментальных данных."
+        },
+
+        {
+            title: "STEM-эксперимент",
+            text:
+            "Организация практического эксперимента с использованием Labdisc."
+        }
+
+    ],
+
+
+    "3D-принтер": [
+
+        {
+            title: "Основы 3D-печати",
+            text:
+            "Принцип работы технологии послойной 3D-печати."
+        },
+
+        {
+            title: "Устройство принтера",
+            text:
+            "Основные элементы и механизмы 3D-принтера."
+        },
+
+        {
+            title: "3D-модель",
+            text:
+            "Подготовка цифровой модели к печати."
+        },
+
+        {
+            title: "Настройка печати",
+            text:
+            "Основные параметры подготовки задания."
+        },
+
+        {
+            title: "Запуск печати",
+            text:
+            "Проверка оборудования и безопасный запуск печати."
+        }
+
+    ],
+
+
+    "Лазерный принтер": [
+
+        {
+            title: "Знакомство с оборудованием",
+            text:
+            "Назначение и основные возможности лазерного оборудования."
+        },
+
+        {
+            title: "Правила безопасности",
+            text:
+            "Основные требования безопасной работы с оборудованием."
+        },
+
+        {
+            title: "Подготовка макета",
+            text:
+            "Подготовка файла и рабочего макета."
+        },
+
+        {
+            title: "Настройки",
+            text:
+            "Выбор основных параметров обработки материала."
+        },
+
+        {
+            title: "Практическая работа",
+            text:
+            "Подготовка и выполнение учебного задания под контролем ответственного специалиста."
+        }
+
+    ]
+
+};
+
+
+const lessons =
+    courseLessons[courseName] || [];
+
+
+/* =========================
+   ПРОГРЕСС
+========================= */
+
+if (!teacher.completedLessons) {
+    teacher.completedLessons = {};
+}
+
+
+if (!teacher.completedLessons[courseName]) {
+    teacher.completedLessons[courseName] = [];
+}
+
+
+let completed =
+    teacher.completedLessons[courseName];
+
+
+let selectedLesson = 0;
+
+
+
+function saveData() {
+
+    localStorage.setItem(
+        "stemTeachers",
+        JSON.stringify(teachers)
+    );
+
+}
+
+
+
+function calculateProgress() {
+
+    if (lessons.length === 0) {
+        return 0;
+    }
+
+    return Math.round(
+        completed.length /
+        lessons.length *
+        100
+    );
+
+}
+
+
+
+function updateProgress() {
+
+    const progress =
+        calculateProgress();
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        progress + "%";
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        progress + "%";
+
+
+    if (!teacher.courseProgress) {
+        teacher.courseProgress = {};
+    }
+
+
+    teacher.courseProgress[
+        courseName
+    ] = progress;
+
+
+    teacher.progress =
+        calculateOverallProgress();
+
+
+    saveData();
+
+}
+
+
+
+function calculateOverallProgress() {
+
+    if (
+        !teacher.courses ||
+        teacher.courses.length === 0
+    ) {
+        return 0;
+    }
+
+
+    let total = 0;
+
+
+    teacher.courses.forEach(
+        course => {
+
+            if (
+                teacher.courseProgress &&
+                teacher.courseProgress[course]
+            ) {
+                total +=
+                    teacher.courseProgress[course];
+            }
+
+        }
+    );
+
+
+    return Math.round(
+        total /
+        teacher.courses.length
+    );
+
+}
+
+
+
+/* =========================
+   СПИСОК ЭТАПОВ
+========================= */
+
+function renderLessons() {
+
+    const list =
+        document.getElementById(
+            "lessonsList"
+        );
+
+
+    let html = "";
+
+
+    lessons.forEach(
+        (lesson, index) => {
+
+            const isCompleted =
+                completed.includes(index);
+
+
+            html += `
+
+                <div
+                    class="
+                        lesson-item
+                        ${index === selectedLesson ? "active" : ""}
+                        ${isCompleted ? "completed" : ""}
+                    "
+                    onclick="selectLesson(${index})"
+                >
+
+                    <div class="lesson-number">
+                        Этап ${index + 1}
+                    </div>
+
+                    <div class="lesson-title">
+                        ${lesson.title}
+                    </div>
+
+                    ${
+                        isCompleted
+                        ?
+                        '<div class="lesson-status">✓ Пройден</div>'
+                        :
+                        ""
+                    }
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    list.innerHTML = html;
+
+}
+
+
+
+/* =========================
+   СОДЕРЖАНИЕ ЭТАПА
+========================= */
+
+function renderLessonContent() {
+
+    const lesson =
+        lessons[selectedLesson];
+
+
+    const isCompleted =
+        completed.includes(
+            selectedLesson
+        );
+
+
+    const content =
+        document.getElementById(
+            "lessonContent"
+        );
+
+
+    content.innerHTML = `
+
+        <div style="
+            color:#667085;
+            margin-bottom:10px;
+            font-size:14px;
+        ">
+            Этап ${selectedLesson + 1}
+            из ${lessons.length}
+        </div>
+
+
+        <h2>
+            ${lesson.title}
+        </h2>
+
+
+        <p>
+            ${lesson.text}
+        </p>
+
+
+        <div class="material-box">
+
+            <strong>
+                Учебный материал
+            </strong>
+
+            <p style="margin-top:10px;margin-bottom:0;">
+
+                Здесь мы позже разместим
+                подробную инструкцию,
+                изображения, видео,
+                презентации и материалы
+                для преподавателя.
+
+            </p>
+
+        </div>
+
+
+        <button
+            class="
+                complete-btn
+                ${isCompleted ? "done" : ""}
+            "
+            onclick="completeLesson()"
+        >
+
+            ${
+                isCompleted
+                ?
+                "✓ Этап пройден"
+                :
+                "Отметить этап пройденным"
+            }
+
+        </button>
+
+
+        <div
+            class="test-box"
+            id="testBox"
+        >
+
+            <strong>
+                Все этапы курса завершены!
+            </strong>
+
+            <p style="margin-top:8px;">
+                Теперь можно пройти
+                итоговый тест.
+            </p>
+
+            <button
+                class="test-btn"
+                onclick="startTest()"
+            >
+                Пройти тест
+            </button>
+
+        </div>
+
+    `;
+
+
+    if (
+        calculateProgress() === 100
+    ) {
+
+        document.getElementById(
+            "testBox"
+        ).style.display = "block";
+
+    }
+
+}
+
+
+
+function selectLesson(index) {
+
+    selectedLesson = index;
+
+    renderLessons();
+    renderLessonContent();
+
+}
+
+
+
+function completeLesson() {
+
+    if (
+        !completed.includes(
+            selectedLesson
+        )
+    ) {
+
+        completed.push(
+            selectedLesson
+        );
+
+
+        completed.sort(
+            (a, b) => a - b
+        );
+
+
+        saveData();
+
+    }
+
+
+    updateProgress();
+
+    renderLessons();
+    renderLessonContent();
+
+}
+
+
+
+/* =========================
+   ТЕСТ
+========================= */
+
+function startTest() {
+
+    localStorage.setItem(
+        "stemTestCourse",
+        courseName
+    );
+
+    window.location.href =
+        "test.html";
+
+}
+
+
+
+/* =========================
+   НАЗАД
+========================= */
+
+function goBack() {
+
+    window.location.href =
+        "teacher.html";
+
+}
+
+
+
+updateProgress();
+
+renderLessons();
+
+renderLessonContent();
+
+</script>
+
+</body>
+</html>
