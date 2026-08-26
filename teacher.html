@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STEM Trainer — Кабинет учителя</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .header {
+            height: 74px;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .logout-btn {
+            border: none;
+            background: #ef4444;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .main {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 36px 20px;
+        }
+
+        .welcome {
+            background: white;
+            padding: 28px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 28px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #667085;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .course-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .course-top {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef4ff;
+            font-size: 48px;
+        }
+
+        .course-body {
+            padding: 20px;
+        }
+
+        .course-body h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .course-body p {
+            color: #667085;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 42px;
+        }
+
+        .progress-row {
+            margin-top: 18px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .progress {
+            height: 9px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #22c55e;
+            width: 0%;
+        }
+
+        .course-btn {
+            width: 100%;
+            margin-top: 18px;
+            height: 45px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .empty {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            color: #667085;
+            border: 1px solid #e5e7eb;
+        }
+
+        @media (max-width: 900px) {
+            .courses {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .header {
+                padding: 0 18px;
+            }
+
+            .courses {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="brand">
+        STEM Trainer
+    </div>
+
+    <button class="logout-btn" onclick="logout()">
+        Выйти
+    </button>
+
+</header>
+
+
+<main class="main">
+
+    <section class="welcome">
+
+        <h1 id="teacherName">
+            Добро пожаловать
+        </h1>
+
+        <p>
+            Здесь находятся назначенные вам учебные курсы.
+        </p>
+
+    </section>
+
+
+    <h2 class="section-title">
+        Мои курсы
+    </h2>
+
+
+    <div id="coursesContainer" class="courses"></div>
+
+</main>
+
+
+<script>
+
+    const currentUser = JSON.parse(
+        localStorage.getItem("stemCurrentUser")
+    );
+
+    if (
+        !currentUser ||
+        currentUser.role !== "teacher"
+    ) {
+        window.location.href = "index.html";
+    }
+
+
+    const teachers = JSON.parse(
+        localStorage.getItem("stemTeachers")
+    ) || [];
+
+
+    const teacher = teachers.find(function(item) {
+
+        return item.id === currentUser.id;
+
+    });
+
+
+    if (!teacher) {
+
+        localStorage.removeItem("stemCurrentUser");
+        window.location.href = "index.html";
+
+    }
+
+
+    document.getElementById("teacherName").textContent =
+        "Здравствуйте, " + teacher.fullName;
+
+
+    const courseInfo = {
+
+        "Arduino": {
+            icon: "⚙️",
+            description:
+                "Основы работы с Arduino, подключение компонентов и создание первых проектов."
+        },
+
+        "Roket": {
+            icon: "🚀",
+            description:
+                "Обучение работе с оборудованием и образовательными решениями Roket."
+        },
+
+        "Labdisc": {
+            icon: "🔬",
+            description:
+                "Работа с цифровой лабораторией Labdisc и проведение STEM-экспериментов."
+        },
+
+        "3D-принтер": {
+            icon: "🧊",
+            description:
+                "Основы 3D-печати, подготовка моделей и работа с 3D-принтером."
+        },
+
+        "Лазерный принтер": {
+            icon: "✨",
+            description:
+                "Работа с лазерным оборудованием, подготовка файлов и основы безопасности."
+        }
+
+    };
+
+
+    function getCourseProgress(courseName) {
+
+        if (
+            teacher.courseProgress &&
+            teacher.courseProgress[courseName]
+        ) {
+            return teacher.courseProgress[courseName];
+        }
+
+        return 0;
+    }
+
+
+    function renderCourses() {
+
+        const container =
+            document.getElementById("coursesContainer");
+
+
+        if (
+            !teacher.courses ||
+            teacher.courses.length === 0
+        ) {
+
+            container.innerHTML =
+                '<div class="empty">Администратор пока не назначил вам курсы.</div>';
+
+            return;
+        }
+
+
+        let html = "";
+
+
+        teacher.courses.forEach(function(courseName) {
+
+            const info =
+                courseInfo[courseName] || {
+                    icon: "📘",
+                    description: "Учебный курс STEM Trainer."
+                };
+
+
+            const progress =
+                getCourseProgress(courseName);
+
+
+            let buttonText = "Начать курс";
+
+            if (progress > 0 && progress < 100) {
+                buttonText = "Продолжить";
+            }
+
+            if (progress === 100) {
+                buttonText = "Открыть курс";
+            }
+
+
+            html += `
+                <div class="course-card">
+
+                    <div class="course-top">
+                        ${info.icon}
+                    </div>
+
+                    <div class="course-body">
+
+                        <h3>${courseName}</h3>
+
+                        <p>
+                            ${info.description}
+                        </p>
+
+                        <div class="progress-row">
+
+                            <div class="progress-info">
+                                <span>Прогресс</span>
+                                <span>${progress}%</span>
+                            </div>
+
+                            <div class="progress">
+                                <div
+                                    class="progress-bar"
+                                    style="width:${progress}%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="course-btn"
+                            onclick="openCourse('${courseName}')"
+                        >
+                            ${buttonText}
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+        });
+
+
+        container.innerHTML = html;
+    }
+
+
+    function openCourse(courseName) {
+
+        localStorage.setItem(
+            "stemSelectedCourse",
+            courseName
+        );
+
+        window.location.href = "course.html";
+    }
+
+
+    function logout() {
+
+        localStorage.removeItem(
+            "stemCurrentUser"
+        );
+
+        window.location.href =
+            "index.html";
+    }
+
+
+    renderCourses();
+
+</script>
+
+</body>
+</html>
