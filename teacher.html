@@ -398,13 +398,18 @@
 
     function openCourse(courseName) {
 
-        localStorage.setItem(
-            "stemSelectedCourse",
-            courseName
-        );
+    localStorage.setItem(
+        "stemSelectedCourse",
+        courseName
+    );
 
-        window.location.href = "course.html";
+    if (courseName === "Labdisc") {
+        window.location.href = "labdisc.html";
+        return;
     }
+
+    window.location.href = "course.html";
+}
 
 
     function logout() {
