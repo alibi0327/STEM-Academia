@@ -394,13 +394,10 @@
             const message =
                 document.getElementById("message");
 
+            message.style.display = "none";
 
-            /*
-                Временный вход администратора.
 
-                Позже вынесем пользователей
-                в отдельный файл.
-            */
+            // Вход администратора
 
             if (
                 login === "admin" &&
@@ -416,18 +413,47 @@
                     })
                 );
 
-                /*
-                    Страницу admin.html
-                    создадим следующим шагом.
-                */
-
                 window.location.href = "admin.html";
-
-            } else {
-
-                message.style.display = "block";
-
+                return;
             }
+
+
+            // Вход учителя
+
+            const teachers = JSON.parse(
+                localStorage.getItem("stemTeachers")
+            ) || [];
+
+            const teacher = teachers.find(function(item) {
+
+                return (
+                    item.login === login &&
+                    item.password === password
+                );
+
+            });
+
+
+            if (teacher) {
+
+                localStorage.setItem(
+                    "stemCurrentUser",
+                    JSON.stringify({
+                        id: teacher.id,
+                        name: teacher.fullName,
+                        login: teacher.login,
+                        role: "teacher"
+                    })
+                );
+
+                window.location.href = "teacher.html";
+                return;
+            }
+
+
+            // Ошибка входа
+
+            message.style.display = "block";
 
         });
 
