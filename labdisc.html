@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Labdisc — STEM Trainer</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fb;
+    color:#182230;
+}
+
+header{
+    height:72px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:700;
+}
+
+.back{
+    background:#eef4ff;
+    color:#2563eb;
+    border:0;
+    padding:10px 15px;
+    border-radius:9px;
+    cursor:pointer;
+}
+
+.layout{
+    display:grid;
+    grid-template-columns:310px 1fr;
+    min-height:calc(100vh - 72px);
+}
+
+.sidebar{
+    background:white;
+    border-right:1px solid #e5e7eb;
+    padding:25px 18px;
+}
+
+.course-name{
+    margin-bottom:22px;
+}
+
+.course-name small{
+    color:#667085;
+}
+
+.course-name h2{
+    margin-top:5px;
+    font-size:22px;
+}
+
+.progress-text{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.progress{
+    height:8px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.progress-bar{
+    height:100%;
+    background:#22c55e;
+    width:0%;
+}
+
+.module-title{
+    color:#667085;
+    font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
+    margin:20px 8px 8px;
+}
+
+.lesson{
+    padding:12px;
+    border-radius:9px;
+    margin-bottom:5px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.lesson:hover{
+    background:#f8fafc;
+}
+
+.lesson.active{
+    background:#eef4ff;
+    color:#1d4ed8;
+    font-weight:600;
+}
+
+.lesson.done{
+    border-left:3px solid #22c55e;
+}
+
+.main{
+    padding:40px;
+}
+
+.content{
+    max-width:900px;
+    margin:auto;
+}
+
+.label{
+    display:inline-block;
+    background:#eef4ff;
+    color:#2563eb;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    margin-bottom:16px;
+}
+
+h1{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.description{
+    color:#667085;
+    font-size:17px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.hero{
+    width:100%;
+    min-height:260px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#eaf2ff,#f8fbff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:30px;
+    border:1px solid #dbe7ff;
+}
+
+.hero-inner{
+    text-align:center;
+    padding:40px;
+}
+
+.hero-icon{
+    font-size:70px;
+    margin-bottom:15px;
+}
+
+.hero-title{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.block{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    padding:26px;
+    margin-bottom:20px;
+}
+
+.block h2{
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.block p{
+    color:#475467;
+    line-height:1.75;
+    margin-bottom:12px;
+}
+
+.block ul{
+    padding-left:22px;
+    color:#475467;
+    line-height:1.9;
+}
+
+.tip{
+    background:#eff8ff;
+    border-left:4px solid #2563eb;
+}
+
+.links{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.resource{
+    text-decoration:none;
+    color:#2563eb;
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:13px 15px;
+}
+
+.resource:hover{
+    background:#eef4ff;
+}
+
+.actions{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-top:30px;
+}
+
+.btn{
+    border:0;
+    border-radius:10px;
+    padding:14px 20px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.btn-secondary{
+    background:#eef2f6;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-done{
+    background:#16a34a;
+    color:white;
+}
+
+@media(max-width:800px){
+
+    .layout{
+        grid-template-columns:1fr;
+    }
+
+    .sidebar{
+        border-right:0;
+        border-bottom:1px solid #e5e7eb;
+    }
+
+    .main{
+        padding:25px 16px;
+    }
+
+    h1{
+        font-size:30px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+STEM Trainer
+</div>
+
+<button class="back" onclick="location.href='teacher.html'">
+← Мои курсы
+</button>
+
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="course-name">
+
+<small>Учебный курс</small>
+
+<h2>🔬 Labdisc</h2>
+
+</div>
+
+<div class="progress-text">
+
+<span>Прогресс</span>
+
+<strong id="progressNumber">
+0%
+</strong>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="progressBar">
+</div>
+
+</div>
+
+<div id="lessonMenu"></div>
+
+</aside>
+
+
+<main class="main">
+
+<div
+class="content"
+id="content">
+</div>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* ==================================
+   СТРУКТУРА КУРСА
+================================== */
+
+const lessons = [
+
+{
+module:"Модуль 1",
+title:"Что такое Labdisc",
+description:"Знакомство с цифровой лабораторией Labdisc и её возможностями.",
+html:`
+
+<div class="hero">
+
+<div class="hero-inner">
+
+<div class="hero-icon">
+🔬
+</div>
+
+<div class="hero-title">
+Цифровая лаборатория Labdisc
+</div>
+
+<p style="margin-top:10px;color:#667085;">
+Измерение, регистрация и анализ экспериментальных данных
+</p>
+
+</div>
+
+</div>
+
+
+<div class="block">
+
+<h2>Что такое Labdisc?</h2>
+
+<p>
+Labdisc — это компактная цифровая лаборатория,
+которая используется для проведения учебных
+естественно-научных экспериментов.
+</p>
+
+<p>
+Устройство объединяет датчики, систему регистрации
+данных и возможность передачи результатов на
+компьютер или планшет.
+</p>
+
+<p>
+Учитель может использовать Labdisc для демонстрации
+экспериментов, а ученики — для самостоятельного
+сбора и анализа экспериментальных данных.
+</p>
+
+</div>
+
+
+<div class="block">
+
+<h2>Что позволяет делать Labdisc?</h2>
+
+<ul>
+
+<li>получать данные с различных датчиков;</li>
+
+<li>наблюдать изменения физических величин;</li>
+
+<li>проводить измерения в реальном времени;</li>
+
+<li>сохранять результаты экспериментов;</li>
+
+<li>строить графики;</li>
+
+<li>сравнивать результаты измерений;</li>
+
+<li>проводить лабораторные и полевые исследования.</li>
+
+</ul>
+
+</div>
+
+
+<div class="block tip">
+
+<h2>Цель этого курса</h2>
+
+<p>
+После прохождения курса преподаватель должен
+понимать основные возможности Labdisc,
+уметь подготовить устройство к работе,
+подключить его к программному обеспечению,
+выбрать необходимые датчики и провести
+учебный эксперимент.
+</p>
+
+</div>
+
+
+<div class="block">
+
+<h2>Полезные материалы</h2>
+
+<div class="links">
+
+<a
+class="resource"
+target="_blank"
+href="https://globisens.net/manuals/">
+📘 Официальные руководства Labdisc
+</a>
+
+<a
+class="resource"
+target="_blank"
+href="https://globisens.net/resources/experiment-videos/">
+▶ Видеоуроки Labdisc и GlobiLab X
+</a>
+
+<a
+class="resource"
+target="_blank"
+href="https://globisens.net/support/downloads/">
+💻 GlobiLab X — официальный раздел загрузки
+</a>
+
+</div>
+
+</div>
+
+`
+},
+
+{
+module:"Модуль 1",
+title:"Виды Labdisc",
+description:"Основные версии цифровой лаборатории.",
+html:`
+
+<div class="block">
+
+<h2>Основные версии Labdisc</h2>
+
+<p>
+Labdisc выпускается в нескольких вариантах.
+Они отличаются прежде всего набором
+встроенных датчиков и назначением.
+</p>
+
+<ul>
+
+<li><strong>Labdisc Gensci</strong> — общие естественные науки.</li>
+
+<li><strong>Labdisc Enviro</strong> — экологические исследования.</li>
+
+<li><strong>Labdisc Physio</strong> — физические эксперименты.</li>
+
+<li><strong>Labdisc BioChem</strong> — биология и химия.</li>
+
+</ul>
+
+</div>
+
+`
+},
+
+{
+module:"Модуль 1",
+title:"Устройство Labdisc",
+description:"Основные элементы цифровой лаборатории.",
+html:`
+
+<div class="block">
+
+<h2>Устройство Labdisc</h2>
+
+<p>
+Перед проведением экспериментов преподавателю
+необходимо познакомиться с органами управления,
+экраном, разъёмами и расположением датчиков.
+</p>
+
+<p>
+В следующих версиях курса здесь будет
+размещена фотография используемой вами
+модели Labdisc с обозначением каждого элемента.
+</p>
+
+</div>
+
+`
+},
+
+{
+module:"Модуль 2",
+title:"Включение и подготовка",
+description:"Подготовка оборудования перед занятием.",
+html:`
+
+<div class="block">
+
+<h2>Подготовка к работе</h2>
+
+<p>
+Перед началом занятия необходимо проверить
+состояние оборудования и подготовить Labdisc
+к эксперименту.
+</p>
+
+<ul>
+
+<li>Проверьте заряд устройства.</li>
+
+<li>Включите Labdisc.</li>
+
+<li>Определите необходимые датчики.</li>
+
+<li>Подготовьте компьютер или планшет.</li>
+
+<li>Подготовьте оборудование для эксперимента.</li>
+
+</ul>
+
+</div>
+
+`
+},
+
+{
+module:"Модуль 3",
+title:"Подключение к GlobiLab X",
+description:"USB и Bluetooth подключение.",
+html:`
+
+<div class="block">
+
+<h2>GlobiLab X</h2>
+
+<p>
+GlobiLab X используется для работы с данными
+Labdisc: настройки измерений, просмотра данных,
+построения графиков и анализа результатов.
+</p>
+
+</div>
+
+<div class="block">
+
+<h2>Способы подключения</h2>
+
+<ul>
+
+<li>USB;</li>
+
+<li>Bluetooth — для поддерживаемых моделей.</li>
+
+</ul>
+
+</div>
+
+
+<div class="block">
+
+<h2>Видеоинструкции</h2>
+
+<a
+class="resource"
+target="_blank"
+href="https://globisens.net/resources/experiment-videos/">
+▶ Открыть официальные видео GlobiSens
+</a>
+
+</div>
+
+`
+},
+
+{
+module:"Модуль 4",
+title:"Выбор датчиков",
+description:"Настройка датчиков для эксперимента.",
+html:`
+
+<div class="block">
+
+<h2>Выбор датчиков</h2>
+
+<p>
+Перед началом регистрации данных необходимо
+определить, какие физические или химические
+величины будут измеряться.
+</p>
+
+<p>
+Доступные датчики зависят от конкретной
+модели Labdisc.
+</p>
+
+</div>
+
+`
+},
+
+{
+module:"Модуль 4",
+title:"Частота измерений",
+description:"Настройка регистрации экспериментальных данных.",
+html:`
+
+<div class="block">
+
+<h2>Частота измерений</h2>
+
+<p>
+Частота регистрации определяет,
+как часто Labdisc получает новое измерение
+от выбранного датчика.
+</p>
+
+<p>
+Правильная настройка зависит от характера
+эксперимента.
+</p>
+
+</div>
+
+`
+},
+
+{
+module:"Модуль 5",
+title:"Первый эксперимент",
+description:"Проведение учебного измерения.",
+html:`
+
+<div class="block">
+
+<h2>Первый эксперимент</h2>
+
+<p>
+Теперь преподаватель может перейти
+к практической работе.
+</p>
+
+<p>
+Эксперимент будет состоять из четырёх этапов:
+</p>
+
+<ul>
+
+<li>выбор измеряемой величины;</li>
+
+<li>настройка датчика;</li>
+
+<li>регистрация данных;</li>
+
+<li>анализ полученного графика.</li>
+
+</ul>
+
+</div>
+
+`
+},
+
+{
+module:"Модуль 6",
+title:"Анализ результатов",
+description:"Графики, таблицы и анализ данных.",
+html:`
+
+<div class="block">
+
+<h2>Работа с результатами</h2>
+
+<p>
+После проведения эксперимента данные можно
+представить в различных формах.
+</p>
+
+<ul>
+
+<li>график;</li>
+
+<li>таблица;</li>
+
+<li>числовые показатели;</li>
+
+<li>статистический анализ.</li>
+
+</ul>
+
+</div>
+
+`
+},
+
+{
+module:"Модуль 7",
+title:"Labdisc на уроке",
+description:"Организация STEM-занятия.",
+html:`
+
+<div class="block">
+
+<h2>Использование на уроке</h2>
+
+<p>
+Labdisc позволяет организовать обучение,
+при котором ученики не только изучают
+теорию, но и самостоятельно получают
+экспериментальные данные.
+</p>
+
+<p>
+Преподаватель может разделить класс
+на небольшие исследовательские группы,
+поставить перед ними задачу и после
+эксперимента сравнить результаты.
+</p>
+
+</div>
+
+`
+},
+
+{
+module:"Модуль 8",
+title:"Итоговая аттестация",
+description:"Проверка знаний преподавателя.",
+html:`
+
+<div class="block">
+
+<h2>Курс завершён</h2>
+
+<p>
+После изучения всех предыдущих материалов
+можно перейти к итоговой проверке знаний.
+</p>
+
+<button
+class="btn btn-primary"
+onclick="startTest()">
+Пройти итоговый тест
+</button>
+
+</div>
+
+`
+}
+
+];
+
+
+/* ==================================
+   ПРОГРЕСС
+================================== */
+
+let completed =
+JSON.parse(
+localStorage.getItem("labdiscCompleted")
+) || [];
+
+
+let currentLesson = 0;
+
+
+
+function save(){
+
+localStorage.setItem(
+"labdiscCompleted",
+JSON.stringify(completed)
+);
+
+}
+
+
+/* ==================================
+   МЕНЮ
+================================== */
+
+function renderMenu(){
+
+const menu =
+document.getElementById("lessonMenu");
+
+let html = "";
+
+let lastModule = "";
+
+
+lessons.forEach((lesson,index)=>{
+
+if(lesson.module !== lastModule){
+
+html += `
+<div class="module-title">
+${lesson.module}
+</div>
+`;
+
+lastModule = lesson.module;
+
+}
+
+
+html += `
+
+<div
+class="
+lesson
+${index === currentLesson ? "active" : ""}
+${completed.includes(index) ? "done" : ""}
+"
+onclick="openLesson(${index})">
+
+${completed.includes(index) ? "✓ " : ""}
+${lesson.title}
+
+</div>
+
+`;
+
+});
+
+
+menu.innerHTML = html;
+
+}
+
+
+/* ==================================
+   УРОК
+================================== */
+
+function renderLesson(){
+
+const lesson =
+lessons[currentLesson];
+
+const done =
+completed.includes(currentLesson);
+
+
+document.getElementById("content").innerHTML = `
+
+<div class="label">
+${lesson.module}
+</div>
+
+<h1>
+${lesson.title}
+</h1>
+
+<div class="description">
+${lesson.description}
+</div>
+
+${lesson.html}
+
+
+<div class="actions">
+
+<button
+class="btn btn-secondary"
+onclick="previousLesson()"
+${currentLesson === 0 ? "disabled" : ""}>
+← Назад
+</button>
+
+
+<button
+class="btn ${done ? "btn-done" : "btn-primary"}"
+onclick="completeLesson()">
+
+${done ? "✓ Урок пройден" : "Завершить урок →"}
+
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* ==================================
+   ЗАВЕРШЕНИЕ
+================================== */
+
+function completeLesson(){
+
+if(!completed.includes(currentLesson)){
+
+completed.push(currentLesson);
+
+save();
+
+}
+
+updateProgress();
+
+renderMenu();
+
+
+if(currentLesson < lessons.length - 1){
+
+currentLesson++;
+
+renderMenu();
+
+renderLesson();
+
+}else{
+
+renderLesson();
+
+}
+
+}
+
+
+/* ==================================
+   НАВИГАЦИЯ
+================================== */
+
+function openLesson(index){
+
+currentLesson = index;
+
+renderMenu();
+
+renderLesson();
+
+}
+
+
+function previousLesson(){
+
+if(currentLesson > 0){
+
+currentLesson--;
+
+renderMenu();
+
+renderLesson();
+
+}
+
+}
+
+
+/* ==================================
+   ПРОГРЕСС
+================================== */
+
+function updateProgress(){
+
+const percent =
+Math.round(
+completed.length /
+lessons.length *
+100
+);
+
+
+document.getElementById(
+"progressNumber"
+).textContent =
+percent + "%";
+
+
+document.getElementById(
+"progressBar"
+).style.width =
+percent + "%";
+
+}
+
+
+/* ==================================
+   ТЕСТ
+================================== */
+
+function startTest(){
+
+localStorage.setItem(
+"stemTestCourse",
+"Labdisc"
+);
+
+location.href =
+"test.html";
+
+}
+
+
+renderMenu();
+
+renderLesson();
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
