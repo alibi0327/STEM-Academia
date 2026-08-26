@@ -28,3 +28,18 @@ const STEM_USERS = [
     }
 
 ];
+  {
+        id: 3,
+        fullName: "STEM Academia",
+        login: "STEM1",
+        password: "111",
+
+        role: "teacher",
+
+        courses: [
+            "Labdisc",
+            "Arduino"
+        ]
+    }
+
+];
