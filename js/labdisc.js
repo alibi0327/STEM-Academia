@@ -1,1249 +1,11 @@
 /* =====================================================
-   COURSE DATA
+   STEM TRAINER
+   LABDISC COURSE
 ===================================================== */
-
-const lessons = [
-
-    {
-        module: "Модуль 1 · Знакомство",
-
-        title: "Что такое Labdisc",
-
-        subtitle:
-            "Знакомство с цифровой лабораторией и принципами её использования.",
-
-        html: `
-
-            <div class="visual">
-
-                <div class="visual-content">
-
-                    <div class="visual-icon">
-                        🔬
-                    </div>
-
-                    <div class="visual-title">
-                        Цифровая лаборатория Labdisc
-                    </div>
-
-                    <div class="visual-text">
-                        Измерение • Регистрация • Анализ данных
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Что такое Labdisc?
-                </h2>
-
-                <p>
-                    Labdisc — компактная цифровая система
-                    сбора экспериментальных данных,
-                    предназначенная для естественно-научного
-                    образования.
-                </p>
-
-                <p>
-                    В одном устройстве объединяются датчики,
-                    система регистрации данных, память
-                    и средства связи с компьютером
-                    или планшетом.
-                </p>
-
-                <p>
-                    Во время эксперимента Labdisc получает
-                    значения от выбранных датчиков.
-                    Полученные результаты можно анализировать
-                    в программном обеспечении GlobiLab X.
-                </p>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Основные возможности
-                </h2>
-
-                <ul>
-
-                    <li>
-                        проводить измерения;
-                    </li>
-
-                    <li>
-                        получать данные в реальном времени;
-                    </li>
-
-                    <li>
-                        записывать результаты эксперимента;
-                    </li>
-
-                    <li>
-                        строить графики;
-                    </li>
-
-                    <li>
-                        работать с таблицами;
-                    </li>
-
-                    <li>
-                        сравнивать результаты;
-                    </li>
-
-                    <li>
-                        проводить лабораторные
-                        и полевые исследования.
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <div class="block info">
-
-                <h2>
-                    Цель курса
-                </h2>
-
-                <p>
-                    После прохождения курса преподаватель
-                    должен уметь подготовить Labdisc
-                    к работе, подключить устройство,
-                    выбрать необходимые датчики,
-                    провести эксперимент и проанализировать
-                    полученные результаты.
-                </p>
-
-            </div>
-
-        `
-    },
-
-
-    {
-        module: "Модуль 1 · Знакомство",
-
-        title: "Модели Labdisc",
-
-        subtitle:
-            "Определяем, какая версия цифровой лаборатории используется в кабинете.",
-
-        html: `
-
-            <div class="visual">
-
-                <div class="visual-content">
-
-                    <div class="visual-icon">
-                        🧪
-                    </div>
-
-                    <div class="visual-title">
-                        Основные модели Labdisc
-                    </div>
-
-                    <div class="visual-text">
-                        Gensci • Enviro • Physio • BioChem
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Основные версии
-                </h2>
-
-
-                <div class="models">
-
-
-                    <div class="model">
-
-                        <div class="model-icon">
-                            🔭
-                        </div>
-
-                        <h3>
-                            Gensci
-                        </h3>
-
-                        <p>
-                            Универсальная модель
-                            для естественных наук.
-                        </p>
-
-                    </div>
-
-
-                    <div class="model">
-
-                        <div class="model-icon">
-                            🌿
-                        </div>
-
-                        <h3>
-                            Enviro
-                        </h3>
-
-                        <p>
-                            Экологические
-                            и полевые исследования.
-                        </p>
-
-                    </div>
-
-
-                    <div class="model">
-
-                        <div class="model-icon">
-                            ⚡
-                        </div>
-
-                        <h3>
-                            Physio
-                        </h3>
-
-                        <p>
-                            Эксперименты
-                            по физике.
-                        </p>
-
-                    </div>
-
-
-                    <div class="model">
-
-                        <div class="model-icon">
-                            🧬
-                        </div>
-
-                        <h3>
-                            BioChem
-                        </h3>
-
-                        <p>
-                            Биология,
-                            химия и биохимия.
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <div class="block success">
-
-                <h2>
-                    Задание преподавателю
-                </h2>
-
-                <p>
-                    Найдите Labdisc в вашем кабинете
-                    и определите его модель.
-                </p>
-
-            </div>
-
-        `
-    },
-
-
-    {
-        module: "Модуль 2 · Оборудование",
-
-        title: "Устройство Labdisc",
-
-        subtitle:
-            "Знакомимся с основными элементами цифровой лаборатории.",
-
-        html: `
-
-            <div class="visual">
-
-                <div class="visual-content">
-
-                    <div class="visual-icon">
-                        🎛️
-                    </div>
-
-                    <div class="visual-title">
-                        Устройство Labdisc
-                    </div>
-
-                    <div class="visual-text">
-                        Экран • Кнопки • Датчики • Разъёмы • Связь
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Основные элементы
-                </h2>
-
-                <ul>
-
-                    <li>
-                        дисплей устройства;
-                    </li>
-
-                    <li>
-                        кнопки управления;
-                    </li>
-
-                    <li>
-                        USB-разъём;
-                    </li>
-
-                    <li>
-                        разъёмы внешних датчиков;
-                    </li>
-
-                    <li>
-                        встроенные датчики;
-                    </li>
-
-                    <li>
-                        питание и зарядка.
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <div class="block info">
-
-                <h2>
-                    Важно
-                </h2>
-
-                <p>
-                    Набор встроенных датчиков
-                    зависит от конкретной модели Labdisc.
-                </p>
-
-            </div>
-
-        `
-    },
-
-
-    {
-        module: "Модуль 3 · Подготовка",
-
-        title: "Подготовка к работе",
-
-        subtitle:
-            "Проверяем оборудование перед проведением занятия.",
-
-        html: `
-
-            <div class="visual">
-
-                <div class="visual-content">
-
-                    <div class="visual-icon">
-                        🔋
-                    </div>
-
-                    <div class="visual-title">
-                        Подготовка Labdisc
-                    </div>
-
-                    <div class="visual-text">
-                        Проверка → Включение → Подключение
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Перед занятием
-                </h2>
-
-
-                <div class="steps">
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            1
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Проверить устройство
-                            </strong>
-
-                            <span>
-                                Убедитесь, что Labdisc
-                                исправен и готов к работе.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            2
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Проверить заряд
-                            </strong>
-
-                            <span>
-                                Заряд должен быть достаточным
-                                для всего занятия.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            3
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Подготовить датчики
-                            </strong>
-
-                            <span>
-                                Выберите датчики,
-                                необходимые для эксперимента.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            4
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Подготовить компьютер
-                            </strong>
-
-                            <span>
-                                Запустите программное обеспечение
-                                для работы с Labdisc.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <div class="block warning">
-
-                <h2>
-                    Безопасность
-                </h2>
-
-                <p>
-                    Используйте оборудование
-                    только по назначению
-                    и соблюдайте правила
-                    учебного кабинета.
-                </p>
-
-            </div>
-
-        `
-    },
-
-
-    {
-        module: "Модуль 4 · GlobiLab X",
-
-        title: "Подключение к GlobiLab X",
-
-        subtitle:
-            "Подключаем цифровую лабораторию к компьютеру или планшету.",
-
-        html: `
-
-            <div class="visual">
-
-                <div class="visual-content">
-
-                    <div class="visual-icon">
-                        💻
-                    </div>
-
-                    <div class="visual-title">
-                        Labdisc + GlobiLab X
-                    </div>
-
-                    <div class="visual-text">
-                        USB / Bluetooth
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Что такое GlobiLab X?
-                </h2>
-
-                <p>
-                    GlobiLab X используется
-                    для настройки измерений,
-                    просмотра данных,
-                    построения графиков
-                    и анализа результатов.
-                </p>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Подключение
-                </h2>
-
-
-                <div class="models">
-
-                    <div class="model">
-
-                        <div class="model-icon">
-                            🔌
-                        </div>
-
-                        <h3>
-                            USB
-                        </h3>
-
-                        <p>
-                            Проводное подключение
-                            к компьютеру.
-                        </p>
-
-                    </div>
-
-
-                    <div class="model">
-
-                        <div class="model-icon">
-                            📶
-                        </div>
-
-                        <h3>
-                            Bluetooth
-                        </h3>
-
-                        <p>
-                            Беспроводное подключение
-                            поддерживаемых моделей.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Полезные материалы
-                </h2>
-
-                <div class="resources">
-
-                    <a
-                        class="resource"
-                        href="https://globisens.net/support/downloads/"
-                        target="_blank"
-                    >
-                        💻 GlobiLab X
-                    </a>
-
-                    <a
-                        class="resource"
-                        href="https://globisens.net/resources/experiment-videos/"
-                        target="_blank"
-                    >
-                        ▶ Видеоуроки GlobiSens
-                    </a>
-
-                </div>
-
-            </div>
-
-        `
-    },
-
-
-    {
-        module: "Модуль 5 · Датчики",
-
-        title: "Работа с датчиками",
-
-        subtitle:
-            "Выбираем датчики для учебного эксперимента.",
-
-        html: `
-
-            <div class="visual">
-
-                <div class="visual-content">
-
-                    <div class="visual-icon">
-                        🌡️
-                    </div>
-
-                    <div class="visual-title">
-                        Датчики Labdisc
-                    </div>
-
-                    <div class="visual-text">
-                        Температура • Свет • Давление • pH • Движение
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Что такое датчик?
-                </h2>
-
-                <p>
-                    Датчик преобразует измеряемую
-                    физическую или химическую величину
-                    в цифровые данные.
-                </p>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Примеры измерений
-                </h2>
-
-                <ul>
-
-                    <li>
-                        температура;
-                    </li>
-
-                    <li>
-                        освещённость;
-                    </li>
-
-                    <li>
-                        давление;
-                    </li>
-
-                    <li>
-                        влажность;
-                    </li>
-
-                    <li>
-                        звук;
-                    </li>
-
-                    <li>
-                        напряжение;
-                    </li>
-
-                    <li>
-                        ток;
-                    </li>
-
-                    <li>
-                        движение;
-                    </li>
-
-                    <li>
-                        pH.
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <div class="block success">
-
-                <h2>
-                    Практическое задание
-                </h2>
-
-                <p>
-                    Определите датчики,
-                    доступные на вашей модели Labdisc.
-                </p>
-
-            </div>
-
-        `
-    },
-
-
-    {
-        module: "Модуль 6 · Настройка",
-
-        title: "Настройка измерений",
-
-        subtitle:
-            "Настраиваем параметры сбора данных.",
-
-        html: `
-
-            <div class="visual">
-
-                <div class="visual-content">
-
-                    <div class="visual-icon">
-                        ⚙️
-                    </div>
-
-                    <div class="visual-title">
-                        Настройка эксперимента
-                    </div>
-
-                    <div class="visual-text">
-                        Датчик → Частота → Запись
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Перед записью данных
-                </h2>
-
-
-                <div class="steps">
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            1
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Выберите датчик
-                            </strong>
-
-                            <span>
-                                Определите измеряемую величину.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            2
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Настройте регистрацию
-                            </strong>
-
-                            <span>
-                                Выберите необходимые параметры.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            3
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Проверьте показания
-                            </strong>
-
-                            <span>
-                                Убедитесь, что данные поступают корректно.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            4
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Запустите запись
-                            </strong>
-
-                            <span>
-                                Начните эксперимент.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        `
-    },
-
-
-    {
-        module: "Модуль 7 · Практика",
-
-        title: "Первый эксперимент",
-
-        subtitle:
-            "Проводим полный цикл учебного эксперимента.",
-
-        html: `
-
-            <div class="visual">
-
-                <div class="visual-content">
-
-                    <div class="visual-icon">
-                        🧑‍🔬
-                    </div>
-
-                    <div class="visual-title">
-                        Первый эксперимент
-                    </div>
-
-                    <div class="visual-text">
-                        Наблюдение → Измерение → Анализ
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Этапы эксперимента
-                </h2>
-
-                <ol>
-
-                    <li>
-                        Сформулируйте вопрос.
-                    </li>
-
-                    <li>
-                        Выберите измеряемую величину.
-                    </li>
-
-                    <li>
-                        Выберите датчик.
-                    </li>
-
-                    <li>
-                        Настройте Labdisc.
-                    </li>
-
-                    <li>
-                        Запустите регистрацию.
-                    </li>
-
-                    <li>
-                        Получите данные.
-                    </li>
-
-                    <li>
-                        Проанализируйте график.
-                    </li>
-
-                    <li>
-                        Сформулируйте вывод.
-                    </li>
-
-                </ol>
-
-            </div>
-
-
-            <div class="block info">
-
-                <h2>
-                    Простой пример
-                </h2>
-
-                <p>
-                    Для первого знакомства удобно
-                    исследовать изменение температуры
-                    с течением времени.
-                </p>
-
-            </div>
-
-
-            <div class="block">
-
-                <div class="resources">
-
-                    <a
-                        class="resource"
-                        href="https://globisens.net/resources/experiment-videos/"
-                        target="_blank"
-                    >
-                        ▶ Примеры экспериментов
-                    </a>
-
-                </div>
-
-            </div>
-
-        `
-    },
-
-
-    {
-        module: "Модуль 8 · Анализ",
-
-        title: "Анализ результатов",
-
-        subtitle:
-            "Работаем с графиками и таблицами.",
-
-        html: `
-
-            <div class="visual">
-
-                <div class="visual-content">
-
-                    <div class="visual-icon">
-                        📈
-                    </div>
-
-                    <div class="visual-title">
-                        Анализ данных
-                    </div>
-
-                    <div class="visual-text">
-                        Графики • Таблицы • Выводы
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    После эксперимента
-                </h2>
-
-                <p>
-                    Следующий этап после получения данных —
-                    их анализ и интерпретация.
-                </p>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Преподаватель должен уметь
-                </h2>
-
-                <ul>
-
-                    <li>
-                        открывать результаты;
-                    </li>
-
-                    <li>
-                        читать график;
-                    </li>
-
-                    <li>
-                        работать с таблицей;
-                    </li>
-
-                    <li>
-                        сравнивать измерения;
-                    </li>
-
-                    <li>
-                        формулировать вывод.
-                    </li>
-
-                </ul>
-
-            </div>
-
-        `
-    },
-
-
-    {
-        module: "Модуль 9 · Методика",
-
-        title: "Labdisc на уроке",
-
-        subtitle:
-            "Организуем исследовательскую работу учеников.",
-
-        html: `
-
-            <div class="visual">
-
-                <div class="visual-content">
-
-                    <div class="visual-icon">
-                        👩‍🏫
-                    </div>
-
-                    <div class="visual-title">
-                        Labdisc в STEM-обучении
-                    </div>
-
-                    <div class="visual-text">
-                        Гипотеза → Эксперимент → Данные → Вывод
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Использование на уроке
-                </h2>
-
-                <p>
-                    Labdisc позволяет организовать
-                    исследовательское занятие,
-                    где ученики самостоятельно
-                    получают экспериментальные данные.
-                </p>
-
-            </div>
-
-
-            <div class="block">
-
-                <h2>
-                    Структура занятия
-                </h2>
-
-
-                <div class="steps">
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            1
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Исследовательский вопрос
-                            </strong>
-
-                            <span>
-                                Определяем проблему.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            2
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Гипотеза
-                            </strong>
-
-                            <span>
-                                Предполагаем результат.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            3
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Эксперимент
-                            </strong>
-
-                            <span>
-                                Проводим измерения.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            4
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Анализ
-                            </strong>
-
-                            <span>
-                                Работаем с данными.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            5
-                        </div>
-
-                        <div class="step-text">
-
-                            <strong>
-                                Вывод
-                            </strong>
-
-                            <span>
-                                Сравниваем результат с гипотезой.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <div id="finalTestBox"></div>
-
-        `
-    }
-
-];
 
 
 /* =====================================================
-   AUTH
+   АВТОРИЗАЦИЯ
 ===================================================== */
 
 const currentUser =
@@ -1266,28 +28,1247 @@ if (
 
 
 /* =====================================================
-   PROGRESS
+   ПРОВЕРКА ДОСТУПА К LABDISC
+===================================================== */
+
+const allTeachers =
+    JSON.parse(
+        localStorage.getItem(
+            "stemTeachers"
+        )
+    ) || [];
+
+
+const currentTeacher =
+    allTeachers.find(
+        function(teacher) {
+
+            return (
+                String(teacher.id) ===
+                String(currentUser.id)
+            );
+
+        }
+    );
+
+
+if (!currentTeacher) {
+
+    localStorage.removeItem(
+        "stemCurrentUser"
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+if (
+    !currentTeacher.courses ||
+    !currentTeacher.courses.includes(
+        "Labdisc"
+    )
+) {
+
+    alert(
+        "Курс Labdisc не назначен вашему аккаунту."
+    );
+
+    window.location.href =
+        "teacher.html";
+
+}
+
+
+/* =====================================================
+   УРОКИ
+===================================================== */
+
+const lessons = [
+
+
+/* =====================================================
+   1
+===================================================== */
+
+{
+    module:
+        "Модуль 1 · Знакомство",
+
+    title:
+        "Что такое Labdisc",
+
+    subtitle:
+        "Знакомство с цифровой лабораторией и принципами её использования.",
+
+    html: `
+
+        <div class="visual">
+
+            <div class="visual-content">
+
+                <div class="visual-icon">
+                    🔬
+                </div>
+
+                <div class="visual-title">
+                    Цифровая лаборатория Labdisc
+                </div>
+
+                <div class="visual-text">
+                    Измерение • Регистрация • Анализ данных
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Что такое Labdisc?
+            </h2>
+
+            <p>
+                Labdisc — компактная цифровая
+                лаборатория для проведения
+                естественно-научных экспериментов
+                и сбора измерительных данных.
+            </p>
+
+            <p>
+                В устройстве объединяются датчики,
+                память, система регистрации данных
+                и средства связи с компьютером
+                или планшетом.
+            </p>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Основные возможности
+            </h2>
+
+            <ul>
+
+                <li>
+                    измерение различных величин;
+                </li>
+
+                <li>
+                    наблюдение данных
+                    в реальном времени;
+                </li>
+
+                <li>
+                    запись эксперимента;
+                </li>
+
+                <li>
+                    построение графиков;
+                </li>
+
+                <li>
+                    работа с таблицами;
+                </li>
+
+                <li>
+                    анализ результатов.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="block info">
+
+            <h2>
+                Цель обучения
+            </h2>
+
+            <p>
+                После курса преподаватель сможет
+                самостоятельно подготовить Labdisc,
+                выбрать необходимые датчики,
+                провести эксперимент и
+                проанализировать результаты.
+            </p>
+
+        </div>
+
+    `
+},
+
+
+/* =====================================================
+   2
+===================================================== */
+
+{
+    module:
+        "Модуль 1 · Знакомство",
+
+    title:
+        "Модели Labdisc",
+
+    subtitle:
+        "Определяем версию цифровой лаборатории.",
+
+    html: `
+
+        <div class="visual">
+
+            <div class="visual-content">
+
+                <div class="visual-icon">
+                    🧪
+                </div>
+
+                <div class="visual-title">
+                    Модели Labdisc
+                </div>
+
+                <div class="visual-text">
+                    Gensci • Enviro • Physio • BioChem
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Основные модели
+            </h2>
+
+
+            <div class="models">
+
+
+                <div class="model">
+
+                    <div class="model-icon">
+                        🔭
+                    </div>
+
+                    <h3>
+                        Gensci
+                    </h3>
+
+                    <p>
+                        Универсальная модель
+                        для естественных наук.
+                    </p>
+
+                </div>
+
+
+                <div class="model">
+
+                    <div class="model-icon">
+                        🌿
+                    </div>
+
+                    <h3>
+                        Enviro
+                    </h3>
+
+                    <p>
+                        Экологические
+                        и полевые исследования.
+                    </p>
+
+                </div>
+
+
+                <div class="model">
+
+                    <div class="model-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Physio
+                    </h3>
+
+                    <p>
+                        Эксперименты
+                        и исследования по физике.
+                    </p>
+
+                </div>
+
+
+                <div class="model">
+
+                    <div class="model-icon">
+                        🧬
+                    </div>
+
+                    <h3>
+                        BioChem
+                    </h3>
+
+                    <p>
+                        Биологические
+                        и химические исследования.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block success">
+
+            <h2>
+                Практическое задание
+            </h2>
+
+            <p>
+                Найдите Labdisc в вашем
+                STEM-кабинете и определите,
+                какая именно модель находится
+                в вашем комплекте.
+            </p>
+
+        </div>
+
+    `
+},
+
+
+/* =====================================================
+   3
+===================================================== */
+
+{
+    module:
+        "Модуль 2 · Оборудование",
+
+    title:
+        "Устройство Labdisc",
+
+    subtitle:
+        "Изучаем основные элементы устройства.",
+
+    html: `
+
+        <div class="visual">
+
+            <div class="visual-content">
+
+                <div class="visual-icon">
+                    🎛️
+                </div>
+
+                <div class="visual-title">
+                    Устройство Labdisc
+                </div>
+
+                <div class="visual-text">
+                    Экран • Кнопки • Датчики • Разъёмы
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Основные элементы
+            </h2>
+
+            <ul>
+
+                <li>
+                    дисплей;
+                </li>
+
+                <li>
+                    кнопки управления;
+                </li>
+
+                <li>
+                    USB-разъём;
+                </li>
+
+                <li>
+                    встроенные датчики;
+                </li>
+
+                <li>
+                    разъёмы внешних датчиков;
+                </li>
+
+                <li>
+                    система питания.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="block info">
+
+            <h2>
+                Обратите внимание
+            </h2>
+
+            <p>
+                Расположение датчиков
+                и их количество зависит
+                от конкретной модели Labdisc.
+            </p>
+
+        </div>
+
+    `
+},
+
+
+/* =====================================================
+   4
+===================================================== */
+
+{
+    module:
+        "Модуль 3 · Подготовка",
+
+    title:
+        "Подготовка к работе",
+
+    subtitle:
+        "Подготавливаем оборудование к занятию.",
+
+    html: `
+
+        <div class="visual">
+
+            <div class="visual-content">
+
+                <div class="visual-icon">
+                    🔋
+                </div>
+
+                <div class="visual-title">
+                    Подготовка оборудования
+                </div>
+
+                <div class="visual-text">
+                    Проверка → Включение → Подключение
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Перед началом занятия
+            </h2>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div class="step-text">
+
+                        <strong>
+                            Проверьте устройство
+                        </strong>
+
+                        <span>
+                            Осмотрите оборудование
+                            перед использованием.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div class="step-text">
+
+                        <strong>
+                            Проверьте заряд
+                        </strong>
+
+                        <span>
+                            Устройство должно иметь
+                            достаточный заряд.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div class="step-text">
+
+                        <strong>
+                            Подготовьте датчики
+                        </strong>
+
+                        <span>
+                            Выберите необходимое
+                            оборудование.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <div class="step-text">
+
+                        <strong>
+                            Подготовьте программу
+                        </strong>
+
+                        <span>
+                            Запустите GlobiLab X.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `
+},
+
+
+/* =====================================================
+   5
+===================================================== */
+
+{
+    module:
+        "Модуль 4 · GlobiLab X",
+
+    title:
+        "Подключение к GlobiLab X",
+
+    subtitle:
+        "Подключаем Labdisc к компьютеру или планшету.",
+
+    html: `
+
+        <div class="visual">
+
+            <div class="visual-content">
+
+                <div class="visual-icon">
+                    💻
+                </div>
+
+                <div class="visual-title">
+                    Labdisc + GlobiLab X
+                </div>
+
+                <div class="visual-text">
+                    USB • Bluetooth
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                GlobiLab X
+            </h2>
+
+            <p>
+                GlobiLab X используется
+                для настройки экспериментов,
+                получения данных,
+                построения графиков
+                и анализа результатов.
+            </p>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Подключение
+            </h2>
+
+            <div class="models">
+
+                <div class="model">
+
+                    <div class="model-icon">
+                        🔌
+                    </div>
+
+                    <h3>
+                        USB
+                    </h3>
+
+                    <p>
+                        Проводное подключение
+                        к компьютеру.
+                    </p>
+
+                </div>
+
+
+                <div class="model">
+
+                    <div class="model-icon">
+                        📶
+                    </div>
+
+                    <h3>
+                        Bluetooth
+                    </h3>
+
+                    <p>
+                        Беспроводное подключение
+                        поддерживаемых устройств.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <div class="resources">
+
+                <a
+                    class="resource"
+                    href="https://globisens.net/support/downloads/"
+                    target="_blank"
+                >
+                    💻 Открыть GlobiLab X
+                </a>
+
+                <a
+                    class="resource"
+                    href="https://globisens.net/resources/experiment-videos/"
+                    target="_blank"
+                >
+                    ▶ Видеоуроки
+                </a>
+
+            </div>
+
+        </div>
+
+    `
+},
+
+
+/* =====================================================
+   6
+===================================================== */
+
+{
+    module:
+        "Модуль 5 · Датчики",
+
+    title:
+        "Работа с датчиками",
+
+    subtitle:
+        "Выбираем подходящий датчик для эксперимента.",
+
+    html: `
+
+        <div class="visual">
+
+            <div class="visual-content">
+
+                <div class="visual-icon">
+                    🌡️
+                </div>
+
+                <div class="visual-title">
+                    Датчики Labdisc
+                </div>
+
+                <div class="visual-text">
+                    Температура • Свет • Давление • pH
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Что делает датчик?
+            </h2>
+
+            <p>
+                Датчик преобразует
+                измеряемую величину
+                в цифровые данные,
+                которые регистрирует Labdisc.
+            </p>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Примеры
+            </h2>
+
+            <ul>
+
+                <li>
+                    температура;
+                </li>
+
+                <li>
+                    освещённость;
+                </li>
+
+                <li>
+                    давление;
+                </li>
+
+                <li>
+                    влажность;
+                </li>
+
+                <li>
+                    звук;
+                </li>
+
+                <li>
+                    напряжение;
+                </li>
+
+                <li>
+                    ток;
+                </li>
+
+                <li>
+                    движение;
+                </li>
+
+                <li>
+                    pH.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="block success">
+
+            <h2>
+                Задание
+            </h2>
+
+            <p>
+                Найдите и определите
+                доступные датчики
+                на вашей модели Labdisc.
+            </p>
+
+        </div>
+
+    `
+},
+
+
+/* =====================================================
+   7
+===================================================== */
+
+{
+    module:
+        "Модуль 6 · Настройка",
+
+    title:
+        "Настройка измерений",
+
+    subtitle:
+        "Настраиваем сбор экспериментальных данных.",
+
+    html: `
+
+        <div class="visual">
+
+            <div class="visual-content">
+
+                <div class="visual-icon">
+                    ⚙️
+                </div>
+
+                <div class="visual-title">
+                    Настройка измерения
+                </div>
+
+                <div class="visual-text">
+                    Датчик → Параметры → Запись
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Последовательность
+            </h2>
+
+            <ol>
+
+                <li>
+                    Выберите датчик.
+                </li>
+
+                <li>
+                    Определите параметры
+                    регистрации данных.
+                </li>
+
+                <li>
+                    Проверьте показания.
+                </li>
+
+                <li>
+                    Запустите эксперимент.
+                </li>
+
+            </ol>
+
+        </div>
+
+    `
+},
+
+
+/* =====================================================
+   8
+===================================================== */
+
+{
+    module:
+        "Модуль 7 · Практика",
+
+    title:
+        "Первый эксперимент",
+
+    subtitle:
+        "Проводим полный цикл эксперимента.",
+
+    html: `
+
+        <div class="visual">
+
+            <div class="visual-content">
+
+                <div class="visual-icon">
+                    🧑‍🔬
+                </div>
+
+                <div class="visual-title">
+                    Первый эксперимент
+                </div>
+
+                <div class="visual-text">
+                    Вопрос → Измерение → Данные → Вывод
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Этапы
+            </h2>
+
+            <ol>
+
+                <li>
+                    Сформулируйте вопрос.
+                </li>
+
+                <li>
+                    Определите измеряемую величину.
+                </li>
+
+                <li>
+                    Выберите датчик.
+                </li>
+
+                <li>
+                    Настройте Labdisc.
+                </li>
+
+                <li>
+                    Начните измерение.
+                </li>
+
+                <li>
+                    Получите данные.
+                </li>
+
+                <li>
+                    Проанализируйте результаты.
+                </li>
+
+                <li>
+                    Сделайте вывод.
+                </li>
+
+            </ol>
+
+        </div>
+
+
+        <div class="block info">
+
+            <h2>
+                Пример
+            </h2>
+
+            <p>
+                Для первого эксперимента
+                можно исследовать изменение
+                температуры с течением времени.
+            </p>
+
+        </div>
+
+    `
+},
+
+
+/* =====================================================
+   9
+===================================================== */
+
+{
+    module:
+        "Модуль 8 · Анализ",
+
+    title:
+        "Анализ результатов",
+
+    subtitle:
+        "Работаем с полученными экспериментальными данными.",
+
+    html: `
+
+        <div class="visual">
+
+            <div class="visual-content">
+
+                <div class="visual-icon">
+                    📈
+                </div>
+
+                <div class="visual-title">
+                    Анализ данных
+                </div>
+
+                <div class="visual-text">
+                    График • Таблица • Вывод
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                После эксперимента
+            </h2>
+
+            <p>
+                Полученные значения
+                необходимо проанализировать
+                и интерпретировать.
+            </p>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Необходимо уметь
+            </h2>
+
+            <ul>
+
+                <li>
+                    читать график;
+                </li>
+
+                <li>
+                    работать с таблицей;
+                </li>
+
+                <li>
+                    сравнивать результаты;
+                </li>
+
+                <li>
+                    находить закономерности;
+                </li>
+
+                <li>
+                    формулировать вывод.
+                </li>
+
+            </ul>
+
+        </div>
+
+    `
+},
+
+
+/* =====================================================
+   10
+===================================================== */
+
+{
+    module:
+        "Модуль 9 · Методика",
+
+    title:
+        "Labdisc на уроке",
+
+    subtitle:
+        "Организация исследовательского STEM-занятия.",
+
+    html: `
+
+        <div class="visual">
+
+            <div class="visual-content">
+
+                <div class="visual-icon">
+                    👩‍🏫
+                </div>
+
+                <div class="visual-title">
+                    Labdisc в STEM-обучении
+                </div>
+
+                <div class="visual-text">
+                    Гипотеза → Эксперимент → Анализ → Вывод
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Исследовательское обучение
+            </h2>
+
+            <p>
+                Ученики могут самостоятельно
+                проводить измерения,
+                получать реальные данные
+                и анализировать результаты.
+            </p>
+
+        </div>
+
+
+        <div class="block">
+
+            <h2>
+                Структура занятия
+            </h2>
+
+            <ol>
+
+                <li>
+                    Исследовательский вопрос.
+                </li>
+
+                <li>
+                    Гипотеза.
+                </li>
+
+                <li>
+                    План эксперимента.
+                </li>
+
+                <li>
+                    Измерения.
+                </li>
+
+                <li>
+                    Анализ данных.
+                </li>
+
+                <li>
+                    Вывод.
+                </li>
+
+            </ol>
+
+        </div>
+
+
+        <div id="finalTestBox"></div>
+
+    `
+}
+
+];
+
+
+/* =====================================================
+   ЛИЧНЫЙ КЛЮЧ ПРОГРЕССА
+===================================================== */
+
+const progressKey =
+    "labdiscCompleted_" +
+    currentUser.id;
+
+
+/* =====================================================
+   ПРОГРЕСС ТОЛЬКО ЭТОГО УЧИТЕЛЯ
 ===================================================== */
 
 let completed =
     JSON.parse(
         localStorage.getItem(
-            "labdiscCompleted"
+            progressKey
         )
     ) || [];
 
 
-let currentLesson = 0;
+/* Удаляем некорректные значения */
+
+completed =
+    completed.filter(
+        function(index) {
+
+            return (
+                Number.isInteger(index) &&
+                index >= 0 &&
+                index < lessons.length
+            );
+
+        }
+    );
+
+
+let currentLesson =
+    0;
 
 
 /* =====================================================
-   SAVE
+   НАХОДИМ ПЕРВЫЙ НЕПРОЙДЕННЫЙ УРОК
+===================================================== */
+
+function findCurrentLesson() {
+
+    for (
+        let i = 0;
+        i < lessons.length;
+        i++
+    ) {
+
+        if (
+            !completed.includes(i)
+        ) {
+
+            return i;
+
+        }
+
+    }
+
+
+    return (
+        lessons.length - 1
+    );
+
+}
+
+
+currentLesson =
+    findCurrentLesson();
+
+
+/* =====================================================
+   СОХРАНЕНИЕ
 ===================================================== */
 
 function saveProgress() {
 
     localStorage.setItem(
-        "labdiscCompleted",
+        progressKey,
         JSON.stringify(completed)
     );
 
@@ -1298,7 +1279,7 @@ function saveProgress() {
 
 
 /* =====================================================
-   SYNC TEACHER
+   ПРОГРЕСС В ПРОФИЛЕ УЧИТЕЛЯ
 ===================================================== */
 
 function syncTeacherProgress() {
@@ -1313,14 +1294,23 @@ function syncTeacherProgress() {
 
     const teacherIndex =
         teachers.findIndex(
-            teacher =>
-                teacher.id ===
-                currentUser.id
+            function(teacher) {
+
+                return (
+                    String(teacher.id) ===
+                    String(currentUser.id)
+                );
+
+            }
         );
 
 
-    if (teacherIndex === -1) {
+    if (
+        teacherIndex === -1
+    ) {
+
         return;
+
     }
 
 
@@ -1340,14 +1330,17 @@ function syncTeacherProgress() {
 
         teachers[
             teacherIndex
-        ].courseProgress = {};
+        ].courseProgress =
+            {};
 
     }
 
 
     teachers[
         teacherIndex
-    ].courseProgress["Labdisc"] =
+    ].courseProgress[
+        "Labdisc"
+    ] =
         percent;
 
 
@@ -1360,7 +1353,54 @@ function syncTeacherProgress() {
 
 
 /* =====================================================
-   MENU
+   МОЖНО ЛИ ОТКРЫТЬ УРОК
+===================================================== */
+
+function isLessonUnlocked(
+    index
+) {
+
+    /*
+        Первый урок доступен всегда
+    */
+
+    if (
+        index === 0
+    ) {
+
+        return true;
+
+    }
+
+
+    /*
+        Уже пройденный урок
+        можно открыть повторно
+    */
+
+    if (
+        completed.includes(index)
+    ) {
+
+        return true;
+
+    }
+
+
+    /*
+        Новый урок доступен,
+        только если предыдущий пройден
+    */
+
+    return completed.includes(
+        index - 1
+    );
+
+}
+
+
+/* =====================================================
+   МЕНЮ
 ===================================================== */
 
 function renderMenu() {
@@ -1371,13 +1411,19 @@ function renderMenu() {
         );
 
 
-    let html = "";
+    let html =
+        "";
 
-    let lastModule = "";
+
+    let lastModule =
+        "";
 
 
     lessons.forEach(
-        (lesson, index) => {
+        function(
+            lesson,
+            index
+        ) {
 
 
             if (
@@ -1408,6 +1454,29 @@ function renderMenu() {
                 );
 
 
+            const unlocked =
+                isLessonUnlocked(
+                    index
+                );
+
+
+            let icon =
+                "";
+
+
+            if (done) {
+
+                icon =
+                    "✓ ";
+
+            } else if (!unlocked) {
+
+                icon =
+                    "🔒 ";
+
+            }
+
+
             html += `
 
                 <div
@@ -1419,12 +1488,20 @@ function renderMenu() {
                                 ? "active"
                                 : ""
                         }
+
                         ${
                             done
                                 ? "done"
                                 : ""
                         }
+
+                        ${
+                            !unlocked
+                                ? "locked"
+                                : ""
+                        }
                     "
+
                     onclick="
                         openLesson(
                             ${index}
@@ -1432,11 +1509,7 @@ function renderMenu() {
                     "
                 >
 
-                    ${
-                        done
-                            ? "✓ "
-                            : ""
-                    }
+                    ${icon}
 
                     ${lesson.title}
 
@@ -1455,7 +1528,7 @@ function renderMenu() {
 
 
 /* =====================================================
-   RENDER LESSON
+   ОТРИСОВКА УРОКА
 ===================================================== */
 
 function renderLesson() {
@@ -1508,9 +1581,11 @@ function renderLesson() {
                     btn
                     btn-back
                 "
+
                 onclick="
                     previousLesson()
                 "
+
                 ${
                     currentLesson === 0
                         ? "disabled"
@@ -1532,6 +1607,7 @@ function renderLesson() {
                             : "btn-primary"
                     }
                 "
+
                 onclick="
                     completeLesson()
                 "
@@ -1540,7 +1616,12 @@ function renderLesson() {
                 ${
                     done
                         ? "✓ Урок пройден"
-                        : "Завершить урок →"
+                        : (
+                            currentLesson ===
+                            lessons.length - 1
+                                ? "Завершить курс ✓"
+                                : "Завершить урок →"
+                        )
                 }
 
             </button>
@@ -1557,7 +1638,45 @@ function renderLesson() {
 
 
 /* =====================================================
-   COMPLETE
+   ОТКРЫТИЕ УРОКА
+===================================================== */
+
+function openLesson(
+    index
+) {
+
+    if (
+        !isLessonUnlocked(index)
+    ) {
+
+        alert(
+            "Сначала завершите предыдущий урок."
+        );
+
+        return;
+
+    }
+
+
+    currentLesson =
+        index;
+
+
+    renderMenu();
+
+    renderLesson();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   ЗАВЕРШИТЬ УРОК
 ===================================================== */
 
 function completeLesson() {
@@ -1574,8 +1693,11 @@ function completeLesson() {
 
 
         completed.sort(
-            (a, b) =>
-                a - b
+            function(a, b) {
+
+                return a - b;
+
+            }
         );
 
 
@@ -1585,7 +1707,6 @@ function completeLesson() {
 
 
     updateProgress();
-
 
     renderMenu();
 
@@ -1618,30 +1739,7 @@ function completeLesson() {
 
 
 /* =====================================================
-   OPEN
-===================================================== */
-
-function openLesson(index) {
-
-    currentLesson =
-        index;
-
-
-    renderMenu();
-
-    renderLesson();
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-
-/* =====================================================
-   PREVIOUS
+   ПРЕДЫДУЩИЙ УРОК
 ===================================================== */
 
 function previousLesson() {
@@ -1669,7 +1767,7 @@ function previousLesson() {
 
 
 /* =====================================================
-   UPDATE PROGRESS
+   ОБНОВЛЕНИЕ ПРОГРЕССА
 ===================================================== */
 
 function updateProgress() {
@@ -1700,7 +1798,7 @@ function updateProgress() {
 
 
 /* =====================================================
-   FINAL TEST
+   ИТОГОВЫЙ ТЕСТ
 ===================================================== */
 
 function renderFinalTestBox() {
@@ -1712,7 +1810,9 @@ function renderFinalTestBox() {
 
 
     if (!box) {
+
         return;
+
     }
 
 
@@ -1731,13 +1831,14 @@ function renderFinalTestBox() {
             >
 
                 <h2>
-                    🎓 Курс завершён
+                    🎓 Обучение завершено
                 </h2>
 
                 <p>
-                    Все уроки изучены.
-                    Теперь можно пройти
-                    итоговый тест.
+                    Вы прошли все
+                    10 уроков курса Labdisc.
+                    Теперь доступна
+                    итоговая аттестация.
                 </p>
 
                 <button
@@ -1757,6 +1858,11 @@ function renderFinalTestBox() {
 
     } else {
 
+        const remaining =
+            lessons.length -
+            completed.length;
+
+
         box.innerHTML = `
 
             <div
@@ -1771,9 +1877,11 @@ function renderFinalTestBox() {
                 </h2>
 
                 <p>
-                    Завершите все уроки,
-                    чтобы открыть
-                    итоговую аттестацию.
+                    До открытия теста
+                    осталось пройти уроков:
+                    <strong>
+                        ${remaining}
+                    </strong>
                 </p>
 
             </div>
@@ -1786,10 +1894,24 @@ function renderFinalTestBox() {
 
 
 /* =====================================================
-   TEST
+   ПЕРЕХОД НА ТЕСТ
 ===================================================== */
 
 function startTest() {
+
+    if (
+        completed.length !==
+        lessons.length
+    ) {
+
+        alert(
+            "Сначала завершите все уроки курса."
+        );
+
+        return;
+
+    }
+
 
     localStorage.setItem(
         "stemTestCourse",
@@ -1804,8 +1926,10 @@ function startTest() {
 
 
 /* =====================================================
-   START
+   ЗАПУСК
 ===================================================== */
+
+saveProgress();
 
 renderMenu();
 
