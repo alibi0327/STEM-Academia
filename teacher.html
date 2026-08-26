@@ -19,17 +19,15 @@
             color: #172033;
         }
 
-        /* =========================
-           ШАПКА
-        ========================= */
-
         .header {
             height: 74px;
             background: #ffffff;
             border-bottom: 1px solid #e5e7eb;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             padding: 0 40px;
         }
 
@@ -37,6 +35,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+
             font-size: 22px;
             font-weight: 700;
         }
@@ -44,53 +43,68 @@
         .brand-icon {
             width: 40px;
             height: 40px;
+
             border-radius: 10px;
+
             background: #2563eb;
             color: white;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+        }
+
+        .user-block {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-name {
+            font-size: 14px;
+            color: #667085;
         }
 
         .logout-btn {
             border: none;
             background: #ef4444;
             color: white;
+
             padding: 10px 16px;
+
             border-radius: 9px;
+
             cursor: pointer;
             font-weight: 600;
         }
 
-        .logout-btn:hover {
-            background: #dc2626;
-        }
-
-        /* =========================
-           ОСНОВНАЯ ОБЛАСТЬ
-        ========================= */
-
         .main {
-            max-width: 1150px;
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 36px 20px;
+
+            padding: 36px 20px 60px;
         }
 
         .welcome {
             background: white;
-            padding: 28px;
+
+            padding: 30px;
+
             border-radius: 18px;
             border: 1px solid #e5e7eb;
+
             margin-bottom: 30px;
         }
 
         .welcome-small {
             color: #2563eb;
-            font-size: 13px;
+
+            font-size: 12px;
             font-weight: 700;
-            margin-bottom: 8px;
+
             text-transform: uppercase;
+
+            margin-bottom: 8px;
         }
 
         .welcome h1 {
@@ -103,10 +117,40 @@
             line-height: 1.6;
         }
 
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-top: 25px;
+        }
+
+        .stat {
+            background: #f8fafc;
+
+            border-radius: 12px;
+
+            padding: 16px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #667085;
+
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             margin-bottom: 18px;
         }
 
@@ -119,35 +163,39 @@
             font-size: 14px;
         }
 
-        /* =========================
-           КУРСЫ
-        ========================= */
-
         .courses {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+
             gap: 20px;
         }
 
         .course-card {
             background: white;
+
             border: 1px solid #e5e7eb;
             border-radius: 18px;
+
             overflow: hidden;
+
             transition: 0.2s;
         }
 
         .course-card:hover {
             transform: translateY(-3px);
+
             box-shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
         }
 
         .course-top {
             height: 150px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             background: #eef4ff;
+
             font-size: 55px;
         }
 
@@ -160,16 +208,14 @@
             margin-bottom: 9px;
         }
 
-        .course-body p {
+        .course-description {
             color: #667085;
+
             font-size: 14px;
             line-height: 1.55;
-            min-height: 66px;
-        }
 
-        /* =========================
-           ПРОГРЕСС
-        ========================= */
+            min-height: 65px;
+        }
 
         .progress-row {
             margin-top: 20px;
@@ -178,44 +224,71 @@
         .progress-info {
             display: flex;
             justify-content: space-between;
+
             font-size: 13px;
+
             margin-bottom: 8px;
         }
 
-        .progress-info span:last-child {
-            font-weight: 700;
+        .progress-info strong {
+            color: #172033;
         }
 
         .progress {
             height: 9px;
+
             background: #e5e7eb;
+
             border-radius: 20px;
+
             overflow: hidden;
         }
 
         .progress-bar {
             height: 100%;
+
             background: #22c55e;
-            width: 0%;
+
             transition: width 0.3s;
         }
 
-        /* =========================
-           КНОПКА КУРСА
-        ========================= */
+        .test-result {
+            margin-top: 16px;
+
+            padding: 11px 13px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+        }
+
+        .test-result.pass {
+            background: #ecfdf3;
+            color: #166534;
+        }
+
+        .test-result.fail {
+            background: #fef2f2;
+            color: #991b1b;
+        }
 
         .course-btn {
             width: 100%;
-            margin-top: 20px;
+
+            margin-top: 18px;
+
             height: 46px;
+
             border: none;
+            border-radius: 10px;
+
             background: #2563eb;
             color: white;
-            border-radius: 10px;
+
             font-size: 14px;
             font-weight: 600;
+
             cursor: pointer;
-            transition: 0.2s;
         }
 
         .course-btn:hover {
@@ -226,25 +299,22 @@
             background: #16a34a;
         }
 
-        /* =========================
-           ПУСТО
-        ========================= */
-
         .empty {
             grid-column: 1 / -1;
+
             background: white;
-            border-radius: 16px;
-            padding: 35px;
-            color: #667085;
+
             border: 1px solid #e5e7eb;
+            border-radius: 16px;
+
+            padding: 40px;
+
             text-align: center;
+
+            color: #667085;
         }
 
-        /* =========================
-           АДАПТИВНОСТЬ
-        ========================= */
-
-        @media (max-width: 900px) {
+        @media(max-width: 900px) {
 
             .courses {
                 grid-template-columns: repeat(2, 1fr);
@@ -252,32 +322,27 @@
 
         }
 
-        @media (max-width: 650px) {
+        @media(max-width: 650px) {
 
             .header {
-                padding: 0 18px;
+                padding: 0 15px;
             }
 
-            .brand-icon {
+            .brand-icon,
+            .user-name {
                 display: none;
-            }
-
-            .main {
-                padding: 24px 15px;
             }
 
             .courses {
                 grid-template-columns: 1fr;
             }
 
-            .welcome h1 {
-                font-size: 24px;
+            .stats {
+                grid-template-columns: 1fr;
             }
 
-            .section-header {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 5px;
+            .welcome h1 {
+                font-size: 24px;
             }
 
         }
@@ -286,10 +351,6 @@
 </head>
 
 <body>
-
-<!-- =========================
-     ШАПКА
-========================= -->
 
 <header class="header">
 
@@ -303,36 +364,96 @@
 
     </div>
 
-    <button
-        class="logout-btn"
-        onclick="logout()"
-    >
-        Выйти
-    </button>
+
+    <div class="user-block">
+
+        <div
+            class="user-name"
+            id="headerTeacherName"
+        ></div>
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+            Выйти
+        </button>
+
+    </div>
 
 </header>
 
-
-<!-- =========================
-     ОСНОВНОЙ КОНТЕНТ
-========================= -->
 
 <main class="main">
 
     <section class="welcome">
 
         <div class="welcome-small">
-            Личный кабинет
+            Личный кабинет преподавателя
         </div>
 
         <h1 id="teacherName">
-            Добро пожаловать
+            Здравствуйте
         </h1>
 
         <p>
-            Здесь находятся назначенные вам учебные курсы.
-            Изучайте материалы поэтапно и следите за своим прогрессом.
+            Здесь находятся только те курсы,
+            которые назначил вам администратор.
+            Ваш прогресс, уроки и результаты
+            тестирования сохраняются индивидуально.
         </p>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Назначено курсов
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="assignedCount"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Курсов начато
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="startedCount"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Курсов завершено
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="completedCount"
+                >
+                    0
+                </div>
+
+            </div>
+
+        </div>
 
     </section>
 
@@ -352,8 +473,8 @@
 
 
     <div
-        id="coursesContainer"
         class="courses"
+        id="coursesContainer"
     ></div>
 
 </main>
@@ -361,13 +482,16 @@
 
 <script>
 
-/* ==========================================
-   ПРОВЕРКА АВТОРИЗАЦИИ
-========================================== */
+/* =====================================================
+   АВТОРИЗАЦИЯ
+===================================================== */
 
-const currentUser = JSON.parse(
-    localStorage.getItem("stemCurrentUser")
-);
+const currentUser =
+    JSON.parse(
+        localStorage.getItem(
+            "stemCurrentUser"
+        )
+    );
 
 
 if (
@@ -375,36 +499,40 @@ if (
     currentUser.role !== "teacher"
 ) {
 
-    window.location.href = "index.html";
+    window.location.href =
+        "index.html";
 
 }
 
 
-/* ==========================================
-   ПОЛУЧАЕМ СПИСОК УЧИТЕЛЕЙ
-========================================== */
+/* =====================================================
+   СПИСОК УЧИТЕЛЕЙ
+===================================================== */
 
-const teachers = JSON.parse(
-    localStorage.getItem("stemTeachers")
-) || [];
-
-
-/* ==========================================
-   НАХОДИМ ТЕКУЩЕГО УЧИТЕЛЯ
-========================================== */
-
-const teacher = teachers.find(
-    function(item) {
-
-        return item.id === currentUser.id;
-
-    }
-);
+const teachers =
+    JSON.parse(
+        localStorage.getItem(
+            "stemTeachers"
+        )
+    ) || [];
 
 
-/* ==========================================
-   ЕСЛИ УЧИТЕЛЬ НЕ НАЙДЕН
-========================================== */
+/* =====================================================
+   ТЕКУЩИЙ УЧИТЕЛЬ
+===================================================== */
+
+const teacher =
+    teachers.find(
+        function(item) {
+
+            return (
+                String(item.id) ===
+                String(currentUser.id)
+            );
+
+        }
+    );
+
 
 if (!teacher) {
 
@@ -418,19 +546,26 @@ if (!teacher) {
 }
 
 
-/* ==========================================
-   ИМЯ УЧИТЕЛЯ
-========================================== */
+/* =====================================================
+   ФИО
+===================================================== */
 
 document.getElementById(
     "teacherName"
 ).textContent =
-    "Здравствуйте, " + teacher.fullName;
+    "Здравствуйте, " +
+    teacher.fullName;
 
 
-/* ==========================================
+document.getElementById(
+    "headerTeacherName"
+).textContent =
+    teacher.fullName;
+
+
+/* =====================================================
    ИНФОРМАЦИЯ О КУРСАХ
-========================================== */
+===================================================== */
 
 const courseInfo = {
 
@@ -439,104 +574,111 @@ const courseInfo = {
         icon: "⚙️",
 
         description:
-            "Основы работы с Arduino, подключение компонентов и создание первых проектов."
+            "Основы работы с Arduino, электронными компонентами, датчиками и созданием проектов."
 
     },
-
 
     "Roket": {
 
         icon: "🚀",
 
         description:
-            "Обучение работе с оборудованием и образовательными решениями Roket."
+            "Обучение работе с образовательным оборудованием и решениями Roket."
 
     },
-
 
     "Labdisc": {
 
         icon: "🔬",
 
         description:
-            "Полный курс по цифровой лаборатории Labdisc: датчики, GlobiLab X, измерения и STEM-эксперименты."
+            "Цифровая лаборатория Labdisc: датчики, GlobiLab X, измерения, эксперименты и анализ данных."
 
     },
-
 
     "3D-принтер": {
 
         icon: "🧊",
 
         description:
-            "Основы 3D-печати, подготовка моделей и работа с 3D-принтером."
+            "Основы 3D-печати, подготовка цифровых моделей и работа с 3D-принтером."
 
     },
-
 
     "Лазерный принтер": {
 
         icon: "✨",
 
         description:
-            "Работа с лазерным оборудованием, подготовка файлов и основы безопасности."
+            "Подготовка макетов и обучение работе с лазерным оборудованием."
 
     }
 
 };
 
 
-/* ==========================================
-   ПОЛУЧЕНИЕ ПРОГРЕССА
-========================================== */
+/* =====================================================
+   ПРОГРЕСС LABDISC КОНКРЕТНОГО УЧИТЕЛЯ
+===================================================== */
 
-function getCourseProgress(courseName) {
+function getLabdiscProgress() {
 
-    /*
-       Для Labdisc используем отдельный
-       прогресс из labdisc.html
-    */
-
-    if (courseName === "Labdisc") {
-
-        const labdiscCompleted =
-            JSON.parse(
-                localStorage.getItem(
-                    "labdiscCompleted"
-                )
-            ) || [];
+    const progressKey =
+        "labdiscCompleted_" +
+        teacher.id;
 
 
-        /*
-           В нашем полном курсе Labdisc
-           сейчас 10 уроков.
-        */
+    const completed =
+        JSON.parse(
+            localStorage.getItem(
+                progressKey
+            )
+        ) || [];
 
-        const totalLabdiscLessons = 10;
+
+    const totalLessons =
+        10;
 
 
-        return Math.round(
-            labdiscCompleted.length /
-            totalLabdiscLessons *
-            100
-        );
+    return Math.round(
+        completed.length /
+        totalLessons *
+        100
+    );
+
+}
+
+
+/* =====================================================
+   ПРОГРЕСС КУРСА
+===================================================== */
+
+function getCourseProgress(
+    courseName
+) {
+
+    if (
+        courseName ===
+        "Labdisc"
+    ) {
+
+        return getLabdiscProgress();
 
     }
 
 
-    /*
-       Для остальных курсов пока используется
-       старая система прогресса
-    */
-
     if (
         teacher.courseProgress &&
-        teacher.courseProgress[courseName]
+        typeof teacher
+            .courseProgress[
+                courseName
+            ] === "number"
     ) {
 
-        return teacher.courseProgress[
-            courseName
-        ];
+        return teacher
+            .courseProgress[
+                courseName
+            ];
 
     }
 
@@ -546,9 +688,35 @@ function getCourseProgress(courseName) {
 }
 
 
-/* ==========================================
-   ОТРИСОВКА КУРСОВ
-========================================== */
+/* =====================================================
+   ТЕСТ
+===================================================== */
+
+function getTestResult(
+    courseName
+) {
+
+    if (
+        !teacher.testResults
+    ) {
+
+        return null;
+
+    }
+
+
+    return (
+        teacher.testResults[
+            courseName
+        ] || null
+    );
+
+}
+
+
+/* =====================================================
+   КАРТОЧКИ КУРСОВ
+===================================================== */
 
 function renderCourses() {
 
@@ -558,29 +726,83 @@ function renderCourses() {
         );
 
 
-    const count =
-        teacher.courses
-            ? teacher.courses.length
-            : 0;
+    const assignedCourses =
+        teacher.courses || [];
 
 
     document.getElementById(
         "courseCount"
     ).textContent =
-        "Назначено курсов: " + count;
+        "Назначено: " +
+        assignedCourses.length;
+
+
+    document.getElementById(
+        "assignedCount"
+    ).textContent =
+        assignedCourses.length;
+
+
+    let started =
+        0;
+
+
+    let finished =
+        0;
+
+
+    assignedCourses.forEach(
+        function(courseName) {
+
+            const progress =
+                getCourseProgress(
+                    courseName
+                );
+
+
+            if (progress > 0) {
+                started++;
+            }
+
+
+            if (progress >= 100) {
+                finished++;
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "startedCount"
+    ).textContent =
+        started;
+
+
+    document.getElementById(
+        "completedCount"
+    ).textContent =
+        finished;
 
 
     if (
-        !teacher.courses ||
-        teacher.courses.length === 0
+        assignedCourses.length === 0
     ) {
 
         container.innerHTML = `
 
             <div class="empty">
 
-                Администратор пока
-                не назначил вам курсы.
+                <h3>
+                    Курсы пока не назначены
+                </h3>
+
+                <p style="
+                    margin-top:8px;
+                ">
+                    Обратитесь к администратору
+                    STEM Trainer.
+                </p>
 
             </div>
 
@@ -591,15 +813,18 @@ function renderCourses() {
     }
 
 
-    let html = "";
+    let html =
+        "";
 
 
-    teacher.courses.forEach(
+    assignedCourses.forEach(
         function(courseName) {
 
 
             const info =
-                courseInfo[courseName] || {
+                courseInfo[
+                    courseName
+                ] || {
 
                     icon: "📘",
 
@@ -611,6 +836,12 @@ function renderCourses() {
 
             const progress =
                 getCourseProgress(
+                    courseName
+                );
+
+
+            const test =
+                getTestResult(
                     courseName
                 );
 
@@ -630,7 +861,9 @@ function renderCourses() {
             }
 
 
-            if (progress >= 100) {
+            if (
+                progress >= 100
+            ) {
 
                 buttonText =
                     "Открыть курс";
@@ -638,16 +871,41 @@ function renderCourses() {
             }
 
 
-            const completedClass =
-                progress >= 100
-                    ? "completed"
-                    : "";
+            let testHtml =
+                "";
+
+
+            if (test) {
+
+                testHtml = `
+
+                    <div class="
+                        test-result
+                        ${
+                            test.passed
+                                ? "pass"
+                                : "fail"
+                        }
+                    ">
+
+                        ${
+                            test.passed
+                                ? "✓ Тест сдан"
+                                : "Тест не сдан"
+                        }
+
+                        — ${test.percent}%
+
+                    </div>
+
+                `;
+
+            }
 
 
             html += `
 
-                <div class="course-card">
-
+                <article class="course-card">
 
                     <div class="course-top">
 
@@ -658,19 +916,18 @@ function renderCourses() {
 
                     <div class="course-body">
 
-
                         <h3>
                             ${courseName}
                         </h3>
 
+                        <div class="course-description">
 
-                        <p>
                             ${info.description}
-                        </p>
+
+                        </div>
 
 
                         <div class="progress-row">
-
 
                             <div class="progress-info">
 
@@ -678,9 +935,9 @@ function renderCourses() {
                                     Прогресс
                                 </span>
 
-                                <span>
+                                <strong>
                                     ${progress}%
-                                </span>
+                                </strong>
 
                             </div>
 
@@ -690,20 +947,27 @@ function renderCourses() {
                                 <div
                                     class="progress-bar"
                                     style="
-                                        width:${progress}%
+                                        width:
+                                        ${progress}%;
                                     "
                                 ></div>
 
                             </div>
 
-
                         </div>
+
+
+                        ${testHtml}
 
 
                         <button
                             class="
                                 course-btn
-                                ${completedClass}
+                                ${
+                                    progress >= 100
+                                        ? "completed"
+                                        : ""
+                                }
                             "
                             onclick="
                                 openCourse(
@@ -716,10 +980,9 @@ function renderCourses() {
 
                         </button>
 
-
                     </div>
 
-                </div>
+                </article>
 
             `;
 
@@ -733,15 +996,35 @@ function renderCourses() {
 }
 
 
-/* ==========================================
-   ОТКРЫТИЕ КУРСА
-========================================== */
+/* =====================================================
+   ОТКРЫТИЕ ТОЛЬКО НАЗНАЧЕННОГО КУРСА
+===================================================== */
 
-function openCourse(courseName) {
+function openCourse(
+    courseName
+) {
 
     /*
-       Сохраняем название выбранного курса
+        Дополнительная защита:
+        проверяем, что этот курс
+        действительно назначен учителю.
     */
+
+    if (
+        !teacher.courses ||
+        !teacher.courses.includes(
+            courseName
+        )
+    ) {
+
+        alert(
+            "У вас нет доступа к этому курсу."
+        );
+
+        return;
+
+    }
+
 
     localStorage.setItem(
         "stemSelectedCourse",
@@ -749,35 +1032,28 @@ function openCourse(courseName) {
     );
 
 
-    /*
-       LABDISC ИМЕЕТ СВОЮ
-       ОТДЕЛЬНУЮ СТРАНИЦУ
-    */
-
-    if (courseName === "Labdisc") {
+    if (
+        courseName ===
+        "Labdisc"
+    ) {
 
         window.location.href =
-            "./labdisc.html";
+            "labdisc.html";
 
         return;
 
     }
 
 
-    /*
-       Остальные курсы пока открываются
-       через общий course.html
-    */
-
     window.location.href =
-        "./course.html";
+        "course.html";
 
 }
 
 
-/* ==========================================
+/* =====================================================
    ВЫХОД
-========================================== */
+===================================================== */
 
 function logout() {
 
@@ -786,15 +1062,20 @@ function logout() {
     );
 
 
+    localStorage.removeItem(
+        "stemSelectedCourse"
+    );
+
+
     window.location.href =
-        "./index.html";
+        "index.html";
 
 }
 
 
-/* ==========================================
+/* =====================================================
    ЗАПУСК
-========================================== */
+===================================================== */
 
 renderCourses();
 
