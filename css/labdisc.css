@@ -689,3 +689,32 @@ h1 {
     }
 
 }
+/* =========================
+   ЗАБЛОКИРОВАННЫЕ УРОКИ
+========================= */
+
+.lesson.locked {
+    color: #98a2b3;
+    background: #f8fafc;
+    cursor: not-allowed;
+    opacity: 0.72;
+}
+
+.lesson.locked:hover {
+    background: #f8fafc;
+}
+
+.lesson.done {
+    border-left: 3px solid #22c55e;
+    color: #166534;
+}
+
+.lesson.active {
+    background: #eef4ff;
+    color: #1d4ed8;
+    font-weight: 600;
+}
+
+.lesson.active.done {
+    color: #166534;
+}
