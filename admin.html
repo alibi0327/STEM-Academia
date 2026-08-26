@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEM Trainer — Администратор</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #111827;
+            color: white;
+            padding: 24px 18px;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 36px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu button {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: #d1d5db;
+            text-align: left;
+            padding: 13px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .menu button:hover,
+        .menu button.active {
+            background: #1f2937;
+            color: white;
+        }
+
+        .main {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .topbar h1 {
+            font-size: 30px;
+        }
+
+        .logout-btn {
+            border: none;
+            background: #ef4444;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .card-title {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .card-value {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 22px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .section-header h2 {
+            font-size: 21px;
+        }
+
+        .primary-btn {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 11px 16px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 13px 10px;
+            text-align: left;
+            border-bottom: 1px solid #eef0f3;
+            font-size: 14px;
+        }
+
+        th {
+            color: #667085;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 20px;
+            background: #e8f0ff;
+            color: #2563eb;
+            font-size: 12px;
+            margin: 2px;
+        }
+
+        .progress {
+            width: 140px;
+            height: 8px;
+            border-radius: 20px;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+
+        .progress span {
+            display: block;
+            height: 100%;
+            background: #22c55e;
+        }
+
+        .empty {
+            color: #98a2b3;
+            padding: 14px 0;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 24, 39, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            width: 100%;
+            max-width: 520px;
+            border-radius: 18px;
+            padding: 24px;
+        }
+
+        .modal-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            height: 46px;
+            border: 1px solid #d0d5dd;
+            border-radius: 9px;
+            padding: 0 12px;
+            font-size: 14px;
+        }
+
+        .course-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .course-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 9px;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .secondary-btn {
+            border: 1px solid #d0d5dd;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1000px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sidebar {
+                width: 210px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .layout {
+                display: block;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .main {
+                padding: 18px;
+            }
+
+            table {
+                min-width: 700px;
+            }
+
+            .section {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">STEM Trainer</div>
+
+        <div class="menu">
+            <button class="active">Главная</button>
+            <button>Учителя</button>
+            <button>Курсы</button>
+            <button>Результаты</button>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+            <div>
+                <h1>Панель администратора</h1>
+                <div style="color:#667085; margin-top:6px;">
+                    Управление обучением преподавателей
+                </div>
+            </div>
+
+            <button class="logout-btn" onclick="logout()">
+                Выйти
+            </button>
+        </div>
+
+        <section class="cards">
+
+            <div class="card">
+                <div class="card-title">Учителей</div>
+                <div class="card-value" id="teachersCount">0</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Курсов</div>
+                <div class="card-value">5</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Проходят обучение</div>
+                <div class="card-value" id="activeCount">0</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Завершили обучение</div>
+                <div class="card-value" id="completedCount">0</div>
+            </div>
+
+        </section>
+
+        <section class="section">
+
+            <div class="section-header">
+                <h2>Учителя</h2>
+
+                <button class="primary-btn" onclick="openModal()">
+                    + Добавить учителя
+                </button>
+            </div>
+
+            <div id="teachersTable"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div class="modal" id="teacherModal">
+
+    <div class="modal-box">
+
+        <h2>Новый учитель</h2>
+
+        <div class="form-group">
+            <label>ФИО</label>
+            <input id="fullName" type="text" placeholder="Например: Айжан Сериковна">
+        </div>
+
+        <div class="form-group">
+            <label>Логин</label>
+            <input id="teacherLogin" type="text" placeholder="Например: a.serikova">
+        </div>
+
+        <div class="form-group">
+            <label>Пароль</label>
+            <input id="teacherPassword" type="text" placeholder="Введите пароль">
+        </div>
+
+        <div class="form-group">
+            <label>Назначить курсы</label>
+
+            <div class="course-list">
+
+                <label class="course-item">
+                    <input type="checkbox" value="Arduino" class="courseCheck">
+                    Arduino
+                </label>
+
+                <label class="course-item">
+                    <input type="checkbox" value="Roket" class="courseCheck">
+                    Roket
+                </label>
+
+                <label class="course-item">
+                    <input type="checkbox" value="Labdisc" class="courseCheck">
+                    Labdisc
+                </label>
+
+                <label class="course-item">
+                    <input type="checkbox" value="3D-принтер" class="courseCheck">
+                    3D-принтер
+                </label>
+
+                <label class="course-item">
+                    <input type="checkbox" value="Лазерный принтер" class="courseCheck">
+                    Лазерный принтер
+                </label>
+
+            </div>
+        </div>
+
+        <div class="modal-actions">
+            <button class="secondary-btn" onclick="closeModal()">
+                Отмена
+            </button>
+
+            <button class="primary-btn" onclick="createTeacher()">
+                Создать учителя
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    const currentUser = JSON.parse(
+        localStorage.getItem("stemCurrentUser")
+    );
+
+    if (!currentUser || currentUser.role !== "admin") {
+        window.location.href = "index.html";
+    }
+
+    const defaultTeachers = [];
+
+    let teachers = JSON.parse(
+        localStorage.getItem("stemTeachers")
+    ) || defaultTeachers;
+
+    function saveTeachers() {
+        localStorage.setItem(
+            "stemTeachers",
+            JSON.stringify(teachers)
+        );
+    }
+
+    function renderTeachers() {
+
+        const tableContainer =
+            document.getElementById("teachersTable");
+
+        document.getElementById("teachersCount").textContent =
+            teachers.length;
+
+        const active = teachers.filter(
+            teacher => teacher.progress < 100
+        ).length;
+
+        const completed = teachers.filter(
+            teacher => teacher.progress === 100
+        ).length;
+
+        document.getElementById("activeCount").textContent =
+            active;
+
+        document.getElementById("completedCount").textContent =
+            completed;
+
+        if (teachers.length === 0) {
+
+            tableContainer.innerHTML =
+                '<div class="empty">Учителя пока не добавлены.</div>';
+
+            return;
+        }
+
+        let html = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>ФИО</th>
+                        <th>Логин</th>
+                        <th>Курсы</th>
+                        <th>Прогресс</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+        teachers.forEach((teacher, index) => {
+
+            const courses = teacher.courses
+                .map(course =>
+                    `<span class="badge">${course}</span>`
+                )
+                .join("");
+
+            html += `
+                <tr>
+                    <td>${teacher.fullName}</td>
+                    <td>${teacher.login}</td>
+                    <td>${courses || "Не назначены"}</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:10px;">
+                            <div class="progress">
+                                <span style="width:${teacher.progress}%"></span>
+                            </div>
+                            ${teacher.progress}%
+                        </div>
+                    </td>
+                    <td>
+                        <button
+                            onclick="deleteTeacher(${index})"
+                            style="
+                                border:none;
+                                background:#fee2e2;
+                                color:#b91c1c;
+                                padding:7px 10px;
+                                border-radius:7px;
+                                cursor:pointer;
+                            "
+                        >
+                            Удалить
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        html += `
+                </tbody>
+            </table>
+        `;
+
+        tableContainer.innerHTML = html;
+    }
+
+    function openModal() {
+        document
+            .getElementById("teacherModal")
+            .classList.add("open");
+    }
+
+    function closeModal() {
+
+        document
+            .getElementById("teacherModal")
+            .classList.remove("open");
+
+        clearForm();
+    }
+
+    function clearForm() {
+
+        document.getElementById("fullName").value = "";
+        document.getElementById("teacherLogin").value = "";
+        document.getElementById("teacherPassword").value = "";
+
+        document
+            .querySelectorAll(".courseCheck")
+            .forEach(item => item.checked = false);
+    }
+
+    function createTeacher() {
+
+        const fullName =
+            document.getElementById("fullName").value.trim();
+
+        const login =
+            document.getElementById("teacherLogin").value.trim();
+
+        const password =
+            document.getElementById("teacherPassword").value.trim();
+
+        const courses = Array.from(
+            document.querySelectorAll(".courseCheck:checked")
+        ).map(item => item.value);
+
+        if (!fullName || !login || !password) {
+            alert("Заполните ФИО, логин и пароль.");
+            return;
+        }
+
+        const loginExists = teachers.some(
+            teacher => teacher.login === login
+        );
+
+        if (loginExists) {
+            alert("Такой логин уже существует.");
+            return;
+        }
+
+        teachers.push({
+            id: Date.now(),
+            fullName: fullName,
+            login: login,
+            password: password,
+            courses: courses,
+            progress: 0,
+            testResults: {}
+        });
+
+        saveTeachers();
+        renderTeachers();
+        closeModal();
+    }
+
+    function deleteTeacher(index) {
+
+        const teacher = teachers[index];
+
+        const answer = confirm(
+            "Удалить учителя " + teacher.fullName + "?"
+        );
+
+        if (!answer) {
+            return;
+        }
+
+        teachers.splice(index, 1);
+
+        saveTeachers();
+        renderTeachers();
+    }
+
+    function logout() {
+
+        localStorage.removeItem("stemCurrentUser");
+
+        window.location.href = "index.html";
+    }
+
+    renderTeachers();
+
+</script>
+
+</body>
+</html>
