@@ -2,11 +2,16 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>STEM platform</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>STEM Trainer</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -15,27 +20,34 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
+
             background: #f4f7fb;
+
             min-height: 100vh;
+
             color: #172033;
         }
 
-        /* Верхняя панель */
-
         .header {
             height: 76px;
+
             background: #ffffff;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             padding: 0 60px;
+
             border-bottom: 1px solid #e7ebf1;
         }
 
         .logo {
             display: flex;
             align-items: center;
+
             gap: 12px;
+
             font-size: 22px;
             font-weight: 700;
         }
@@ -43,45 +55,57 @@
         .logo-icon {
             width: 42px;
             height: 42px;
+
             background: #2563eb;
             color: white;
+
             border-radius: 12px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-size: 22px;
         }
 
         .header-text {
             color: #667085;
+
             font-size: 14px;
         }
 
-        /* Основная область */
-
         .main {
             min-height: calc(100vh - 76px);
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             padding: 40px 20px;
         }
 
         .container {
             width: 100%;
+
             max-width: 1050px;
+
             display: grid;
-            grid-template-columns: 1fr 420px;
+
+            grid-template-columns:
+                1fr 420px;
+
             gap: 80px;
+
             align-items: center;
         }
 
-        /* Левая часть */
-
         .info h1 {
             font-size: 52px;
+
             line-height: 1.1;
+
             margin-bottom: 24px;
+
             color: #101828;
         }
 
@@ -91,56 +115,77 @@
 
         .info p {
             max-width: 520px;
+
             font-size: 18px;
+
             line-height: 1.7;
+
             color: #667085;
+
             margin-bottom: 35px;
         }
 
         .features {
             display: flex;
+
             flex-direction: column;
+
             gap: 16px;
         }
 
         .feature {
             display: flex;
             align-items: center;
+
             gap: 12px;
+
             font-size: 15px;
+
             color: #344054;
         }
 
         .check {
             width: 28px;
             height: 28px;
+
             background: #e8f0ff;
             color: #2563eb;
+
             border-radius: 50%;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-weight: bold;
         }
 
-        /* Карточка входа */
-
         .login-card {
             background: white;
+
             padding: 38px;
+
             border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(16, 24, 40, 0.08);
-            border: 1px solid #edf0f5;
+
+            box-shadow:
+                0 20px 50px
+                rgba(16, 24, 40, 0.08);
+
+            border:
+                1px solid #edf0f5;
         }
 
         .login-card h2 {
             font-size: 27px;
+
             margin-bottom: 8px;
         }
 
-        .login-card .subtitle {
+        .subtitle {
             color: #667085;
+
             font-size: 14px;
+
             margin-bottom: 28px;
         }
 
@@ -150,37 +195,59 @@
 
         label {
             display: block;
+
             font-size: 14px;
+
             font-weight: 600;
+
             margin-bottom: 8px;
         }
 
         input {
             width: 100%;
+
             height: 50px;
-            border: 1px solid #d0d5dd;
+
+            border:
+                1px solid #d0d5dd;
+
             border-radius: 10px;
+
             padding: 0 15px;
+
             font-size: 15px;
+
             outline: none;
+
             transition: 0.2s;
         }
 
         input:focus {
             border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.1);
         }
 
         button {
             width: 100%;
+
             height: 52px;
+
             border: none;
+
             border-radius: 10px;
+
             background: #2563eb;
+
             color: white;
+
             font-size: 16px;
             font-weight: 600;
+
             cursor: pointer;
+
             transition: 0.2s;
         }
 
@@ -190,24 +257,31 @@
 
         .message {
             margin-top: 16px;
+
             padding: 12px;
+
             border-radius: 8px;
+
             background: #feecec;
+
             color: #b42318;
+
             font-size: 13px;
+
             display: none;
         }
 
         .footer-text {
             margin-top: 22px;
+
             text-align: center;
+
             font-size: 12px;
+
             color: #98a2b3;
         }
 
-        /* Телефон */
-
-        @media (max-width: 850px) {
+        @media(max-width:850px) {
 
             .header {
                 padding: 0 20px;
@@ -219,7 +293,9 @@
 
             .container {
                 grid-template-columns: 1fr;
+
                 gap: 40px;
+
                 max-width: 500px;
             }
 
@@ -231,14 +307,10 @@
                 font-size: 38px;
             }
 
-            .info p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
             .features {
                 align-items: center;
             }
+
         }
 
     </style>
@@ -249,8 +321,13 @@
 <header class="header">
 
     <div class="logo">
-        <div class="logo-icon">S</div>
-        STEM 
+
+        <div class="logo-icon">
+            S
+        </div>
+
+        STEM Trainer
+
     </div>
 
     <div class="header-text">
@@ -264,40 +341,72 @@
 
     <div class="container">
 
-        <!-- Левая часть -->
 
         <section class="info">
 
             <h1>
-                Обучение оборудованиям поставляемым компанией 
-                <span>STEM-Academia</span>
+
+                Обучение технологиям
+
+                <span>
+                    STEM
+                </span>
+
             </h1>
 
             <p>
-                Единая образовательная платформа для обучения
-                преподавателей работе с современным STEM-оборудованием.
+
+                Единая образовательная
+                платформа для обучения
+                преподавателей работе
+                с современным STEM-оборудованием.
+
             </p>
+
 
             <div class="features">
 
                 <div class="feature">
-                    <div class="check">✓</div>
+
+                    <div class="check">
+                        ✓
+                    </div>
+
                     Пошаговое обучение
+
                 </div>
 
-                <div class="feature">
-                    <div class="check">✓</div>
-                    Практические материалы
-                </div>
 
                 <div class="feature">
-                    <div class="check">✓</div>
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    Индивидуальные курсы
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
                     Проверочные тесты
+
                 </div>
 
+
                 <div class="feature">
-                    <div class="check">✓</div>
-                    Контроль прогресса обучения
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    Контроль прогресса
+
                 </div>
 
             </div>
@@ -305,11 +414,11 @@
         </section>
 
 
-        <!-- Вход -->
-
         <section class="login-card">
 
-            <h2>Вход в систему</h2>
+            <h2>
+                Вход в систему
+            </h2>
 
             <div class="subtitle">
                 Введите логин и пароль
@@ -317,6 +426,7 @@
 
 
             <form id="loginForm">
+
 
                 <div class="form-group">
 
@@ -356,11 +466,15 @@
                     Войти
                 </button>
 
+
                 <div
                     class="message"
                     id="message"
                 >
-                    Неверный логин или пароль
+
+                    Неверный логин
+                    или пароль
+
                 </div>
 
             </form>
@@ -377,85 +491,280 @@
 </main>
 
 
+<!--
+    Общий список пользователей.
+    Этот файл загружается
+    прямо с GitHub Pages.
+-->
+
+<script src="data/users.js"></script>
+
+
 <script>
 
-    document
-        .getElementById("loginForm")
-        .addEventListener("submit", function(event) {
+/* ==========================================
+   LOGIN
+========================================== */
 
-            event.preventDefault();
-
-            const login =
-                document.getElementById("login").value.trim();
-
-            const password =
-                document.getElementById("password").value;
-
-            const message =
-                document.getElementById("message");
-
-            message.style.display = "none";
+document
+.getElementById(
+    "loginForm"
+)
+.addEventListener(
+    "submit",
+    function(event) {
 
 
-            // Вход администратора
+        event.preventDefault();
+
+
+        const login =
+            document
+            .getElementById(
+                "login"
+            )
+            .value
+            .trim();
+
+
+        const password =
+            document
+            .getElementById(
+                "password"
+            )
+            .value;
+
+
+        const message =
+            document
+            .getElementById(
+                "message"
+            );
+
+
+        message.style.display =
+            "none";
+
+
+        /* =================================
+           ADMIN
+        ================================= */
+
+        if (
+            login === "admin" &&
+            password === "admin123"
+        ) {
+
+            localStorage.setItem(
+                "stemCurrentUser",
+
+                JSON.stringify({
+
+                    id: "admin",
+
+                    name:
+                        "Администратор",
+
+                    login:
+                        "admin",
+
+                    role:
+                        "admin"
+
+                })
+            );
+
+
+            window.location.href =
+                "admin.html";
+
+
+            return;
+
+        }
+
+
+        /* =================================
+           TEACHER FROM GITHUB
+        ================================= */
+
+        const teacher =
+            STEM_USERS.find(
+                function(user) {
+
+                    return (
+
+                        user.login ===
+                        login
+
+                        &&
+
+                        user.password ===
+                        password
+
+                        &&
+
+                        user.role ===
+                        "teacher"
+
+                    );
+
+                }
+            );
+
+
+        if (teacher) {
+
+
+            /*
+                Запоминаем,
+                кто вошёл
+            */
+
+            localStorage.setItem(
+                "stemCurrentUser",
+
+                JSON.stringify({
+
+                    id:
+                        teacher.id,
+
+                    name:
+                        teacher.fullName,
+
+                    login:
+                        teacher.login,
+
+                    role:
+                        "teacher"
+
+                })
+            );
+
+
+            /*
+                Сохраняем данные
+                этого пользователя
+                в локальную структуру,
+                которую использует
+                teacher.html.
+            */
+
+            let localTeachers =
+                JSON.parse(
+                    localStorage.getItem(
+                        "stemTeachers"
+                    )
+                ) || [];
+
+
+            const existingIndex =
+                localTeachers
+                .findIndex(
+                    function(item) {
+
+                        return (
+                            String(item.id) ===
+                            String(teacher.id)
+                        );
+
+                    }
+                );
+
+
+            const teacherData = {
+
+                id:
+                    teacher.id,
+
+                fullName:
+                    teacher.fullName,
+
+                login:
+                    teacher.login,
+
+                courses:
+                    teacher.courses || [],
+
+                courseProgress:
+                    existingIndex >= 0
+                    &&
+                    localTeachers[
+                        existingIndex
+                    ].courseProgress
+
+                        ?
+
+                    localTeachers[
+                        existingIndex
+                    ].courseProgress
+
+                        :
+
+                    {},
+
+                testResults:
+                    existingIndex >= 0
+                    &&
+                    localTeachers[
+                        existingIndex
+                    ].testResults
+
+                        ?
+
+                    localTeachers[
+                        existingIndex
+                    ].testResults
+
+                        :
+
+                    {}
+
+            };
+
 
             if (
-                login === "admin" &&
-                password === "admin123"
+                existingIndex >= 0
             ) {
 
-                localStorage.setItem(
-                    "stemCurrentUser",
-                    JSON.stringify({
-                        name: "Администратор",
-                        login: "admin",
-                        role: "admin"
-                    })
+                localTeachers[
+                    existingIndex
+                ] =
+                    teacherData;
+
+            } else {
+
+                localTeachers.push(
+                    teacherData
                 );
 
-                window.location.href = "admin.html";
-                return;
             }
 
 
-            // Вход учителя
+            localStorage.setItem(
+                "stemTeachers",
 
-            const teachers = JSON.parse(
-                localStorage.getItem("stemTeachers")
-            ) || [];
-
-            const teacher = teachers.find(function(item) {
-
-                return (
-                    item.login === login &&
-                    item.password === password
-                );
-
-            });
+                JSON.stringify(
+                    localTeachers
+                )
+            );
 
 
-            if (teacher) {
-
-                localStorage.setItem(
-                    "stemCurrentUser",
-                    JSON.stringify({
-                        id: teacher.id,
-                        name: teacher.fullName,
-                        login: teacher.login,
-                        role: "teacher"
-                    })
-                );
-
-                window.location.href = "teacher.html";
-                return;
-            }
+            window.location.href =
+                "teacher.html";
 
 
-            // Ошибка входа
+            return;
 
-            message.style.display = "block";
+        }
 
-        });
+
+        message.style.display =
+            "block";
+
+
+    }
+);
 
 </script>
 
