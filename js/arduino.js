@@ -32,7 +32,9 @@ function render(){
 $("prevLesson").onclick=()=>{if(current>0){current--;render()}};
 $("nextLesson").onclick=()=>{if(current<lessons.length-1&&isDone(current)){current++;render()}};
 $("completeLesson").onclick=async()=>{
- const l=row(current); if(!l)return alert("Запустите SQL migration 004.");
+ const confirmBox=document.querySelector(".practice-confirm");
+ if(confirmBox && !confirmBox.checked) return alert("Сначала выполните практическую часть и поставьте отметку о выполнении.");
+ const l=row(current); if(!l)return alert("Занятие не найдено в базе данных.");
  const now=new Date().toISOString();
  let r=await supabase.from("lesson_progress").upsert({teacher_id:session.user.id,lesson_id:l.id,status:"completed",started_at:now,completed_at:now,score:100,updated_at:now},{onConflict:"teacher_id,lesson_id"});
  if(r.error)return alert(r.error.message);
