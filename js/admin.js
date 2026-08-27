@@ -12,10 +12,30 @@ async function init(){
  $("cancelSchool").onclick=()=> $("schoolForm").classList.add("hidden");
  $("openTeacher").onclick=()=> $("teacherForm").classList.remove("hidden");
  $("cancelTeacher").onclick=()=> $("teacherForm").classList.add("hidden");
- $("cancelAssignCourse").onclick=()=> $("assignCourseForm").classList.add("hidden");
+ $("cancelAssignCourse").onclick=()=> {
+   $("assignCourseForm").classList.add("hidden");
+   $("assignCourseForm").style.display = "";
+ };
  $("schoolForm").onsubmit=createSchool;
  $("teacherForm").onsubmit=createTeacher;
  $("assignCourseForm").onsubmit=assignCourse;
+
+ // Надежный обработчик кнопок внутри динамически обновляемой таблицы.
+ $("teachersTable").addEventListener("click", async (e) => {
+   const addBtn = e.target.closest(".add-course");
+   if (addBtn) {
+     e.preventDefault();
+     openAssignCourse(addBtn.dataset.id);
+     return;
+   }
+
+   const toggleBtn = e.target.closest(".toggle");
+   if (toggleBtn) {
+     e.preventDefault();
+     await toggleTeacher(toggleBtn.dataset.id, toggleBtn.dataset.active === "true");
+   }
+ });
+
  await refreshAll();
 }
 async function refreshAll(){await Promise.all([loadSchools(),loadCourses()]);fillSelects();await Promise.all([loadTeachers(),loadStats(),loadResults(),loadCertificates()])}
@@ -43,8 +63,6 @@ async function loadTeachers(){
    const coursesHtml=assigned.length?assigned.map(x=>`<div style="margin:3px 0"><span class="badge ${x.status==="completed"?"good":""}">${esc(x.courses?.title||"Курс")}</span></div>`).join(""):"—";
    return `<tr><td><b>${esc(t.full_name)}</b></td><td>${esc(t.schools?.name||"—")}</td><td>${esc(t.username||"—")}</td><td>${coursesHtml}</td><td><span class="badge ${t.active?"good":"off"}">${t.active?"Активен":"Отключен"}</span></td><td><div class="actions"><button class="btn secondary add-course" data-id="${t.id}">+ Добавить курс</button><button class="btn secondary toggle" data-id="${t.id}" data-active="${t.active}">${t.active?"Отключить":"Включить"}</button></div></td></tr>`;
  }));
- document.querySelectorAll(".add-course").forEach(b=>b.onclick=()=>openAssignCourse(b.dataset.id));
- document.querySelectorAll(".toggle").forEach(b=>b.onclick=()=>toggleTeacher(b.dataset.id,b.dataset.active==="true"));
 }
 function openAssignCourse(teacherId){
  const t=teachers.find(x=>x.id===teacherId); if(!t)return;
@@ -55,13 +73,18 @@ function openAssignCourse(teacherId){
  $("assignCourseSelect").disabled=!available.length;
  $("assignCourseForm").querySelector('button[type="submit"]').disabled=!available.length;
  $("assignCourseInfo").textContent=available.length?`Доступно для назначения: ${available.length}`:"У этого учителя уже назначены все активные курсы.";
- $("assignCourseForm").classList.remove("hidden");$("assignCourseForm").scrollIntoView({behavior:"smooth",block:"start"});
+ const form = $("assignCourseForm");
+ form.classList.remove("hidden");
+ form.style.display = "block";
+ setTimeout(() => form.scrollIntoView({behavior:"smooth",block:"center"}), 20);
 }
 async function assignCourse(e){
  e.preventDefault();const teacher_id=$("assignTeacherId").value,course_id=$("assignCourseSelect").value;if(!teacher_id||!course_id)return;
  const {error}=await supabase.from("teacher_courses").insert({teacher_id,course_id,status:"assigned"});
  if(error){if(error.code==="23505")alert("Этот курс уже назначен учителю.");else alert(error.message);return}
- $("assignCourseForm").classList.add("hidden");await loadTeachers();
+ $("assignCourseForm").classList.add("hidden");
+ $("assignCourseForm").style.display = "";
+ await loadTeachers();
  alert("Курс успешно добавлен к существующему аккаунту.");
 }
 async function toggleTeacher(id,active){const {error}=await supabase.from("profiles").update({active:!active}).eq("id",id);if(error)return alert(error.message);await loadTeachers()}
