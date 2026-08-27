@@ -1,65 +1,75 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+<!doctype html><html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STEM Academia — Администратор</title><link rel="stylesheet" href="css/app.css"></head>
+<body>
+<header class="topbar">
+ <div class="brand"><div class="brand-mark">S</div> STEM <span>ACADEMIA</span></div>
+ <div class="userbox"><span id="adminName"></span><button id="logout" class="btn secondary">Выйти</button></div>
+</header>
+<div class="app">
+<aside class="sidebar">
+ <button class="navbtn active" data-page="dashboard">Главная</button>
+ <button class="navbtn" data-page="schools">Школы</button>
+ <button class="navbtn" data-page="teachers">Учителя</button>
+ <button class="navbtn" data-page="courses">Курсы</button>
+ <button class="navbtn" data-page="results">Результаты</button>
+ <button class="navbtn" data-page="certificates">Сертификаты</button>
+</aside>
+<main class="main">
+<section id="dashboard" class="page active">
+ <div class="page-head"><div><h1>Панель администратора</h1><div class="muted">STEM Academia — контроль обучения</div></div></div>
+ <div class="stats">
+  <div class="card stat"><b id="sSchools">—</b><span>Школ</span></div>
+  <div class="card stat"><b id="sTeachers">—</b><span>Учителей</span></div>
+  <div class="card stat"><b id="sCourses">—</b><span>Курсов</span></div>
+  <div class="card stat"><b id="sCerts">—</b><span>Сертификатов</span></div>
+ </div>
+</section>
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
+<section id="schools" class="page">
+ <div class="page-head"><div><h1>Школы</h1><div class="muted">Организации, где установлено оборудование</div></div><button id="openSchool" class="btn">+ Добавить школу</button></div>
+ <form id="schoolForm" class="card panel hidden">
+  <div class="form-grid">
+   <div class="field"><label>Название школы</label><input id="schoolName" required></div>
+   <div class="field"><label>Город</label><input id="schoolCity"></div>
+   <div class="field"><label>Адрес</label><input id="schoolAddress"></div>
+  </div>
+  <div class="form-actions"><button class="btn">Сохранить</button><button type="button" id="cancelSchool" class="btn secondary">Отмена</button></div>
+ </form>
+ <div id="schoolsTable" class="tablewrap"></div>
+</section>
 
-Deno.serve(async (req) => {
-  if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
+<section id="teachers" class="page">
+ <div class="page-head"><div><h1>Учителя</h1><div class="muted">Создание учетных записей и назначение курса</div></div><button id="openTeacher" class="btn">+ Создать учителя</button></div>
+ <div id="teacherFunctionWarning" class="notice warning hidden">Edge Function <b>create-teacher</b> не развернута. Код уже находится в папке <b>supabase/functions/create-teacher</b>.</div>
+ <form id="teacherForm" class="card panel hidden">
+  <div class="form-grid">
+   <div class="field"><label>Школа</label><select id="teacherSchool" required></select></div>
+   <div class="field"><label>ФИО</label><input id="teacherName" required></div>
+   <div class="field"><label>Логин</label><input id="teacherLogin" required placeholder="teacher01"></div>
+   <div class="field"><label>Пароль</label><input id="teacherPassword" type="password" required minlength="6"></div>
+   <div class="field"><label>Курс</label><select id="teacherCourse" required></select></div>
+  </div>
+  <div class="form-actions"><button class="btn">Создать учетную запись</button><button type="button" id="cancelTeacher" class="btn secondary">Отмена</button></div>
+  <div id="teacherMsg" class="small"></div>
+ </form>
+ <div id="teachersTable" class="tablewrap"></div>
+</section>
 
-  try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const serviceRole = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
-    const authHeader = req.headers.get("Authorization") || "";
+<section id="courses" class="page">
+ <div class="page-head"><div><h1>Курсы</h1><div class="muted">Учебные программы и количество занятий</div></div></div>
+ <div id="coursesTable" class="tablewrap"></div>
+</section>
 
-    const caller = createClient(supabaseUrl, anonKey, { global: { headers: { Authorization: authHeader } } });
-    const { data: { user } } = await caller.auth.getUser();
-    if (!user) throw new Error("Не авторизован");
+<section id="results" class="page">
+ <div class="page-head"><div><h1>Результаты</h1><div class="muted">Итоговые тесты учителей</div></div></div>
+ <div id="resultsTable" class="tablewrap"></div>
+</section>
 
-    const admin = createClient(supabaseUrl, serviceRole);
-    const { data: profile } = await admin.from("profiles").select("role,active").eq("id", user.id).single();
-    if (profile?.role !== "admin" || !profile?.active) throw new Error("Только администратор может создавать учителей");
-
-    const body = await req.json();
-    const { full_name, login, password, school_id, course_id } = body;
-    if (!full_name || !login || !password || !school_id || !course_id) throw new Error("Заполните все поля");
-    if (String(password).length < 6) throw new Error("Пароль должен быть минимум 6 символов");
-
-    const username = String(login).trim().toLowerCase().replace(/[^a-z0-9._-]/g, "");
-    if (!username) throw new Error("Некорректный логин");
-    const email = `${username}@stem-academia.local`;
-
-    const { data: created, error: createError } = await admin.auth.admin.createUser({
-      email, password, email_confirm: true, user_metadata: { full_name, username }
-    });
-    if (createError) throw createError;
-
-    const uid = created.user.id;
-    const { error: profileError } = await admin.from("profiles").insert({
-      id: uid, full_name, username, role: "teacher", school_id, active: true
-    });
-    if (profileError) {
-      await admin.auth.admin.deleteUser(uid);
-      throw profileError;
-    }
-
-    const { error: courseError } = await admin.from("teacher_courses").insert({
-      teacher_id: uid, course_id, status: "assigned"
-    });
-    if (courseError) {
-      await admin.from("profiles").delete().eq("id", uid);
-      await admin.auth.admin.deleteUser(uid);
-      throw courseError;
-    }
-
-    return new Response(JSON.stringify({ ok: true, user_id: uid, login: username }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" }
-    });
-  } catch (e) {
-    return new Response(JSON.stringify({ error: e.message || String(e) }), {
-      status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" }
-    });
-  }
-});
+<section id="certificates" class="page">
+ <div class="page-head"><div><h1>Сертификаты</h1><div class="muted">Выданные сертификаты о прохождении обучения</div></div></div>
+ <div id="certificatesTable" class="tablewrap"></div>
+</section>
+</main></div>
+<script type="module" src="js/admin.js"></script>
+</body></html>
