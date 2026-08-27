@@ -40,36 +40,41 @@
 </section>
 
 <section id="teachers" class="page">
- <div class="page-head"><div><h1>Учителя</h1><div class="muted">Создание учетных записей и назначение курса</div></div><button id="openTeacher" class="btn">+ Создать учителя</button></div>
- <div id="teacherFunctionWarning" class="notice warning hidden">Edge Function <b>create-teacher</b> не развернута. Код уже находится в папке <b>supabase/functions/create-teacher</b>.</div>
+ <div class="page-head"><div><h1>Учителя</h1><div class="muted">Одна учетная запись может иметь несколько курсов</div></div><button id="openTeacher" class="btn">+ Создать учителя</button></div>
+
  <form id="teacherForm" class="card panel hidden">
+  <h3 style="margin-top:0">Новый учитель</h3>
   <div class="form-grid">
    <div class="field"><label>Школа</label><select id="teacherSchool" required></select></div>
    <div class="field"><label>ФИО</label><input id="teacherName" required></div>
    <div class="field"><label>Логин</label><input id="teacherLogin" required placeholder="teacher01"></div>
    <div class="field"><label>Пароль</label><input id="teacherPassword" type="password" required minlength="6"></div>
-   <div class="field"><label>Курс</label><select id="teacherCourse" required></select></div>
+   <div class="field"><label>Первый курс</label><select id="teacherCourse" required></select></div>
   </div>
   <div class="form-actions"><button class="btn">Создать учетную запись</button><button type="button" id="cancelTeacher" class="btn secondary">Отмена</button></div>
   <div id="teacherMsg" class="small"></div>
  </form>
+
+ <form id="assignCourseForm" class="card panel hidden">
+  <h3 style="margin-top:0">Добавить курс существующему учителю</h3>
+  <input id="assignTeacherId" type="hidden">
+  <div class="form-grid">
+   <div class="field"><label>Учитель</label><input id="assignTeacherName" disabled></div>
+   <div class="field"><label>Курс</label><select id="assignCourseSelect" required></select></div>
+  </div>
+  <div id="assignCourseInfo" class="muted small" style="margin-top:10px"></div>
+  <div class="form-actions"><button class="btn">Добавить курс</button><button type="button" id="cancelAssignCourse" class="btn secondary">Отмена</button></div>
+ </form>
+
  <div id="teachersTable" class="tablewrap"></div>
 </section>
 
 <section id="courses" class="page">
- <div class="page-head"><div><h1>Курсы</h1><div class="muted">Учебные программы и количество занятий</div></div></div>
+ <div class="page-head"><div><h1>Курсы</h1><div class="muted">Учебные программы</div></div></div>
  <div id="coursesTable" class="tablewrap"></div>
 </section>
-
-<section id="results" class="page">
- <div class="page-head"><div><h1>Результаты</h1><div class="muted">Итоговые тесты учителей</div></div></div>
- <div id="resultsTable" class="tablewrap"></div>
-</section>
-
-<section id="certificates" class="page">
- <div class="page-head"><div><h1>Сертификаты</h1><div class="muted">Выданные сертификаты о прохождении обучения</div></div></div>
- <div id="certificatesTable" class="tablewrap"></div>
-</section>
+<section id="results" class="page"><div class="page-head"><div><h1>Результаты</h1></div></div><div id="resultsTable" class="tablewrap"></div></section>
+<section id="certificates" class="page"><div class="page-head"><div><h1>Сертификаты</h1></div></div><div id="certificatesTable" class="tablewrap"></div></section>
 </main></div>
 <script type="module" src="js/admin.js"></script>
 </body></html>
