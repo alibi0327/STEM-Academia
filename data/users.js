@@ -5,9 +5,7 @@ const STEM_USERS = [
         fullName: "Тестовый Учитель",
         login: "teacher1",
         password: "12345",
-
         role: "teacher",
-
         courses: [
             "Labdisc"
         ]
@@ -18,24 +16,19 @@ const STEM_USERS = [
         fullName: "Учитель №2",
         login: "teacher2",
         password: "54321",
-
         role: "teacher",
-
         courses: [
             "Labdisc",
             "Arduino"
         ]
-    }
+    },
 
-];
-  {
+    {
         id: 3,
         fullName: "STEM Academia",
         login: "STEM1",
         password: "111",
-
         role: "teacher",
-
         courses: [
             "Labdisc",
             "Arduino"
