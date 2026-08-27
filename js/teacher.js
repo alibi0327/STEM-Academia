@@ -14,33 +14,16 @@ async function init(){
  const {data:progress=[]}=await supabase.from("lesson_progress").select("lesson_id,status,score,completed_at").eq("teacher_id",session.user.id);
  const {data:tests=[]}=await supabase.from("test_results").select("score,created_at,lessons(course_id)").eq("teacher_id",session.user.id).order("created_at",{ascending:false});
 
- const links={"labdisc":"labdisc.html","roqed-science":"roqed.html","raspberry-pi-4":"raspberrypi.html","flashforge-adventurer-5m-pro":"flashforge.html","ruida-rdworks8-medium":"ruida.html","lego-spike-prime":"spike.html","bbc-microbit":"microbit.html","scratch-basics":"scratch.html","python-stem":"pythonstem.html","esp32-iot":"esp32.html","tinkercad-3d":"tinkercad.html"};
- const images={
-   "arduino":"assets/arduino/arduino-full-course-poster.png",
-   "raspberry-pi-4":"assets/raspberrypi/board.svg",
-   "flashforge-adventurer-5m-pro":"assets/flashforge/printer.svg",
-   "ruida-rdworks8-medium":"assets/ruida/machine.svg",
-   "lego-spike-prime":"assets/spike/robot.svg",
-   "bbc-microbit":"assets/microbit/board.svg",
-   "scratch-basics":"assets/scratch/editor.svg",
-   "python-stem":"assets/pythonstem/code.svg",
-   "esp32-iot":"assets/esp32/board.svg",
-   "tinkercad-3d":"assets/tinkercad/cad.svg"
- };
- // Эти курсы показываются ТОЛЬКО в блоке «Дополнительные курсы»,
- // даже если teacher_courses уже содержит запись после самостоятельного старта.
- const optionalSlugs=new Set(["bbc-microbit","scratch-basics","python-stem","esp32-iot","tinkercad-3d"]);
- const mainAssigned=(assigned||[]).filter(a=>!optionalSlugs.has(a.courses?.slug));
- if(!mainAssigned.length){$("courses").innerHTML='<div class="notice">Вам пока не назначены основные курсы.</div>'}
- else $("courses").innerHTML=mainAssigned.map(a=>{
+ if(!assigned?.length){$("courses").innerHTML='<div class="notice">Вам пока не назначены основные курсы.</div>'}
+
+ const links={"labdisc":"labdisc.html","roqed-science":"roqed.html","raspberry-pi-4":"raspberrypi.html","flashforge-adventurer-5m-pro":"flashforge.html","ruida-rdworks8-medium":"ruida.html","lego-spike-prime":"spike.html","bbc-microbit":"microbit.html","scratch-basics":"scratch.html","python-stem":"pythonstem.html","esp32-iot":"esp32.html","tinkercad-3d":"tinkercad.html","autodesk-fusion":"fusion.html"};
+ $("courses").innerHTML=assigned.map(a=>{
    const lessons=a.courses?.lessons||[];
    const done=lessons.filter(l=>progress.some(p=>p.lesson_id===l.id&&p.status==="completed")).length;
    const pct=lessons.length?Math.round(done/lessons.length*100):0;
    const lastTest=tests.find(t=>t.lessons?.course_id===a.course_id);
    const link=links[a.courses?.slug]||"#";
-   const image=images[a.courses?.slug];
    return `<article class="card course-card">
-     ${image?`<div class="course-cover"><img src="${image}" alt="${esc(a.courses?.title||"Курс")}"></div>`:""}
      <span class="badge">${esc(a.courses?.equipment||"Курс")}</span>
      <h3>${esc(a.courses?.title||"Курс")}</h3>
      <p class="muted">${esc(a.courses?.description||"")}</p>
@@ -59,9 +42,7 @@ async function init(){
    $("optionalCourses").innerHTML=optional.map(c=>{
      const link=links[c.slug]||"#";
      const started=!!c.is_started;
-     const image=images[c.slug];
      return `<article class="card course-card">
-       ${image?`<div class="course-cover"><img src="${image}" alt="${esc(c.title)}"></div>`:""}
        <span class="badge">По желанию</span>
        <h3>${esc(c.title)}</h3>
        <p class="muted">${esc(c.description||"")}</p>
