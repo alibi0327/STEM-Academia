@@ -1,0 +1,4 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LabDisc — Итоговый тест</title><link rel="stylesheet" href="css/app.css"></head>
+<body><header class="topbar"><div class="brand"><div class="brand-mark">S</div> STEM <span>ACADEMIA</span> <span class="muted small">/ Итоговый тест</span></div><div class="userbox"><a class="btn secondary" href="labdisc.html">← К курсу</a></div></header>
+<main class="test-shell"><div class="test-progress"><div id="counter" class="muted"></div><div class="progress"><div id="testProgress"></div></div></div><section id="questionCard" class="card question-card"></section><section id="resultBox" class="card result-box hidden"></section></main>
+<script type="module" src="js/labdisc-test.js"></script></body></html>

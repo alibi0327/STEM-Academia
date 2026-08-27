@@ -1,0 +1,75 @@
+<!doctype html><html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STEM Academia — Администратор</title><link rel="stylesheet" href="css/app.css"></head>
+<body>
+<header class="topbar">
+ <div class="brand"><div class="brand-mark">S</div> STEM <span>ACADEMIA</span></div>
+ <div class="userbox"><span id="adminName"></span><button id="logout" class="btn secondary">Выйти</button></div>
+</header>
+<div class="app">
+<aside class="sidebar">
+ <button class="navbtn active" data-page="dashboard">Главная</button>
+ <button class="navbtn" data-page="schools">Школы</button>
+ <button class="navbtn" data-page="teachers">Учителя</button>
+ <button class="navbtn" data-page="courses">Курсы</button>
+ <button class="navbtn" data-page="results">Результаты</button>
+ <button class="navbtn" data-page="certificates">Сертификаты</button>
+</aside>
+<main class="main">
+<section id="dashboard" class="page active">
+ <div class="page-head"><div><h1>Панель администратора</h1><div class="muted">STEM Academia — контроль обучения</div></div></div>
+ <div class="stats">
+  <div class="card stat"><b id="sSchools">—</b><span>Школ</span></div>
+  <div class="card stat"><b id="sTeachers">—</b><span>Учителей</span></div>
+  <div class="card stat"><b id="sCourses">—</b><span>Курсов</span></div>
+  <div class="card stat"><b id="sCerts">—</b><span>Сертификатов</span></div>
+ </div>
+</section>
+
+<section id="schools" class="page">
+ <div class="page-head"><div><h1>Школы</h1><div class="muted">Организации, где установлено оборудование</div></div><button id="openSchool" class="btn">+ Добавить школу</button></div>
+ <form id="schoolForm" class="card panel hidden">
+  <div class="form-grid">
+   <div class="field"><label>Название школы</label><input id="schoolName" required></div>
+   <div class="field"><label>Город</label><input id="schoolCity"></div>
+   <div class="field"><label>Адрес</label><input id="schoolAddress"></div>
+  </div>
+  <div class="form-actions"><button class="btn">Сохранить</button><button type="button" id="cancelSchool" class="btn secondary">Отмена</button></div>
+ </form>
+ <div id="schoolsTable" class="tablewrap"></div>
+</section>
+
+<section id="teachers" class="page">
+ <div class="page-head"><div><h1>Учителя</h1><div class="muted">Создание учетных записей и назначение курса</div></div><button id="openTeacher" class="btn">+ Создать учителя</button></div>
+ <div id="teacherFunctionWarning" class="notice warning hidden">Edge Function <b>create-teacher</b> не развернута. Код уже находится в папке <b>supabase/functions/create-teacher</b>.</div>
+ <form id="teacherForm" class="card panel hidden">
+  <div class="form-grid">
+   <div class="field"><label>Школа</label><select id="teacherSchool" required></select></div>
+   <div class="field"><label>ФИО</label><input id="teacherName" required></div>
+   <div class="field"><label>Логин</label><input id="teacherLogin" required placeholder="teacher01"></div>
+   <div class="field"><label>Пароль</label><input id="teacherPassword" type="password" required minlength="6"></div>
+   <div class="field"><label>Курс</label><select id="teacherCourse" required></select></div>
+  </div>
+  <div class="form-actions"><button class="btn">Создать учетную запись</button><button type="button" id="cancelTeacher" class="btn secondary">Отмена</button></div>
+  <div id="teacherMsg" class="small"></div>
+ </form>
+ <div id="teachersTable" class="tablewrap"></div>
+</section>
+
+<section id="courses" class="page">
+ <div class="page-head"><div><h1>Курсы</h1><div class="muted">Учебные программы и количество занятий</div></div></div>
+ <div id="coursesTable" class="tablewrap"></div>
+</section>
+
+<section id="results" class="page">
+ <div class="page-head"><div><h1>Результаты</h1><div class="muted">Итоговые тесты учителей</div></div></div>
+ <div id="resultsTable" class="tablewrap"></div>
+</section>
+
+<section id="certificates" class="page">
+ <div class="page-head"><div><h1>Сертификаты</h1><div class="muted">Выданные сертификаты о прохождении обучения</div></div></div>
+ <div id="certificatesTable" class="tablewrap"></div>
+</section>
+</main></div>
+<script type="module" src="js/admin.js"></script>
+</body></html>
