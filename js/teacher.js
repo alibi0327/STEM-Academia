@@ -16,7 +16,7 @@ async function init(){
 
  if(!assigned?.length){$("courses").innerHTML='<div class="notice">Вам пока не назначены курсы.</div>';return}
 
- const links={"labdisc":"labdisc.html","roqed-science":"roqed.html","raspberry-pi-4":"raspberrypi.html"};
+ const links={"labdisc":"labdisc.html","roqed-science":"roqed.html","raspberry-pi-4":"raspberrypi.html","flashforge-adventurer-5m-pro":"flashforge.html"};
  $("courses").innerHTML=assigned.map(a=>{
    const lessons=a.courses?.lessons||[];
    const done=lessons.filter(l=>progress.some(p=>p.lesson_id===l.id&&p.status==="completed")).length;
