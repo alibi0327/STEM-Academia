@@ -6,17 +6,17 @@ const table=(h,r)=>`<table><thead><tr>${h.map(x=>`<th>${x}</th>`).join("")}</tr>
 
 async function init(){
  const auth=await requireRole("admin"); if(!auth)return;
- $("adminName").textContent=auth.profile.full_name; $("logout").onclick=logout;
+ if ($("adminName")) $("adminName").textContent=auth.profile.full_name; if ($("logout")) $("logout").onclick=logout;
  document.querySelectorAll(".navbtn").forEach(b=>b.onclick=()=>{document.querySelectorAll(".navbtn,.page").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.page).classList.add("active")});
- $("openSchool").onclick=()=> $("schoolForm").classList.remove("hidden");
- $("cancelSchool").onclick=()=> $("schoolForm").classList.add("hidden");
- $("openTeacher").onclick=()=> $("teacherForm").classList.remove("hidden");
- $("cancelTeacher").onclick=()=> $("teacherForm").classList.add("hidden");
- $("schoolForm").onsubmit=createSchool;
- $("teacherForm").onsubmit=createTeacher;
+ if ($("openSchool") && $("schoolForm")) $("openSchool").onclick=()=> $("schoolForm").classList.remove("hidden");
+ if ($("cancelSchool") && $("schoolForm")) $("cancelSchool").onclick=()=> $("schoolForm").classList.add("hidden");
+ if ($("openTeacher") && $("teacherForm")) $("openTeacher").onclick=()=> $("teacherForm").classList.remove("hidden");
+ if ($("cancelTeacher") && $("teacherForm")) $("cancelTeacher").onclick=()=> $("teacherForm").classList.add("hidden");
+ if ($("schoolForm")) $("schoolForm").onsubmit=createSchool;
+ if ($("teacherForm")) $("teacherForm").onsubmit=createTeacher;
 
  // Обработчик действий внутри динамической таблицы учителей.
- $("teachersTable").addEventListener("click", async (e) => {
+ if ($("teachersTable")) $("teachersTable").addEventListener("click", async (e) => {
    const addBtn = e.target.closest(".assign-direct");
    if (addBtn) {
      e.preventDefault();
