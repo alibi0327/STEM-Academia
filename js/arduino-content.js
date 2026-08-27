@@ -1,3 +1,5 @@
+const V="/assets/arduino/";
+const visual=(src,caption)=>`<figure class="arduino-visual"><img src="${src}" alt="${caption}" loading="lazy"><figcaption>${caption}</figcaption></figure>`;
 export const lessons = [
   {
     "module": "Модуль 1 · Подготовка",
@@ -102,3 +104,24 @@ export const lessons = [
     "html": "<div class=\"block\"><h2>Цель занятия</h2><p>Самостоятельно повторить весь рабочий цикл.</p></div>\n<div class=\"block info\"><h2>Что понадобится</h2><p>Комплект Arduino и компьютер.</p></div>\n<div class=\"block\"><h2>Теория</h2><p>Правильный цикл: проверить схему → подключить USB → выбрать Board/Port → Verify → Upload → проверить результат → при необходимости использовать Serial Monitor.</p></div>\n<div class=\"block\"><h2>Практика</h2><p>Продемонстрируйте преподавателю запуск Blink и объясните назначение setup, loop, GND, цифрового входа, аналогового входа и PWM.</p></div>\n<div class=\"block info\"><h2>Проверка результата</h2><p>Практическая часть подтверждена; можно переходить к итоговому тесту.</p></div>"
   }
 ];
+
+const visuals = {
+ "Что такое Arduino":"assets/arduino/arduino-full-course-poster.png",
+ "Устройство Arduino Uno":"assets/arduino/uno-map.svg",
+ "Подключение платы к компьютеру":"assets/arduino/workflow.svg",
+ "Первый запуск: Blink":"assets/arduino/workflow.svg",
+ "setup(), loop() и delay()":"assets/arduino/program-flow.svg",
+ "Макетная плата":"assets/arduino/breadboard.svg",
+ "Светодиод и резистор":"assets/arduino/led-concept.svg",
+ "Подключение внешнего LED":"assets/arduino/led-concept.svg",
+ "Управление внешним LED":"assets/arduino/led-concept.svg",
+ "Кнопка как цифровой вход":"assets/arduino/input-output.svg",
+ "Аналоговый вход и потенциометр":"assets/arduino/input-output.svg",
+ "PWM и яркость LED":"assets/arduino/input-output.svg",
+ "Serial Monitor":"assets/arduino/serial-monitor.svg",
+ "Первый мини-проект":"assets/arduino/input-output.svg"
+};
+for (const lesson of lessons) {
+  const src=visuals[lesson.title];
+  if(src) lesson.html = `<figure class="arduino-visual"><img src="${src}" alt="${lesson.title}" loading="lazy"><figcaption>${lesson.title}</figcaption></figure>` + lesson.html;
+}
