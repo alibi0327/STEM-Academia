@@ -1,1 +1,0 @@
-Labdisc course images
