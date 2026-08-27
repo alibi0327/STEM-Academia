@@ -16,7 +16,7 @@ async function init(){
 
  if(!assigned?.length){$("courses").innerHTML='<div class="notice">Вам пока не назначены основные курсы.</div>'}
 
- const links={"labdisc":"labdisc.html","roqed-science":"roqed.html","raspberry-pi-4":"raspberrypi.html","flashforge-adventurer-5m-pro":"flashforge.html","ruida-rdworks8-medium":"ruida.html","lego-spike-prime":"spike.html","bbc-microbit":"microbit.html","scratch-basics":"scratch.html","python-stem":"pythonstem.html","esp32-iot":"esp32.html","tinkercad-3d":"tinkercad.html","autodesk-fusion":"fusion.html"};
+ const links={"labdisc":"labdisc.html","roqed-science":"roqed.html","raspberry-pi-4":"raspberrypi.html","flashforge-adventurer-5m-pro":"flashforge.html","ruida-rdworks8-medium":"ruida.html","lego-spike-prime":"spike.html","bbc-microbit":"microbit.html","scratch-basics":"scratch.html","python-stem":"pythonstem.html","esp32-iot":"esp32.html","tinkercad-3d":"tinkercad.html","autodesk-fusion":"fusion.html","sketchup-3d":"sketchup.html"};
  $("courses").innerHTML=assigned.map(a=>{
    const lessons=a.courses?.lessons||[];
    const done=lessons.filter(l=>progress.some(p=>p.lesson_id===l.id&&p.status==="completed")).length;
