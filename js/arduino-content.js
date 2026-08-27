@@ -1,4 +1,3 @@
-const V="/assets/arduino/";
 const visual=(src,caption)=>`<figure class="arduino-visual"><img src="${src}" alt="${caption}" loading="lazy"><figcaption>${caption}</figcaption></figure>`;
 export const lessons = [
   {
@@ -106,20 +105,20 @@ export const lessons = [
 ];
 
 const visuals = {
- "Что такое Arduino":"assets/arduino/arduino-full-course-poster.png",
- "Устройство Arduino Uno":"assets/arduino/uno-map.svg",
- "Подключение платы к компьютеру":"assets/arduino/workflow.svg",
- "Первый запуск: Blink":"assets/arduino/workflow.svg",
- "setup(), loop() и delay()":"assets/arduino/program-flow.svg",
- "Макетная плата":"assets/arduino/breadboard.svg",
- "Светодиод и резистор":"assets/arduino/led-concept.svg",
- "Подключение внешнего LED":"assets/arduino/led-concept.svg",
- "Управление внешним LED":"assets/arduino/led-concept.svg",
- "Кнопка как цифровой вход":"assets/arduino/input-output.svg",
- "Аналоговый вход и потенциометр":"assets/arduino/input-output.svg",
- "PWM и яркость LED":"assets/arduino/input-output.svg",
- "Serial Monitor":"assets/arduino/serial-monitor.svg",
- "Первый мини-проект":"assets/arduino/input-output.svg"
+ "Что такое Arduino":new URL("../assets/arduino/arduino-full-course-poster.png", import.meta.url).href,
+ "Устройство Arduino Uno":new URL("../assets/arduino/uno-map.svg", import.meta.url).href,
+ "Подключение платы к компьютеру":new URL("../assets/arduino/workflow.svg", import.meta.url).href,
+ "Первый запуск: Blink":new URL("../assets/arduino/workflow.svg", import.meta.url).href,
+ "setup(), loop() и delay()":new URL("../assets/arduino/program-flow.svg", import.meta.url).href,
+ "Макетная плата":new URL("../assets/arduino/breadboard.svg", import.meta.url).href,
+ "Светодиод и резистор":new URL("../assets/arduino/led-concept.svg", import.meta.url).href,
+ "Подключение внешнего LED":new URL("../assets/arduino/led-concept.svg", import.meta.url).href,
+ "Управление внешним LED":new URL("../assets/arduino/led-concept.svg", import.meta.url).href,
+ "Кнопка как цифровой вход":new URL("../assets/arduino/input-output.svg", import.meta.url).href,
+ "Аналоговый вход и потенциометр":new URL("../assets/arduino/input-output.svg", import.meta.url).href,
+ "PWM и яркость LED":new URL("../assets/arduino/input-output.svg", import.meta.url).href,
+ "Serial Monitor":new URL("../assets/arduino/serial-monitor.svg", import.meta.url).href,
+ "Первый мини-проект":new URL("../assets/arduino/input-output.svg", import.meta.url).href
 };
 for (const lesson of lessons) {
   const src=visuals[lesson.title];
