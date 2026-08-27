@@ -12,20 +12,40 @@ async function init(){
  $("cancelSchool").onclick=()=> $("schoolForm").classList.add("hidden");
  $("openTeacher").onclick=()=> $("teacherForm").classList.remove("hidden");
  $("cancelTeacher").onclick=()=> $("teacherForm").classList.add("hidden");
- $("cancelAssignCourse").onclick=()=> {
-   $("assignCourseForm").classList.add("hidden");
-   $("assignCourseForm").style.display = "";
- };
  $("schoolForm").onsubmit=createSchool;
  $("teacherForm").onsubmit=createTeacher;
- $("assignCourseForm").onsubmit=assignCourse;
 
- // Надежный обработчик кнопок внутри динамически обновляемой таблицы.
+ // Обработчик действий внутри динамической таблицы учителей.
  $("teachersTable").addEventListener("click", async (e) => {
-   const addBtn = e.target.closest(".add-course");
+   const addBtn = e.target.closest(".assign-direct");
    if (addBtn) {
      e.preventDefault();
-     openAssignCourse(addBtn.dataset.id);
+     const teacherId = addBtn.dataset.id;
+     const select = document.querySelector(`select.course-for-teacher[data-id="${teacherId}"]`);
+     const courseId = select?.value;
+     if (!courseId) {
+       alert("Нет доступного курса для назначения.");
+       return;
+     }
+     addBtn.disabled = true;
+     const oldText = addBtn.textContent;
+     addBtn.textContent = "Добавляем...";
+     try {
+       const { error } = await supabase.from("teacher_courses")
+         .insert({ teacher_id: teacherId, course_id: courseId, status: "assigned" });
+
+       if (error) {
+         if (error.code === "23505") alert("Этот курс уже назначен учителю.");
+         else alert("Ошибка добавления курса: " + error.message);
+         return;
+       }
+
+       alert("Курс успешно добавлен к существующему аккаунту.");
+       await loadTeachers();
+     } finally {
+       addBtn.disabled = false;
+       addBtn.textContent = oldText;
+     }
      return;
    }
 
@@ -56,36 +76,44 @@ async function createTeacher(e){
  $("teacherMsg").textContent="Учетная запись создана.";e.target.reset();e.target.classList.add("hidden");await loadTeachers();await loadStats()
 }
 async function loadTeachers(){
- const {data,error}=await supabase.from("profiles").select("id,full_name,username,active,schools(name),teacher_courses(id,status,course_id,courses(id,title,slug))").eq("role","teacher").order("created_at",{ascending:false});
- if(error)throw error;teachers=data||[];
- $("teachersTable").innerHTML=table(["ФИО","Школа","Логин","Назначенные курсы","Статус","Действия"],teachers.map(t=>{
-   const assigned=t.teacher_courses||[];
-   const coursesHtml=assigned.length?assigned.map(x=>`<div style="margin:3px 0"><span class="badge ${x.status==="completed"?"good":""}">${esc(x.courses?.title||"Курс")}</span></div>`).join(""):"—";
-   return `<tr><td><b>${esc(t.full_name)}</b></td><td>${esc(t.schools?.name||"—")}</td><td>${esc(t.username||"—")}</td><td>${coursesHtml}</td><td><span class="badge ${t.active?"good":"off"}">${t.active?"Активен":"Отключен"}</span></td><td><div class="actions"><button class="btn secondary add-course" data-id="${t.id}">+ Добавить курс</button><button class="btn secondary toggle" data-id="${t.id}" data-active="${t.active}">${t.active?"Отключить":"Включить"}</button></div></td></tr>`;
- }));
-}
-function openAssignCourse(teacherId){
- const t=teachers.find(x=>x.id===teacherId); if(!t)return;
- const assignedIds=new Set((t.teacher_courses||[]).map(x=>x.course_id));
- const available=courses.filter(c=>c.active&&!assignedIds.has(c.id));
- $("assignTeacherId").value=t.id;$("assignTeacherName").value=t.full_name;
- $("assignCourseSelect").innerHTML=available.length?available.map(c=>`<option value="${c.id}">${esc(c.title)}</option>`).join(""):'<option value="">Все доступные курсы уже назначены</option>';
- $("assignCourseSelect").disabled=!available.length;
- $("assignCourseForm").querySelector('button[type="submit"]').disabled=!available.length;
- $("assignCourseInfo").textContent=available.length?`Доступно для назначения: ${available.length}`:"У этого учителя уже назначены все активные курсы.";
- const form = $("assignCourseForm");
- form.classList.remove("hidden");
- form.style.display = "block";
- setTimeout(() => form.scrollIntoView({behavior:"smooth",block:"center"}), 20);
-}
-async function assignCourse(e){
- e.preventDefault();const teacher_id=$("assignTeacherId").value,course_id=$("assignCourseSelect").value;if(!teacher_id||!course_id)return;
- const {error}=await supabase.from("teacher_courses").insert({teacher_id,course_id,status:"assigned"});
- if(error){if(error.code==="23505")alert("Этот курс уже назначен учителю.");else alert(error.message);return}
- $("assignCourseForm").classList.add("hidden");
- $("assignCourseForm").style.display = "";
- await loadTeachers();
- alert("Курс успешно добавлен к существующему аккаунту.");
+ const {data,error}=await supabase.from("profiles")
+   .select("id,full_name,username,active,schools(name),teacher_courses(id,status,course_id,courses(id,title,slug))")
+   .eq("role","teacher")
+   .order("created_at",{ascending:false});
+ if(error)throw error;
+ teachers=data||[];
+
+ $("teachersTable").innerHTML=table(
+   ["ФИО","Школа","Логин","Назначенные курсы","Добавить курс","Статус","Действия"],
+   teachers.map(t=>{
+     const assigned=t.teacher_courses||[];
+     const assignedIds=new Set(assigned.map(x=>x.course_id));
+     const available=courses.filter(c=>c.active&&!assignedIds.has(c.id));
+
+     const coursesHtml=assigned.length
+       ? assigned.map(x=>`<div style="margin:3px 0"><span class="badge ${x.status==="completed"?"good":""}">${esc(x.courses?.title||"Курс")}</span></div>`).join("")
+       : "—";
+
+     const assignHtml=available.length
+       ? `<div style="display:flex;gap:8px;align-items:center;min-width:330px">
+            <select class="course-for-teacher" data-id="${t.id}" style="min-width:210px">
+              ${available.map(c=>`<option value="${c.id}">${esc(c.title)}</option>`).join("")}
+            </select>
+            <button type="button" class="btn assign-direct" data-id="${t.id}">Добавить</button>
+          </div>`
+       : `<span class="muted small">Все курсы уже назначены</span>`;
+
+     return `<tr>
+       <td><b>${esc(t.full_name)}</b></td>
+       <td>${esc(t.schools?.name||"—")}</td>
+       <td>${esc(t.username||"—")}</td>
+       <td>${coursesHtml}</td>
+       <td>${assignHtml}</td>
+       <td><span class="badge ${t.active?"good":"off"}">${t.active?"Активен":"Отключен"}</span></td>
+       <td><button type="button" class="btn secondary toggle" data-id="${t.id}" data-active="${t.active}">${t.active?"Отключить":"Включить"}</button></td>
+     </tr>`;
+   })
+ );
 }
 async function toggleTeacher(id,active){const {error}=await supabase.from("profiles").update({active:!active}).eq("id",id);if(error)return alert(error.message);await loadTeachers()}
 async function loadResults(){
