@@ -47,15 +47,10 @@ async function init(){
        <h3>${esc(c.title)}</h3>
        <p class="muted">${esc(c.description||"")}</p>
        <div class="small muted">${c.lesson_count||0} занятий · не влияет на обязательное обучение</div>
-       ${started?`<a class="btn" href="${link}">Продолжить курс</a>`:`<button class="btn optional-start" data-slug="${esc(c.slug)}">Начать курс</button>`}
+       <a class="btn" href="${link}">${started?"Продолжить курс":"Начать курс"}</a>
      </article>`;
    }).join("");
-   document.querySelectorAll(".optional-start").forEach(b=>b.onclick=async()=>{
-     b.disabled=true;b.textContent="Добавляем...";
-     const {error}=await supabase.rpc("start_optional_course",{p_course_slug:b.dataset.slug});
-     if(error){b.disabled=false;b.textContent="Начать курс";return alert(error.message)}
-     location.reload();
-   });
+
  }
 
  const {data:certs=[]}=await supabase.from("certificates").select("certificate_number,issue_date,final_score,courses(title)").eq("teacher_id",session.user.id).order("issue_date",{ascending:false});
