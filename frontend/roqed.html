@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>ROQED — STEM Academia</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fb;
+        color: #1f2937;
+    }
+
+    header {
+        background: #ffffff;
+        padding: 18px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .logo span {
+        color: #2563eb;
+    }
+
+    .back {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .hero {
+        background: #111827;
+        color: white;
+        padding: 55px 7%;
+    }
+
+    .hero-content {
+        max-width: 900px;
+    }
+
+    .tag {
+        display: inline-block;
+        background: #2563eb;
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        margin-bottom: 15px;
+    }
+
+    .hero p {
+        color: #d1d5db;
+        font-size: 18px;
+        line-height: 1.6;
+        max-width: 750px;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 35px auto;
+        padding: 0 20px;
+    }
+
+    .progress-box {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .progress-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        font-weight: bold;
+    }
+
+    .progress {
+        width: 100%;
+        height: 12px;
+        background: #e5e7eb;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        width: 12%;
+        height: 100%;
+        background: #2563eb;
+    }
+
+    .course-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+    }
+
+    .lesson {
+        background: white;
+        border-radius: 15px;
+        padding: 22px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .lesson h3 {
+        margin-bottom: 10px;
+    }
+
+    .lesson p {
+        color: #6b7280;
+        line-height: 1.5;
+        margin-bottom: 18px;
+    }
+
+    .status {
+        font-size: 14px;
+        color: #6b7280;
+        margin-bottom: 15px;
+    }
+
+    .lesson button {
+        border: none;
+        background: #2563eb;
+        color: white;
+        padding: 11px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .lesson button.disabled {
+        background: #d1d5db;
+        cursor: not-allowed;
+    }
+
+    .info {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-top: 25px;
+    }
+
+    .info h2 {
+        margin-bottom: 15px;
+    }
+
+    .info ul {
+        padding-left: 20px;
+        line-height: 2;
+    }
+
+    .official {
+        margin-top: 25px;
+        padding: 20px;
+        background: #eff6ff;
+        border-radius: 12px;
+    }
+
+    .official a {
+        color: #2563eb;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        color: #6b7280;
+    }
+
+    @media (max-width: 700px) {
+
+        .hero h1 {
+            font-size: 30px;
+        }
+
+        .course-grid {
+            grid-template-columns: 1fr;
+        }
+
+        header {
+            padding: 18px 20px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<header>
+
+```
+<div class="logo">
+    STEM <span>Academia</span>
+</div>
+
+<a href="teacher.html" class="back">
+    ← Кабинет
+</a>
+```
+
+</header>
+
+<section class="hero">
+
+```
+<div class="hero-content">
+
+    <span class="tag">Курс для педагогов</span>
+
+    <h1>
+        ROQED Bundle
+    </h1>
+
+    <p>
+        Практическое обучение работе с интерактивными
+        3D-моделями, анимациями и образовательным
+        контентом ROQED.
+    </p>
+
+</div>
+```
+
+</section>
+
+<div class="container">
+
+```
+<div class="progress-box">
+
+    <div class="progress-title">
+        <span>Прогресс обучения</span>
+        <span>12%</span>
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar"></div>
+    </div>
+
+</div>
+
+
+<div class="course-grid">
+
+    <div class="lesson">
+
+        <h3>01. Знакомство с ROQED</h3>
+
+        <p>
+            Назначение системы, возможности программного
+            обеспечения и основные направления использования
+            в образовательном процессе.
+        </p>
+
+        <div class="status">● Доступно</div>
+
+        <button onclick="startLesson(1)">
+            Начать
+        </button>
+
+    </div>
+
+
+    <div class="lesson">
+
+        <h3>02. Установка и запуск</h3>
+
+        <p>
+            Подготовка рабочего места, запуск программы,
+            вход в систему и основные настройки.
+        </p>
+
+        <div class="status">🔒 Следующий урок</div>
+
+        <button class="disabled">
+            Закрыто
+        </button>
+
+    </div>
+
+
+    <div class="lesson">
+
+        <h3>03. Работа с 3D-моделями</h3>
+
+        <p>
+            Поиск моделей, вращение, масштабирование,
+            исследование объектов и работа с отдельными
+            элементами модели.
+        </p>
+
+        <div class="status">🔒 Следующий урок</div>
+
+        <button class="disabled">
+            Закрыто
+        </button>
+
+    </div>
+
+
+    <div class="lesson">
+
+        <h3>04. Режим «Изучение»</h3>
+
+        <p>
+            Самостоятельное исследование 3D-моделей
+            и использование интерактивных инструментов.
+        </p>
+
+        <div class="status">🔒 Следующий урок</div>
+
+        <button class="disabled">
+            Закрыто
+        </button>
+
+    </div>
+
+
+    <div class="lesson">
+
+        <h3>05. Режим «Анимация»</h3>
+
+        <p>
+            Работа с анимациями, запуск, пауза,
+            переход между сценами и демонстрация
+            процессов учащимся.
+        </p>
+
+        <div class="status">🔒 Следующий урок</div>
+
+        <button class="disabled">
+            Закрыто
+        </button>
+
+    </div>
+
+
+    <div class="lesson">
+
+        <h3>06. Режим «Слайды»</h3>
+
+        <p>
+            Использование 3D-моделей и материалов
+            для проведения демонстрационных уроков.
+        </p>
+
+        <div class="status">🔒 Следующий урок</div>
+
+        <button class="disabled">
+            Закрыто
+        </button>
+
+    </div>
+
+
+    <div class="lesson">
+
+        <h3>07. Практическое занятие</h3>
+
+        <p>
+            Создание и проведение собственного
+            мини-урока с использованием ROQED.
+        </p>
+
+        <div class="status">🔒 Следующий урок</div>
+
+        <button class="disabled">
+            Закрыто
+        </button>
+
+    </div>
+
+
+    <div class="lesson">
+
+        <h3>08. Итоговый тест</h3>
+
+        <p>
+            Проверка знаний и практических навыков
+            работы с системой.
+        </p>
+
+        <div class="status">🔒 Следующий урок</div>
+
+        <button class="disabled">
+            Закрыто
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="info">
+
+    <h2>После прохождения курса вы сможете</h2>
+
+    <ul>
+        <li>Запускать и настраивать программное обеспечение ROQED.</li>
+        <li>Находить и использовать необходимые 3D-модели.</li>
+        <li>Работать с интерактивными объектами.</li>
+        <li>Использовать режимы изучения, анимации и слайдов.</li>
+        <li>Создавать демонстрационные материалы для уроков.</li>
+        <li>Использовать ROQED в практической работе с учащимися.</li>
+    </ul>
+
+</div>
+
+
+<div class="official">
+
+    <strong>Официальные материалы ROQED</strong>
+
+    <p style="margin-top: 10px;">
+        Для дополнительного изучения используйте официальную
+        документацию и материалы производителя.
+    </p>
+
+    <p style="margin-top: 10px;">
+        <a href="https://roqed.com/ru/content-science"
+           target="_blank">
+            Открыть материалы ROQED Science →
+        </a>
+    </p>
+
+</div>
+```
+
+</div>
+
+<footer>
+    © 2026 STEM Academia
+</footer>
+
+<script>
+
+function startLesson(number) {
+
+    if (number === 1) {
+
+        alert(
+            "Урок 1: Знакомство с ROQED\n\n" +
+            "В следующей версии здесь откроется полноценный урок."
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
