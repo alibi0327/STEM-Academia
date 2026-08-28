@@ -415,3 +415,704 @@ tr:last-child td{border-bottom:0}
 
 /* Teacher dashboard keeps its dedicated reference layout */
 .teacher-dark .site-credit{display:none!important}
+
+
+/* STEM ACADEMIA DASHBOARD LAYOUT FIX V3.2 */
+
+/* Desktop proportions based on the user's screenshot:
+   narrower left rail, center starts earlier and gets wider,
+   right rail stays clearly on the far right. */
+@media(min-width:1101px){
+  .teacher-dark .td-app{
+    grid-template-columns:235px minmax(0,1fr)!important;
+  }
+
+  .teacher-dark .td-sidebar{
+    padding-left:13px!important;
+    padding-right:13px!important;
+  }
+
+  .teacher-dark .td-brand{
+    gap:9px!important;
+    padding-left:2px!important;
+    padding-right:2px!important;
+  }
+
+  .teacher-dark .td-brand-logo{
+    width:62px!important;
+    height:62px!important;
+  }
+
+  .teacher-dark .td-brand-title{
+    font-size:16px!important;
+  }
+
+  .teacher-dark .td-brand-sub{
+    font-size:9px!important;
+    line-height:1.35!important;
+  }
+
+  .teacher-dark .td-topbar{
+    padding-left:18px!important;
+    padding-right:28px!important;
+  }
+
+  .teacher-dark .td-content{
+    grid-template-columns:minmax(0,1fr) 292px!important;
+    gap:14px!important;
+    padding:20px 28px 28px 14px!important;
+    max-width:none!important;
+    margin:0!important;
+  }
+
+  .teacher-dark .td-main{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+  }
+
+  .teacher-dark .td-right{
+    width:292px!important;
+    justify-self:end!important;
+  }
+
+  .teacher-dark .td-hero{
+    width:100%!important;
+    min-height:220px!important;
+  }
+
+  .teacher-dark .td-main-courses{
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+
+  .teacher-dark .td-optional-courses{
+    grid-template-columns:repeat(7,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+
+  .teacher-dark .td-cover{
+    height:134px!important;
+  }
+
+  .teacher-dark .td-optional-courses .td-cover{
+    height:96px!important;
+  }
+}
+
+@media(min-width:1500px){
+  .teacher-dark .td-content{
+    grid-template-columns:minmax(1000px,1fr) 300px!important;
+    gap:16px!important;
+    padding-left:12px!important;
+    padding-right:24px!important;
+  }
+
+  .teacher-dark .td-right{
+    width:300px!important;
+  }
+}
+
+/* Separate "Мои достижения" block below the login/navigation area */
+.teacher-dark .td-achievements-link{
+  margin-top:18px!important;
+  min-height:42px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:11px!important;
+  padding:0 14px!important;
+  border:1px solid rgba(216,167,68,.68)!important;
+  border-radius:8px!important;
+  background:rgba(216,167,68,.045)!important;
+  color:#f0bc51!important;
+  font-weight:800!important;
+}
+
+.teacher-dark .td-achievements-link:hover{
+  background:rgba(216,167,68,.13)!important;
+  color:#ffd77e!important;
+}
+
+.teacher-dark .td-achievements-link span{
+  width:20px!important;
+  text-align:center!important;
+}
+
+.teacher-dark .td-sidebar-bottom{
+  margin-top:auto!important;
+}
+
+/* Keep all other inner tabs slightly wider too */
+@media(min-width:1101px){
+  .global-dark-page{
+    grid-template-columns:235px minmax(0,1fr)!important;
+  }
+
+  .global-dark-page .global-sidebar{
+    padding-left:13px!important;
+    padding-right:13px!important;
+  }
+}
+
+
+/* STEM ACADEMIA RESPONSIVE ADAPTATION V3.3 */
+
+/* ---------- 4K / ultra-wide ---------- */
+@media (min-width: 1920px){
+  .teacher-dark .td-app{
+    grid-template-columns:250px minmax(0,1fr)!important;
+  }
+  .teacher-dark .td-content{
+    grid-template-columns:minmax(1180px,1fr) 320px!important;
+    gap:18px!important;
+    padding:24px 32px 32px 18px!important;
+  }
+  .teacher-dark .td-right{width:320px!important}
+  .teacher-dark .td-main-courses{
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  }
+  .teacher-dark .td-optional-courses{
+    grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  }
+  .teacher-dark .td-hero{
+    min-height:230px!important;
+  }
+}
+
+/* ---------- Common desktop 1440–1919 ---------- */
+@media (min-width: 1440px) and (max-width: 1919px){
+  .teacher-dark .td-app{
+    grid-template-columns:235px minmax(0,1fr)!important;
+  }
+  .teacher-dark .td-content{
+    grid-template-columns:minmax(0,1fr) 285px!important;
+    gap:14px!important;
+    padding:20px 24px 28px 14px!important;
+  }
+  .teacher-dark .td-right{width:285px!important}
+  .teacher-dark .td-main-courses{
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  }
+  .teacher-dark .td-optional-courses{
+    grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  }
+}
+
+/* ---------- Laptop / small desktop 1200–1439 ---------- */
+@media (min-width: 1200px) and (max-width: 1439px){
+  .teacher-dark .td-app{
+    grid-template-columns:220px minmax(0,1fr)!important;
+  }
+  .teacher-dark .td-sidebar{
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+  .teacher-dark .td-brand-logo{
+    width:56px!important;height:56px!important;
+  }
+  .teacher-dark .td-brand-title{font-size:14px!important}
+  .teacher-dark .td-brand-sub{font-size:8px!important}
+  .teacher-dark .td-nav a{
+    font-size:12px!important;
+    min-height:40px!important;
+    padding:0 11px!important;
+  }
+  .teacher-dark .td-content{
+    grid-template-columns:minmax(0,1fr) 250px!important;
+    gap:12px!important;
+    padding:16px 18px 24px 10px!important;
+  }
+  .teacher-dark .td-right{width:250px!important}
+  .teacher-dark .td-hero{
+    padding:24px!important;
+    min-height:205px!important;
+  }
+  .teacher-dark .td-hero h1{font-size:25px!important}
+  .teacher-dark .td-hero-stats{gap:18px!important}
+  .teacher-dark .td-main-courses{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  .teacher-dark .td-optional-courses{
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  }
+  .teacher-dark .td-course-card h3{font-size:12px!important}
+}
+
+/* ---------- Tablet landscape / compact laptop 992–1199 ---------- */
+@media (min-width: 992px) and (max-width: 1199px){
+  .teacher-dark .td-app{
+    grid-template-columns:190px minmax(0,1fr)!important;
+  }
+  .teacher-dark .td-sidebar{
+    display:flex!important;
+    position:sticky!important;
+    height:100vh!important;
+    padding:14px 9px!important;
+  }
+  .teacher-dark .td-brand-logo{width:48px!important;height:48px!important}
+  .teacher-dark .td-brand-title{font-size:12px!important}
+  .teacher-dark .td-brand-sub{display:none!important}
+  .teacher-dark .td-nav a{
+    font-size:11px!important;
+    min-height:38px!important;
+    padding:0 9px!important;
+  }
+  .teacher-dark .td-nav a span{font-size:15px!important}
+  .teacher-dark .td-sidebar-bottom{font-size:8px!important}
+  .teacher-dark .td-mini-logo{width:48px!important;height:48px!important}
+
+  .teacher-dark .td-topbar{
+    padding:10px 14px!important;
+    gap:10px!important;
+  }
+  .teacher-dark .td-search{
+    width:min(420px,42vw)!important;
+  }
+  .teacher-dark .td-user-copy{display:none!important}
+
+  .teacher-dark .td-content{
+    grid-template-columns:1fr!important;
+    gap:16px!important;
+    padding:14px!important;
+  }
+  .teacher-dark .td-right{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+  .teacher-dark .td-progress-card{
+    grid-row:auto!important;
+  }
+  .teacher-dark .td-main-courses{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  .teacher-dark .td-optional-courses{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  .teacher-dark .td-hero{
+    min-height:190px!important;
+    padding:22px!important;
+  }
+  .teacher-dark .td-hero-art{min-width:180px!important}
+  .teacher-dark .td-trophy{font-size:82px!important}
+}
+
+/* ---------- Tablet portrait 768–991 ---------- */
+@media (min-width: 768px) and (max-width: 991px){
+  .teacher-dark .td-app{
+    display:block!important;
+  }
+  .teacher-dark .td-sidebar{
+    position:static!important;
+    width:100%!important;
+    height:auto!important;
+    display:block!important;
+    padding:10px 12px!important;
+    border-right:0!important;
+    border-bottom:1px solid #172d3c!important;
+  }
+  .teacher-dark .td-brand{
+    display:none!important;
+  }
+  .teacher-dark .td-nav{
+    display:flex!important;
+    gap:6px!important;
+    overflow-x:auto!important;
+    padding-bottom:4px!important;
+    scrollbar-width:thin;
+  }
+  .teacher-dark .td-nav a{
+    flex:0 0 auto!important;
+    min-height:38px!important;
+    padding:0 12px!important;
+    font-size:11px!important;
+    white-space:nowrap!important;
+  }
+  .teacher-dark .td-achievements-link{
+    margin-top:0!important;
+  }
+  .teacher-dark .td-sidebar-bottom{
+    display:none!important;
+  }
+
+  .teacher-dark .td-topbar{
+    position:sticky!important;
+    top:0!important;
+    min-height:68px!important;
+    height:auto!important;
+    padding:10px 12px!important;
+    gap:10px!important;
+  }
+  .teacher-dark .td-mobile-brand{
+    display:flex!important;
+  }
+  .teacher-dark .td-search{
+    flex:1!important;
+    width:auto!important;
+  }
+  .teacher-dark .td-user-copy,
+  .teacher-dark .td-logout{
+    display:none!important;
+  }
+
+  .teacher-dark .td-content{
+    grid-template-columns:1fr!important;
+    padding:14px!important;
+    gap:14px!important;
+  }
+  .teacher-dark .td-right{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+  .teacher-dark .td-hero{
+    min-height:180px!important;
+    padding:20px!important;
+  }
+  .teacher-dark .td-hero h1{font-size:23px!important}
+  .teacher-dark .td-hero-stats{
+    gap:14px!important;
+    flex-wrap:wrap!important;
+  }
+  .teacher-dark .td-hero-art{
+    min-width:150px!important;
+  }
+  .teacher-dark .td-trophy{font-size:74px!important}
+
+  .teacher-dark .td-main-courses{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .teacher-dark .td-optional-courses{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  .teacher-dark .td-filters{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .teacher-dark .td-filters input{
+    grid-column:1/-1!important;
+  }
+}
+
+/* ---------- Phone / small tablet <=767 ---------- */
+@media (max-width: 767px){
+  .teacher-dark .td-app{
+    display:block!important;
+  }
+  .teacher-dark .td-sidebar{
+    position:static!important;
+    width:100%!important;
+    height:auto!important;
+    display:block!important;
+    padding:8px 8px!important;
+    border-right:0!important;
+    border-bottom:1px solid #172d3c!important;
+  }
+  .teacher-dark .td-brand,
+  .teacher-dark .td-sidebar-bottom{
+    display:none!important;
+  }
+  .teacher-dark .td-nav{
+    display:flex!important;
+    overflow-x:auto!important;
+    gap:5px!important;
+    padding-bottom:4px!important;
+  }
+  .teacher-dark .td-nav a{
+    flex:0 0 auto!important;
+    min-height:36px!important;
+    font-size:10px!important;
+    padding:0 10px!important;
+    white-space:nowrap!important;
+  }
+  .teacher-dark .td-nav a span{
+    width:auto!important;
+    font-size:14px!important;
+  }
+  .teacher-dark .td-achievements-link{
+    margin-top:0!important;
+  }
+
+  .teacher-dark .td-topbar{
+    position:sticky!important;
+    top:0!important;
+    height:auto!important;
+    min-height:62px!important;
+    padding:8px 10px!important;
+    flex-wrap:wrap!important;
+    gap:8px!important;
+  }
+  .teacher-dark .td-mobile-brand{
+    display:flex!important;
+    flex:1!important;
+  }
+  .teacher-dark .td-mobile-brand img{
+    width:34px!important;height:34px!important;
+  }
+  .teacher-dark .td-mobile-brand b{
+    font-size:12px!important;
+  }
+  .teacher-dark .td-top-actions{
+    gap:6px!important;
+  }
+  .teacher-dark .td-search{
+    order:3!important;
+    width:100%!important;
+    flex-basis:100%!important;
+    height:38px!important;
+  }
+  .teacher-dark .td-search kbd,
+  .teacher-dark .td-user-copy,
+  .teacher-dark .td-logout{
+    display:none!important;
+  }
+  .teacher-dark .td-avatar{
+    width:34px!important;height:34px!important;
+  }
+  .teacher-dark .td-bell{
+    width:34px!important;height:34px!important;
+  }
+  .teacher-dark .lang-switch button{
+    padding:6px 9px!important;
+    font-size:10px!important;
+  }
+
+  .teacher-dark .td-content{
+    display:block!important;
+    padding:10px!important;
+  }
+
+  .teacher-dark .td-hero{
+    min-height:auto!important;
+    padding:18px!important;
+    display:block!important;
+  }
+  .teacher-dark .td-hero h1{
+    font-size:20px!important;
+    line-height:1.2!important;
+  }
+  .teacher-dark .td-hero-copy>p{
+    font-size:11px!important;
+  }
+  .teacher-dark .td-hero-art{
+    display:none!important;
+  }
+  .teacher-dark .td-hero-stats{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+    margin-top:20px!important;
+  }
+  .teacher-dark .td-hero-stats b{
+    font-size:18px!important;
+  }
+
+  .teacher-dark .td-section{
+    margin-top:18px!important;
+  }
+  .teacher-dark .td-section-head h2{
+    font-size:15px!important;
+  }
+  .teacher-dark .td-section-head>a{
+    font-size:9px!important;
+  }
+
+  .teacher-dark .td-main-courses,
+  .teacher-dark .td-optional-courses{
+    grid-template-columns:1fr!important;
+  }
+
+  .teacher-dark .td-course-card{
+    display:grid!important;
+    grid-template-columns:120px minmax(0,1fr)!important;
+  }
+  .teacher-dark .td-cover,
+  .teacher-dark .td-optional-courses .td-cover{
+    height:100%!important;
+    min-height:150px!important;
+  }
+  .teacher-dark .td-optional-courses .td-course-card .muted{
+    display:-webkit-box!important;
+  }
+  .teacher-dark .td-optional-courses .course-action{
+    display:flex!important;
+  }
+  .teacher-dark .td-optional-courses .td-card-foot{
+    display:flex!important;
+  }
+
+  .teacher-dark .td-filters{
+    grid-template-columns:1fr!important;
+  }
+
+  .teacher-dark .td-right{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+    margin-top:18px!important;
+  }
+  .teacher-dark .td-side-card{
+    padding:14px!important;
+  }
+
+  .teacher-dark .resource-grid,
+  .teacher-dark .achievement-grid,
+  .teacher-dark .course-grid{
+    grid-template-columns:1fr!important;
+  }
+
+  .teacher-dark .tablewrap{
+    overflow-x:auto!important;
+  }
+  .teacher-dark table{
+    min-width:620px!important;
+  }
+}
+
+/* ---------- Very small phones <=420 ---------- */
+@media (max-width: 420px){
+  .teacher-dark .td-course-card{
+    display:block!important;
+  }
+  .teacher-dark .td-cover,
+  .teacher-dark .td-optional-courses .td-cover{
+    min-height:0!important;
+    height:170px!important;
+  }
+  .teacher-dark .td-hero-stats{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .teacher-dark .td-top-actions .lang-switch{
+    display:none!important;
+  }
+}
+
+/* ---------- Universal inner pages ---------- */
+@media (min-width: 992px) and (max-width: 1199px){
+  .global-dark-page{
+    grid-template-columns:190px minmax(0,1fr)!important;
+  }
+}
+@media (max-width: 991px){
+  .global-dark-page{
+    display:block!important;
+  }
+  .global-sidebar{
+    position:static!important;
+    width:100%!important;
+    height:auto!important;
+    display:block!important;
+    padding:8px 10px!important;
+    border-right:0!important;
+    border-bottom:1px solid #172d3c!important;
+  }
+  .global-side-brand,
+  .global-side-credit{
+    display:none!important;
+  }
+  .global-sidebar nav{
+    display:flex!important;
+    overflow-x:auto!important;
+    gap:6px!important;
+    padding-bottom:4px!important;
+  }
+  .global-sidebar nav a{
+    flex:0 0 auto!important;
+    white-space:nowrap!important;
+    min-height:38px!important;
+    font-size:11px!important;
+  }
+  .global-workspace{
+    width:100%!important;
+    min-width:0!important;
+  }
+}
+@media (max-width: 767px){
+  .global-dark-page .main,
+  .global-dark-page .feature-shell,
+  .global-dark-page .test-shell{
+    padding:14px!important;
+  }
+  .global-dark-page .topbar{
+    padding:10px 12px!important;
+    flex-wrap:wrap!important;
+  }
+  .global-dark-page .form-grid,
+  .global-dark-page .builder-grid,
+  .global-dark-page .stats,
+  .global-dark-page .course-grid,
+  .global-dark-page .resource-grid,
+  .global-dark-page .achievement-grid{
+    grid-template-columns:1fr!important;
+  }
+  .global-dark-page .tablewrap{
+    overflow-x:auto!important;
+  }
+  .global-dark-page table{
+    min-width:620px!important;
+  }
+  .global-dark-page .page-head{
+    display:block!important;
+  }
+  .global-dark-page .page-head .btn{
+    margin-top:10px!important;
+  }
+}
+
+/* ---------- Course lesson pages ---------- */
+@media (max-width: 900px){
+  .global-dark-page .course-layout{
+    display:block!important;
+  }
+  .global-dark-page .lesson-sidebar{
+    position:relative!important;
+    width:100%!important;
+    max-height:280px!important;
+    overflow:auto!important;
+    border-right:0!important;
+    border-bottom:1px solid #213a49!important;
+  }
+  .global-dark-page .lesson-content{
+    padding:18px!important;
+  }
+}
+@media (max-width: 520px){
+  .global-dark-page .lesson-footer{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+  }
+  .global-dark-page .lesson-footer .btn{
+    width:100%!important;
+  }
+}
+
+/* ---------- Login / public ---------- */
+@media (max-width: 900px){
+  .global-public-dark .login-shell{
+    grid-template-columns:1fr!important;
+    max-width:720px!important;
+    margin:0 auto!important;
+  }
+}
+@media (max-width: 600px){
+  .global-public-dark .public-header{
+    padding:12px!important;
+    flex-wrap:wrap!important;
+  }
+  .global-public-dark .login-main{
+    padding:14px!important;
+  }
+  .global-public-dark .login-shell,
+  .global-public-dark .login-card{
+    border-radius:14px!important;
+  }
+  .global-public-dark .hero{
+    padding:20px!important;
+  }
+  .global-public-dark .hero h1{
+    font-size:28px!important;
+  }
+}
