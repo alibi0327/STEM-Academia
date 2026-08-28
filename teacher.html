@@ -1,1 +1,74 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>STEM Academia — Кабинет учителя</title><link rel="stylesheet" href="css/app.css"></head><body><header class="topbar"><div class="brand"><div class="brand-mark">S</div> STEM <span>ACADEMIA</span></div><div class="userbox"><span id="teacherName"></span><button id="logout" class="btn secondary">Выйти</button></div></header><main class="main teacher-shell"><div class="teacher-hero"><div><div class="eyebrow">Личный кабинет</div><h1>Моё обучение</h1><div id="schoolName" class="muted"></div></div><div class="teacher-summary"><div><b id="summaryRequired">—</b><span>основных</span></div><div><b id="summaryCompleted">—</b><span>завершено</span></div><div><b id="summaryCerts">—</b><span>сертификатов</span></div></div></div><div id="welcome" class="notice">Загрузка данных...</div><section class="v3-launcher"><a href="search.html">⌕ <span data-i18n="search">Поиск</span></a><a href="diagnostic.html">◎ <span data-i18n="diagnostic">Диагностика</span></a><a href="practice.html">✓ <span data-i18n="practice">Практические работы</span></a><a href="workspace.html">★ <span data-i18n="notes">Заметки</span></a><a href="profile.html">◉ <span data-i18n="profile">Профиль</span></a><a href="ai.html">✦ <span data-i18n="ai">AI-помощник</span></a></section><section class="dashboard-section"><div class="section-heading"><div><h2>Рекомендации</h2><p>Персональная траектория по вашему прогрессу и результатам</p></div></div><div id="recommendations" class="course-grid"></div></section><section class="dashboard-section"><div class="section-heading"><div><h2>Ближайшие дедлайны</h2><p>Сроки по назначенным курсам</p></div></div><div id="deadlines" class="deadline-grid"></div></section><section class="dashboard-section"><div class="section-heading"><div><h2>Уведомления</h2></div><a class="btn secondary" href="notifications.html">Все уведомления</a></div><div id="notificationPreview"></div></section><section class="dashboard-section"><div class="section-heading"><div><h2>Основные курсы</h2><p>Назначенные школой программы обучения</p></div></div><div id="courses" class="course-grid course-grid-rich"></div></section><section class="dashboard-section optional-area"><div class="section-heading"><div><h2>Дополнительные курсы</h2><p>Проходите по желанию — разрешение администратора не требуется</p></div></div><div class="catalog-toolbar"><input id="optionalSearch" placeholder="Поиск курса..."><select id="optionalCategory"><option value="">Все направления</option></select><select id="optionalLevel"><option value="">Любой уровень</option><option>Начальный</option><option>Средний</option><option>Продвинутый</option></select></div><div id="optionalCourses" class="course-grid course-grid-rich"><div class="notice">Загрузка каталога...</div></div></section><section class="dashboard-section"><div class="section-heading"><div><h2>Достижения</h2><p>Ваши учебные результаты</p></div></div><div id="achievements" class="achievement-grid"></div></section><section class="dashboard-section"><div class="section-heading"><div><h2>История тестов</h2><p>Последние попытки и результаты</p></div></div><div id="testHistory" class="tablewrap"></div></section><section class="dashboard-section"><div class="section-heading"><div><h2>Библиотека материалов</h2><p>Инструкции, программы, ссылки и файлы по курсам</p></div></div><div class="catalog-toolbar"><input id="resourceSearch" placeholder="Поиск материала..."><select id="resourceCourse"><option value="">Все курсы</option></select></div><div id="resourceLibrary" class="resource-grid"></div></section><div id="certificatesBlock" class="dashboard-section"></div></main><script type="module" src="js/teacher.js"></script><script type="module" src="js/teacher-v3.js"></script><script src="js/site-shell.js"></script></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STEM Academia — Кабинет учителя</title><link rel="stylesheet" href="css/app.css">
+</head>
+<body class="teacher-dark">
+<div class="td-app">
+<aside class="td-sidebar">
+  <div class="td-brand"><img src="assets/brand/logo.png" class="td-brand-logo" alt="STEM Academia"><div><div class="td-brand-title">STEM ACADEMIA</div><div class="td-brand-sub">Платформа профессионального<br>развития учителей</div></div></div>
+  <nav class="td-nav">
+    <a class="active" href="teacher.html"><span>⌂</span>Главная</a>
+    <a href="#coursesSection"><span>▣</span>Мои курсы</a><a href="#optionalSection"><span>▦</span>Каталог курсов</a>
+    <a href="#achievementsRight"><span>♙</span>Достижения</a><a href="#certificatesBlock"><span>▤</span>Сертификаты</a>
+    <a href="#materialsSection"><span>▧</span>Материалы</a><a href="workspace.html"><span>✎</span>Заметки</a>
+    <a href="workspace.html"><span>♡</span>Избранное</a><a href="#testHistorySection"><span>◫</span>Мои тесты</a>
+    <a href="practice.html"><span>☑</span>Практические работы</a>
+    <a href="notifications.html"><span>♧</span>Уведомления <b id="navNotificationCount" class="td-count hidden">0</b></a>
+    <a href="profile.html"><span>○</span>Профиль</a><a href="ai.html"><span>?</span>Поддержка</a>
+  </nav>
+  <div class="td-sidebar-bottom"><img src="assets/brand/logo.png" class="td-mini-logo" alt=""><div>Разработано Әліби Түлкібай</div></div>
+</aside>
+
+<div class="td-workspace">
+<header class="td-topbar">
+  <a class="td-mobile-brand" href="teacher.html"><img src="assets/brand/logo.png" alt=""><b>STEM Academia</b></a>
+  <a class="td-search" href="search.html"><span>⌕</span><span>Поиск курсов, занятий, материалов...</span><kbd>Ctrl + K</kbd></a>
+  <div class="td-top-actions"><div class="lang-switch"></div>
+    <a class="td-bell" href="notifications.html">♧<b id="topNotificationCount" class="hidden">0</b></a>
+    <a class="td-user" href="profile.html"><div class="td-avatar" id="teacherInitial">У</div><div class="td-user-copy"><b id="teacherName">Учитель</b><span>Учитель</span></div></a>
+    <button id="logout" class="td-logout">Выйти</button>
+  </div>
+</header>
+
+<div class="td-content">
+<main class="td-main">
+<section class="td-hero">
+ <div class="td-hero-copy"><h1>Добро пожаловать, <span id="welcomeFirstName">Учитель</span>!</h1><p>Продолжайте обучение и развивайтесь вместе со STEM Academia.</p>
+  <div class="td-hero-stats">
+   <div><span>▣</span><small>Всего курсов</small><b id="heroTotalCourses">—</b></div>
+   <div><span>☑</span><small>Пройдено</small><b id="summaryCompleted">—</b></div>
+   <div><span>◉</span><small>В процессе</small><b id="heroInProgress">—</b></div>
+   <div><span>♙</span><small>Сертификатов</small><b id="summaryCerts">—</b></div>
+   <div><span>✹</span><small>Баллы (XP)</small><b id="heroXp">—</b></div>
+  </div><div id="schoolName" class="td-school"></div>
+ </div>
+ <div class="td-hero-art"><div class="td-trophy">🏆</div><div class="td-books">▰<br>▰<br>▰</div></div>
+</section>
+<div id="welcome" class="notice">Загрузка данных...</div>
+
+<section id="coursesSection" class="td-section"><div class="td-section-head"><h2><span>◇</span> Основные курсы</h2><a href="#coursesSection">Смотреть все</a></div><div id="courses" class="course-grid course-grid-rich td-main-courses"></div></section>
+
+<section id="optionalSection" class="td-section"><div class="td-section-head"><h2><span>★</span> Дополнительные курсы</h2><a href="#optionalSection">Смотреть все</a></div>
+ <div class="catalog-toolbar td-filters"><input id="optionalSearch" placeholder="Поиск курса..."><select id="optionalCategory"><option value="">Все направления</option></select><select id="optionalLevel"><option value="">Любой уровень</option><option>Начальный</option><option>Средний</option><option>Продвинутый</option></select></div>
+ <div id="optionalCourses" class="course-grid course-grid-rich td-optional-courses"><div class="notice">Загрузка каталога...</div></div>
+</section>
+
+<section class="td-section"><div class="td-section-head"><h2><span>✦</span> Рекомендации</h2></div><div id="recommendations" class="course-grid"></div></section>
+<section id="testHistorySection" class="td-section"><div class="td-section-head"><h2><span>✓</span> История тестов</h2></div><div id="testHistory" class="tablewrap"></div></section>
+<section id="materialsSection" class="td-section"><div class="td-section-head"><h2><span>▧</span> Библиотека материалов</h2></div><div class="catalog-toolbar td-filters"><input id="resourceSearch" placeholder="Поиск материала..."><select id="resourceCourse"><option value="">Все курсы</option></select></div><div id="resourceLibrary" class="resource-grid"></div></section>
+<div id="certificatesBlock" class="td-section"></div>
+</main>
+
+<aside class="td-right">
+ <section class="td-side-card td-progress-card"><h3>Ваш прогресс</h3><div class="td-progress-ring" id="progressRing" style="--p:0"><div><b id="overallProgress">0%</b><span>Общий прогресс</span></div></div><p id="progressMessage">Продолжайте обучение!</p><a href="#coursesSection" class="td-outline-btn">Моя статистика</a></section>
+ <section class="td-side-card"><h3>Ближайшие дедлайны</h3><div id="deadlines" class="td-deadline-list"></div><a href="#coursesSection" class="td-outline-btn">Все дедлайны</a></section>
+ <section id="achievementsRight" class="td-side-card"><h3>Последние достижения</h3><div id="achievements" class="achievement-grid td-achievements-side"></div><a href="#achievementsRight" class="td-outline-btn">Все достижения</a></section>
+ <section class="td-side-card"><div class="td-side-card-head"><h3>Уведомления</h3><a href="notifications.html">Все</a></div><div id="notificationPreview"></div></section>
+</aside>
+</div>
+</div>
+</div>
+<script type="module" src="js/teacher.js"></script><script type="module" src="js/teacher-v3.js"></script><script src="js/site-shell.js"></script>
+</body></html>

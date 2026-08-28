@@ -22,11 +22,30 @@ export async function getSessionProfile() {
 export async function requireRole(role) {
   try {
     const { session, profile } = await getSessionProfile();
-    if (!session || !profile?.active || (role && profile.role !== role)) {
-      await supabase.auth.signOut();
+
+    if (!session || !profile?.active) {
       location.replace("index.html");
       return null;
     }
+
+    const allowedRoles = !role
+      ? []
+      : Array.isArray(role)
+        ? role
+        : [role];
+
+    if (allowedRoles.length && !allowedRoles.includes(profile.role)) {
+      const home =
+        profile.role === "admin"
+          ? "admin.html"
+          : profile.role === "school_admin"
+            ? "school-admin.html"
+            : "teacher.html";
+
+      location.replace(home);
+      return null;
+    }
+
     return { session, profile };
   } catch (e) {
     console.error(e);

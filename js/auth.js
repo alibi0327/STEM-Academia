@@ -5,7 +5,13 @@ async function route() {
   const { session, profile } = await getSessionProfile();
   if (!session || !profile) return false;
   if (!profile.active) { await supabase.auth.signOut(); return false; }
-  location.replace(profile.role === "admin" ? "admin.html" : "teacher.html");
+  location.replace(
+    profile.role === "admin"
+      ? "admin.html"
+      : profile.role === "school_admin"
+        ? "school-admin.html"
+        : "teacher.html"
+  );
   return true;
 }
 route().catch(console.error);
