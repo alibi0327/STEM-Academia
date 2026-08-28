@@ -1116,3 +1116,7 @@ tr:last-child td{border-bottom:0}
     font-size:28px!important;
   }
 }
+
+
+/* V3.4 NO PRACTICE CONFIRMATION */
+.practice-confirm,.practice-gate,.lesson-confirm:has(.practice-confirm){display:none!important}

@@ -77,6 +77,7 @@ $("completeLesson").onclick=async()=>{
   completed.add(d.id);
   const total=Math.min(dbLessons.length,lessons.length);
   if(completed.size>=total) await supabase.from("teacher_courses").update({status:"completed",completed_at:now}).eq("teacher_id",session.user.id).eq("course_id",course.id);
+  if(current<lessons.length-1) current++;
   render();
 };
 init().catch(e=>{console.error(e);alert("Ошибка загрузки курса: "+e.message)});

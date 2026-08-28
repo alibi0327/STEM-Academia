@@ -2,7 +2,7 @@ import { supabase } from "./supabase.js";
 import { lessons } from "./arduino-content.js";
 import { requireRole, logout, $, esc } from "./utils.js";
 
-let session,course,rows=[],done=new Set(),current=0,practiceConfirmed=new Set();
+let session,course,rows=[],done=new Set(),current=0;
 const row=i=>rows[i], isDone=i=>row(i)&&done.has(row(i).id), unlocked=i=>i===0||isDone(i)||isDone(i-1);
 
 async function init(){
@@ -21,22 +21,6 @@ async function init(){
 function render(){
  const l=lessons[current];
  $("lessonModule").textContent=l.module;$("lessonTitle").textContent=l.title;$("lessonSubtitle").textContent=l.subtitle;$("lessonBody").innerHTML=l.html;
- const lessonId=row(current)?.id;
- const confirmWrap=document.createElement("div");
- confirmWrap.className="card panel";
- confirmWrap.style.marginTop="18px";
- const confirmed=lessonId && practiceConfirmed.has(lessonId);
- confirmWrap.innerHTML=`<h3>Подтверждение практики</h3>
- <p class="muted">После выполнения задания подтвердите практическую часть. Только после этого занятие можно завершить.</p>
- <button type="button" id="confirmPractice" class="btn ${confirmed?"success":""}">${confirmed?"Практика подтверждена ✓":"Подтвердить выполнение практики"}</button>`;
- $("lessonBody").appendChild(confirmWrap);
- document.querySelectorAll(".practice-confirm").forEach(x=>x.closest(".lesson-confirm")?.classList.add("hidden"));
- const cp=$("confirmPractice");
- if(cp) cp.onclick=()=>{
-   if(!lessonId)return alert("Занятие не найдено.");
-   practiceConfirmed.add(lessonId);
-   render();
- };
  $("prevLesson").disabled=current===0;$("nextLesson").disabled=current===lessons.length-1||!isDone(current);
  $("completeLesson").disabled=isDone(current);$("completeLesson").textContent=isDone(current)?"Занятие пройдено ✓":"Завершить занятие";
  $("lessonMenu").innerHTML=lessons.map((x,i)=>`<button class="lesson-link ${i===current?"active":isDone(i)?"done":unlocked(i)?"":"locked"}" data-i="${i}" ${unlocked(i)?"":"disabled"}>${isDone(i)?"✓ ":""}${i+1}. ${esc(x.title)}</button>`).join("");
@@ -50,13 +34,13 @@ $("nextLesson").onclick=()=>{if(current<lessons.length-1&&isDone(current)){curre
 $("completeLesson").onclick=async()=>{
  const l=row(current);
  if(!l)return alert("Занятие не найдено в базе данных.");
- if(!practiceConfirmed.has(l.id)) return alert("Сначала нажмите «Подтвердить выполнение практики».");
  if(!l)return alert("Занятие не найдено в базе данных.");
  const now=new Date().toISOString();
  let r=await supabase.from("lesson_progress").upsert({teacher_id:session.user.id,lesson_id:l.id,status:"completed",started_at:now,completed_at:now,score:100,updated_at:now},{onConflict:"teacher_id,lesson_id"});
  if(r.error)return alert(r.error.message);
  done.add(l.id);
  await supabase.from("teacher_courses").update({status:"in_progress",started_at:now}).eq("teacher_id",session.user.id).eq("course_id",course.id).eq("status","assigned");
+ if(current<lessons.length-1) current++;
  render();
 };
 init().catch(e=>alert(e.message));
