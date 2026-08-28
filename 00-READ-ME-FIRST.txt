@@ -11,7 +11,7 @@ STEM Academia FULL V3 FINAL CLEAN
 8. После Success выполните Ctrl+F5 на сайте.
 
 Проверено перед упаковкой:
-- Git conflict markers <<<<<<< / >>>>>>> отсутствуют.
+- Git conflict markers MERGE_START / MERGE_END отсутствуют.
 - JS-файлы проходят node --check.
 - Локальные src/href в HTML не содержат отсутствующих файлов.
 - функция get_question_difficulty исправлена через отдельный ranked CTE.
