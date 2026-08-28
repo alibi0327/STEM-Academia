@@ -1,0 +1,19 @@
+STEM Academia FULL V3 FINAL CLEAN
+
+ВАЖНО ПЕРЕД УСТАНОВКОЙ
+1. Если GitHub Desktop сейчас показывает Resolve conflicts / Continue merge — нажмите Abort merge.
+2. Убедитесь, что репозиторий вернулся в обычное состояние.
+3. Распакуйте этот ZIP.
+4. Скопируйте ВСЁ содержимое папки STEM-Academia-main в ваш локальный репозиторий STEM-Academia с заменой файлов.
+5. В GitHub Desktop Summary: Install STEM Academia FULL V3 Final Clean
+6. Commit to main → Push origin.
+7. В Supabase SQL Editor откройте НОВЫЙ запрос и запустите только RUN_THIS_ONE_SQL_V3.sql.
+8. После Success выполните Ctrl+F5 на сайте.
+
+Проверено перед упаковкой:
+- Git conflict markers <<<<<<< / >>>>>>> отсутствуют.
+- JS-файлы проходят node --check.
+- Локальные src/href в HTML не содержат отсутствующих файлов.
+- функция get_question_difficulty исправлена через отдельный ranked CTE.
+
+Логотип и подпись «Разработано Әліби Түлкібай» входят в проект.
