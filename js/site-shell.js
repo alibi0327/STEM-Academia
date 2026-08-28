@@ -1,0 +1,10 @@
+(()=>{
+ const logo='assets/brand/logo.png';
+ const dict={ru:{home:'Главная',search:'Поиск',profile:'Профиль',notes:'Заметки',practice:'Практические работы',diagnostic:'Диагностика',ai:'AI-помощник',reports:'Отчёты',developed:'Разработано Әліби Түлкібай'},kk:{home:'Басты бет',search:'Іздеу',profile:'Профиль',notes:'Жазбалар',practice:'Практикалық жұмыстар',diagnostic:'Диагностика',ai:'AI-көмекші',reports:'Есептер',developed:'Әзірлеген Әліби Түлкібай'}};
+ const lang=localStorage.getItem('stem_lang')||'ru';
+ function brand(){document.querySelectorAll('.brand').forEach(b=>{let mark=b.querySelector('.brand-mark');if(mark){mark.innerHTML=`<img src="${logo}" alt="STEM Academia">`;mark.classList.add('brand-logo')}else if(!b.querySelector('.brand-inline-logo')){b.insertAdjacentHTML('afterbegin',`<img class="brand-inline-logo" src="${logo}" alt="STEM Academia">`)}})}
+ function translate(l){localStorage.setItem('stem_lang',l);document.documentElement.lang=l==='kk'?'kk':'ru';document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(dict[l]?.[k])el.textContent=dict[l][k]});document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l))}
+ function shell(){brand();if(!document.querySelector('.lang-switch')){const target=document.querySelector('.topbar .userbox,.topbar>div:last-child,.public-header .brand');if(target&&target.parentElement){const s=document.createElement('div');s.className='lang-switch';s.innerHTML='<button data-lang="ru">Рус</button><button data-lang="kk">Қаз</button>';if(target.classList.contains('brand'))target.parentElement.appendChild(s);else target.prepend(s);s.querySelectorAll('button').forEach(b=>b.onclick=()=>translate(b.dataset.lang))}}
+ if(!document.querySelector('.site-credit')){const f=document.createElement('footer');f.className='site-credit';f.innerHTML=`<img src="${logo}" alt=""><span data-i18n="developed"></span>`;document.body.appendChild(f)}translate(lang)}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',shell);else shell();
+})();
